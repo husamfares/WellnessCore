@@ -32,3 +32,6 @@ D:\Programs\WellnessCore\api\obj\Debug\net9.0\refint\API.dll
 D:\Programs\WellnessCore\api\obj\Debug\net9.0\API.pdb
 D:\Programs\WellnessCore\api\obj\Debug\net9.0\API.genruntimeconfig.cache
 D:\Programs\WellnessCore\api\obj\Debug\net9.0\ref\API.dll
+D:\Programs\WellnessCore\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Programs\WellnessCore\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Programs\WellnessCore\api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
