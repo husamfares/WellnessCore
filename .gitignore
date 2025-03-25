@@ -1,1 +1,23 @@
 API/appsettings.json
+# Ignore build artifacts and NuGet-generated files
+bin/
+obj/
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+*.assets.cache
+*.AssemblyReference.cache
+*.project.assets.json
+*.project.nuget.cache
+
+# Existing rules
+# Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
+*.vbw
+
+# Visual Studio 6 auto-generated project file (contains which files were open etc.)
+*.vbp
+
+# Visual Studio 6 workspace and project file (working project files containing files to
