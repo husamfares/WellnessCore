@@ -1,0 +1,13 @@
+.signup-btn {
+    text-decoration: underline;
+    color: lightskyblue;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.signup-btn:hover {
+    color: blueviolet;
+}

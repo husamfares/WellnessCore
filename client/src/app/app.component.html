@@ -1,3 +1,14 @@
-<app-login></app-login>
+@if (registerMode) 
+    {
+        <app-register
+        (cancelRegister)="cancelRegisterMode($event)"
+    ></app-register>
+    } @else 
+    {
+        <app-login
+        (openRegister)="cancelRegisterMode($event)"
+    ></app-login>
+    }
 
+   
 
