@@ -33,6 +33,7 @@
 
       @if (this.accountService.currentUser()) {
         <p style="color: white;">you are logged in</p>
+        <button (click)="logout()" class="btn btn-danger"> Log Out</button>
       }
      
 
