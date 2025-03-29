@@ -3,11 +3,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
 import { AccountService } from './_services/account.service';
-import { RegisterComponent } from "./register/register.component";
+import { RegisterComponent } from "./registerInfo/register/register.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginComponent, RegisterComponent],
+  imports: [  RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

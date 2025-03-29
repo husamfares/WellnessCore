@@ -1,6 +1,7 @@
 import { Component, inject, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from '../_services/account.service';
+import { AccountService } from '../../_services/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,7 @@ import { AccountService } from '../_services/account.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  private router = inject(Router);
   model: any = {};
   private accountService = inject(AccountService);
   cancelRegister = output<boolean>();
@@ -18,7 +20,12 @@ export class RegisterComponent {
   register()
   {
     this.accountService.register(this.model).subscribe({
-      next: response => console.log(response),
+      next: response =>
+        {
+          console.log(response),
+          this.onRegisterSuccess();
+          
+        },
       error: error => console.log(error)
     })
   }
@@ -27,4 +34,10 @@ export class RegisterComponent {
   {
     this.cancelRegister.emit(false);
   }
+
+  onRegisterSuccess()
+{
+  this.router.navigate(['/wellness-info']);
+}
+
 }
