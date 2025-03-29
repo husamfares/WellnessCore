@@ -21,3 +21,4 @@ obj/
 *.vbp
 
 # Visual Studio 6 workspace and project file (working project files containing files to
+API/appsettings.Development.json
