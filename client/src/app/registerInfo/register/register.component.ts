@@ -2,11 +2,11 @@ import { Component, inject, OnInit, output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { AccountService } from '../../_services/account.service';
 import { Router, RouterLink } from '@angular/router';
-import { JsonPipe, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterLink, ReactiveFormsModule,JsonPipe, NgIf],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, NgIf],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
