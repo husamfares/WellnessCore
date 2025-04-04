@@ -5,32 +5,58 @@
     <div class="form-signin w-100 m-auto text-center" style="max-width: 400px;">
       
       
-        <form #registerForm="ngForm" >
+        <form [formGroup]="registerForm" >
        <!--<img class="mb-4" src="assets/Icon.jpg" alt="" width="72" height="57">    Doesnt work img      -->
         
        <h1 class="h3 mb-3 fw-normal" style="color: lightblue;">Please Sign Up</h1>
        <p style="color: white;">Our New User ;</p>
 
         <div class="form-floating mb-3">
-          <input name="userName" [(ngModel)]="model.userName" class="form-control" placeholder="Username">
+          
+          <input formControlName="username" class="form-control" placeholder="Username"
+          [class.is-valid]="registerForm.get('username')?.valid && registerForm.get('username')?.touched"
+          [class.is-invalid]="registerForm.get('username')?.errors && registerForm.get('username')?.touched">
+
           <label>Username</label>
+          <div class="invalid-feedback text-start">Please enter a username</div>
+
         </div>
 
         <div class="form-floating mb-3">
-          <input name="Password" [(ngModel)]="model.password" type="password" class="form-control" placeholder="Password">
+          
+          <input formControlName="password" type="password" class="form-control" placeholder="Password"
+          [class.is-invalid]="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
+          [class.is-valid]="registerForm.get('password')?.valid && registerForm.get('password')?.touched">
+          
           <label>Password</label>
+          <div *ngIf="registerForm.get('password')?.hasError('required')" class="invalid-feedback text-start">Please enter a password</div>
+          <div *ngIf="registerForm.get('password')?.hasError('maxlength')" class="invalid-feedback text-start">password must be at most 8 characters</div>
+          <div *ngIf="registerForm.get('password')?.hasError('minlength')" class="invalid-feedback text-start">password Must be at least 4 characters</div>
+
+        </div>
+
+        <div class="form-floating mb-3">
+
+          <input 
+          formControlName="confirmPassword" type="password" class="form-control" placeholder="confirmPassword"
+          [class.is-invalid]="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched"
+          [class.is-valid]="registerForm.get('confirmPassword')?.valid && registerForm.get('confirmPassword')?.touched">
+          
+          <label>Confirm Password</label>
+          <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')" class="invalid-feedback text-start">Please enter a Confirmation password</div>
+          <div *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')" class="invalid-feedback text-start">Passwrods do not Match</div>
+
         </div>
 
    
 
         
         <button [routerLink]="['/login']" class="btn btn-danger py-2 mr-2">Cancel</button>
-        <button (click)="register()" class="btn btn-primary py-2" type="submit">Sign Up</button>
+        <button [disabled]="!registerForm.valid" (click)="register()" class="btn btn-primary py-2" type="submit">Sign Up</button>
         
         
 
       </form>
     </div>
-
 <div>
 

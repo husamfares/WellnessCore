@@ -1,0 +1,61 @@
+/* General Styles */
+body {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Poppins', sans-serif; /* Use a clean, modern font */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #000000 !important;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.navbar-brand, .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: #DADADA !important;
+}
+
+/* Buttons */
+.btn-dark {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-dark:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: #ffffff;
+  text-align: left;
+  padding: 60px;
+}
+
+.hero-section h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #333333;
+}
+
+/* Icons or Decorative Stars */
+.decor-stars {
+  color: #000000;
+  font-size: 30px;
+}
