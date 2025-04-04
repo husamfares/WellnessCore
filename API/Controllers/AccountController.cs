@@ -5,16 +5,19 @@ using API.Data;
 using API.Dtos;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class AccountController(DataContext context, ItokenService tokenService) : BaseApiController
+public class AccountController(DataContext context, ItokenService tokenService , IMapper mapper) : BaseApiController
 {
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
+        Console.WriteLine($"Received request: {registerDto.Username}, {registerDto.Password}");
+
         if(await UserExists(registerDto.Username))
         {
             return BadRequest("Username is taken");
@@ -26,21 +29,25 @@ public class AccountController(DataContext context, ItokenService tokenService) 
         }
 
         using var hmac = new HMACSHA512();
-
+        
         var user = new AppUser
         {
             UserName = registerDto.Username.ToLower(),
             PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmac.Key
+            PasswordSalt = hmac.Key,
+
         };
 
         context.Add(user);
         await context.SaveChangesAsync();
 
-        return new UserDto{
-            Username = user.UserName,
-            Token = tokenService.CreateToken(user)
-        };
+        return Ok(new UserDto
+            {
+                Username = user.UserName,
+                Token = tokenService.CreateToken(user),
+                Id = user.Id
+            });
+
     }
     // Login
 
@@ -67,6 +74,26 @@ public class AccountController(DataContext context, ItokenService tokenService) 
         };
     }
 
+    [HttpPost ("update-wellness-info")]
+    public async Task<ActionResult<UserDto>> wellnessInfo(WellnessInfoDto wellnessInfoDto)
+    {
+            Console.WriteLine($"Received userId: {wellnessInfoDto.UserId}");
+
+        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == wellnessInfoDto.UserId);
+
+        if(user == null) return BadRequest("can not found the user in data");
+
+        mapper.Map(wellnessInfoDto , user);
+
+        await context.SaveChangesAsync();
+
+        return Ok("Wellness info updated successfully");
+
+
+
+        
+    }
+
 
 
     private async Task<bool> UserExists(string username)
@@ -74,3 +101,4 @@ public class AccountController(DataContext context, ItokenService tokenService) 
         return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower());
     }
 }
+

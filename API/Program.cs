@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Helpers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,12 +12,14 @@ builder.Services.AddIdentityServices(builder.Configuration);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200"));
+app.UseDeveloperExceptionPage();//for more info about exceptions
 
 app.UseAuthentication();
 app.UseAuthorization();

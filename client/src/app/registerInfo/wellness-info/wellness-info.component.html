@@ -1,1 +1,40 @@
-<p>wellness-info works!</p>
+<div class="d-flex align-items-center py-4 bg-dark content d-flex vh-100">
+    
+    <!-- Wellness Info Form -->
+    <div class="form-signin w-100 m-auto text-center" style="max-width: 400px;">
+      
+        <form #wellnessForm="ngForm">
+        
+        <h1 class="h3 mb-3 fw-normal" style="color: lightblue;">Wellness Information</h1>
+        <p style="color: white;">Tell us about yourself:</p>
+
+        <div class="form-floating mb-3">
+          <input name="age" [(ngModel)]="model.age" type="number" class="form-control" placeholder="Age">
+          <label>Age</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input name="height" [(ngModel)]="model.height" type="number" class="form-control" placeholder="Height (cm)">
+          <label>Height (cm)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input name="weight" [(ngModel)]="model.weight" type="number" class="form-control" placeholder="Weight (kg)">
+          <label>Weight (kg)</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <select name="gender" [(ngModel)]="model.gender" class="form-control">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          <label>Gender</label>
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="wellness_Info()">Save Wellness Info</button>
+      </form>
+    </div>
+
+</div>

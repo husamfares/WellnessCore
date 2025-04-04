@@ -23,10 +23,17 @@ export class RegisterComponent {
       next: response =>
         {
           console.log(response),
+          console.log("Sending model to backend:", this.model);
+          
           this.onRegisterSuccess();
+
           
         },
-      error: error => console.log(error)
+      error: error => 
+        {
+          console.log(error);
+          alert('Registration failed. Check the console for details');
+        }
     })
   }
 
@@ -35,9 +42,12 @@ export class RegisterComponent {
     this.cancelRegister.emit(false);
   }
 
-  onRegisterSuccess()
-{
-  this.router.navigate(['/wellness-info']);
-}
+  onRegisterSuccess() {
+    // Corrected to pass query parameters correctly
+    this.router.navigate(['/update-wellness-info'], { queryParams: { userId: this.model.id }
+     });
+
+  }
+  
 
 }

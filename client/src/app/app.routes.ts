@@ -8,7 +8,7 @@ export const routes: Routes =
 [
     {path: '' , component: LoginComponent},
     {path: 'register' , component: RegisterComponent},
-    {path: 'wellness-info' , component: WellnessInfoComponent},
+    {path: 'update-wellness-info' , component: WellnessInfoComponent},
     {path: 'login' , component: LoginComponent},
     {path: 'home' , component: HomeComponent},
 

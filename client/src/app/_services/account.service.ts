@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +24,7 @@ export class AccountService {
     )
   }
  
-  register(model: any)
-  {
+  register(model: any): Observable<void> {
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if(user) {
@@ -34,6 +33,19 @@ export class AccountService {
         }
       })
     )
+  }
+
+  wellness_info(model: any)
+  {
+    return this.http.post<User>(this.baseUrl+ 'account/update-wellness-info' , model).pipe(
+      map(user => {
+        if (user) {
+          this.currentUser.set(user); // Update stored user data
+          
+        }
+      })
+    );
+    // what is type of return here? it is return Observable as object user
   }
 
   logout()
