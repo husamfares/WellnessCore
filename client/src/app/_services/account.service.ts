@@ -36,18 +36,6 @@ export class AccountService {
     )
   }
 
-  wellnessInfo(model: any): Observable<void>
-  {
-    return this.http.post<User>(this.baseUrl+ 'account/update-wellness-info' , model).pipe(
-      map(user => {
-        if (user) {
-          this.currentUser.set(user); // Update stored user data
-          
-        }
-      })
-    );
-    // what is type of return here? it is return Observable as object user
-  }
 
   logout()
   {

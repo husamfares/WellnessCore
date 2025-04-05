@@ -56,7 +56,11 @@ export class RegisterComponent implements OnInit{
   {
     this.accountService.register(this.registerForm.value).subscribe({
       next: response => this.onRegisterSuccess(),
-      error: error => this.toastr.error(error.error)
+      error: error => {
+        console.log('Registration error:', error);
+        this.toastr.error(error.error || 'Registration failed');
+      }
+      
     })
   }
 
@@ -67,8 +71,7 @@ export class RegisterComponent implements OnInit{
 
   onRegisterSuccess() {
     // Corrected to pass query parameters correctly
-    this.router.navigate(['/update-wellness-info'], { queryParams: { userId: this.model.id }
-     });
+    this.router.navigate(['/home']);
 
   }
   
