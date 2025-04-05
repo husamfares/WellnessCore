@@ -9,24 +9,10 @@ public class AutoMapperProfiles : Profile
 {
     public AutoMapperProfiles()
     {
-        CreateMap<AppUser, MemberDto>()
-            .ForMember(d => d.Age, o => o.MapFrom(s => s.DateOfBirth.CalculateAge()));
+       CreateMap<AppUser, MemberDto>()
+    .ForMember(dest => dest.Age, opt => opt.MapFrom(src =>
+        src.DateOfBirth.HasValue ? src.DateOfBirth.Value.CalculateAge() : 0));
 
-
-
-        // Mapping for RegisterDto (not really used, but keeping it)
-        // CreateMap<RegisterDto, AppUser>()
-        //     .ForMember(dest => dest.UserName, opt => opt.Ignore()) 
-        //     .ForMember(dest => dest.PasswordHash, opt => opt.Ignore()) 
-        //     .ForMember(dest => dest.PasswordSalt, opt => opt.Ignore());
-
-        // Mapping for WellnessInfoDto → AppUser
-        // CreateMap<WellnessInfoDto, AppUser>()
-        //    // .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.Age))
-        //     .ForMember(dest => dest.Weight, opt => opt.MapFrom(src => src.Weight))
-        //     .ForMember(dest => dest.Height, opt => opt.MapFrom(src => src.Height))
-        //     .ForMember(dest => dest.Gender, opt => opt.MapFrom(src => src.Gender));
-        
 
     }
 }

@@ -10,7 +10,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-<<<<<<< HEAD
     },
     "https": {
       "commandName": "Project",
@@ -21,8 +20,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
 
       }
-=======
->>>>>>> 26340077447705b869b2a3a5605131daab41fd71
     }
   }
 }

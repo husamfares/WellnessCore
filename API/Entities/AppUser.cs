@@ -8,13 +8,14 @@ public class AppUser
     public required byte[] PasswordHash { get; set; } = [];
     public required byte[] PasswordSalt { get; set; } = [];
 
-    public DateOnly DateOfBirth { get; set; }
 
-    public required int Weight { get; set; }
+    public DateOnly? DateOfBirth { get; set; }  // nullable
 
-    public required int Height { get; set; }
+    public string? Weight { get; set; }
 
-    public required string Gender { get; set; } 
+    public string? Height { get; set; }
+
+    public string? Gender { get; set; } 
 
     // public int GetAge()
     // {

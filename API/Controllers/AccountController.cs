@@ -11,41 +11,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
-public class AccountController(DataContext context, ItokenService tokenService , IMapper mapper) : BaseApiController
+public class AccountController(DataContext context, ItokenService tokenService ) : BaseApiController
 {
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
-        return Ok("ok");
-        // if(await UserExists(registerDto.Username))
-        // {
-        //     return BadRequest("Username is taken");
-        // }
+        if(await UserExists(registerDto.Username))
+        {
+            return BadRequest("Username is taken");
+        }
 
-        // if(registerDto.Username == null || registerDto.Password ==null || registerDto.Username == "" || registerDto.Password =="" )
-        // {
-        //     return BadRequest("username or password cant be empty");
-        // }
+        if(registerDto.Username == null || registerDto.Password ==null || registerDto.Username == "" || registerDto.Password =="" )
+        {
+            return BadRequest("username or password cant be empty");
+        }
 
-        // using var hmac = new HMACSHA512();
+        using var hmac = new HMACSHA512();
         
-        // var user = new AppUser
-        // {
-        //     UserName = registerDto.Username.ToLower(),
-        //     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-        //     PasswordSalt = hmac.Key,
+        var user = new AppUser
+        {
+            UserName = registerDto.Username.ToLower(),
+            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+            PasswordSalt = hmac.Key,
+            DateOfBirth = registerDto.DateOfBirth,
+            Weight = registerDto.Weight,
+            Height = registerDto.Height,
+            Gender = registerDto.Gender
 
-        // };
+        };
 
-        // context.Add(user);
-        // await context.SaveChangesAsync();
+        context.Add(user);
+        await context.SaveChangesAsync();
 
-        // return Ok(new UserDto
-        //     {
-        //         Username = user.UserName,
-        //         Token = tokenService.CreateToken(user),
-        //         Id = user.Id
-        //     });
+        return Ok(new UserDto
+            {
+                Username = user.UserName,
+                Token = tokenService.CreateToken(user),
+            });
 
     }
     // Login
@@ -73,28 +75,7 @@ public class AccountController(DataContext context, ItokenService tokenService ,
         };
     }
 
-    [HttpPost ("update-wellness-info")]
-    public async Task<ActionResult<UserDto>> wellnessInfo(WellnessInfoDto wellnessInfoDto)
-    {
-            Console.WriteLine($"Received userId: {wellnessInfoDto.UserId}");
-
-        var user = await context.Users.FirstOrDefaultAsync(x => x.Id == wellnessInfoDto.UserId);
-
-        if(user == null) return BadRequest("can not found the user in data");
-
-        mapper.Map(wellnessInfoDto , user);
-
-        await context.SaveChangesAsync();
-
-        return Ok("Wellness info updated successfully");
-
-
-
-        
-    }
-
-
-
+    
     private async Task<bool> UserExists(string username)
     {
         return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower());
