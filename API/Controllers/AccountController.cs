@@ -16,37 +16,36 @@ public class AccountController(DataContext context, ItokenService tokenService ,
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
-        Console.WriteLine($"Received request: {registerDto.Username}, {registerDto.Password}");
+        return Ok("ok");
+        // if(await UserExists(registerDto.Username))
+        // {
+        //     return BadRequest("Username is taken");
+        // }
 
-        if(await UserExists(registerDto.Username))
-        {
-            return BadRequest("Username is taken");
-        }
+        // if(registerDto.Username == null || registerDto.Password ==null || registerDto.Username == "" || registerDto.Password =="" )
+        // {
+        //     return BadRequest("username or password cant be empty");
+        // }
 
-        if(registerDto.Username == null || registerDto.Password ==null || registerDto.Username == "" || registerDto.Password =="" )
-        {
-            return BadRequest("username or password cant be empty");
-        }
-
-        using var hmac = new HMACSHA512();
+        // using var hmac = new HMACSHA512();
         
-        var user = new AppUser
-        {
-            UserName = registerDto.Username.ToLower(),
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmac.Key,
+        // var user = new AppUser
+        // {
+        //     UserName = registerDto.Username.ToLower(),
+        //     PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
+        //     PasswordSalt = hmac.Key,
 
-        };
+        // };
 
-        context.Add(user);
-        await context.SaveChangesAsync();
+        // context.Add(user);
+        // await context.SaveChangesAsync();
 
-        return Ok(new UserDto
-            {
-                Username = user.UserName,
-                Token = tokenService.CreateToken(user),
-                Id = user.Id
-            });
+        // return Ok(new UserDto
+        //     {
+        //         Username = user.UserName,
+        //         Token = tokenService.CreateToken(user),
+        //         Id = user.Id
+        //     });
 
     }
     // Login

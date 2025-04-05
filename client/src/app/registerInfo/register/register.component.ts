@@ -1,8 +1,9 @@
 import { Component, inject, OnInit, output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { AccountService } from '../../_services/account.service';
 import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,15 @@ import { NgIf } from '@angular/common';
 })
 export class RegisterComponent implements OnInit{
  
+  private toastr= inject(ToastrService);
   private router = inject(Router);
   model: any = {};
   registerForm: FormGroup = new FormGroup({});
   private accountService = inject(AccountService);
   cancelRegister = output<boolean>();
+  validationErrors: string[] | undefined;
+  private fb = inject(FormBuilder);
+
   
 
 
@@ -26,8 +31,12 @@ export class RegisterComponent implements OnInit{
 
   initializeForm()
   {
-    this.registerForm = new FormGroup({
+    this.registerForm = this.fb.group({
+      gender: ['male'],
       username: new FormControl('', Validators.required),
+      dateOfBirth: ['', Validators.required],
+      weight: ['', Validators.required],
+      height: ['', Validators.required],
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
       confirmPassword: new FormControl('',[Validators.required, this.matchValues('password')])
     });
@@ -45,21 +54,9 @@ export class RegisterComponent implements OnInit{
 
   register()
   {
-    this.accountService.register(this.model).subscribe({
-      next: response =>
-        {
-          console.log(response),
-          console.log("Sending model to backend:", this.model);
-          
-          this.onRegisterSuccess();
-
-          
-        },
-      error: error => 
-        {
-          console.log(error);
-          alert('Registration failed. Check the console for details');
-        }
+    this.accountService.register(this.registerForm.value).subscribe({
+      next: response => this.onRegisterSuccess(),
+      error: error => this.toastr.error(error.error)
     })
   }
 

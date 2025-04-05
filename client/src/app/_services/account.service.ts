@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
   private http = inject(HttpClient);
-  baseUrl = 'https://localhost:5001/api/';
+  baseUrl = environment.apiUrL;
   currentUser = signal<User | null>(null);
  
 
@@ -24,7 +25,7 @@ export class AccountService {
     )
   }
  
-  register(model: any): Observable<void> {
+  register(model: any){
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map(user => {
         if(user) {
@@ -35,7 +36,7 @@ export class AccountService {
     )
   }
 
-  wellness_info(model: any)
+  wellnessInfo(model: any): Observable<void>
   {
     return this.http.post<User>(this.baseUrl+ 'account/update-wellness-info' , model).pipe(
       map(user => {

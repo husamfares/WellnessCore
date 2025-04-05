@@ -38,7 +38,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
             break;
           default:
             toastr.error('Something unexpected went wrong');
-            console.log(error);
+            console.log(error.error);
             break;
         }
       }

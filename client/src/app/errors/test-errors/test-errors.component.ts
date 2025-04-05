@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './test-errors.component.css'
 })
 export class TestErrorsComponent {
-    baseUrl = 'https://localhost:5001/api/';
+    baseUrl = environment.apiUrL;
     private http = inject(HttpClient);
     validationErrors: string[]=[];
 
