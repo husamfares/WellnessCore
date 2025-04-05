@@ -1,0 +1,42 @@
+::ng-deep .bs-datepicker.black-theme {
+    background-color: #2c2c2c;
+    color: #f0f0f0;
+    border: none;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-head,
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body {
+    background-color: #3a3a3a;
+    color: #f0f0f0;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body table td.week span {
+    color: #bbbbbb;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body table td span {
+    color: #e0e0e0;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body table td span.selected {
+    background-color: #0d6efd;
+    color: #ffffff;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body table td span:hover {
+    background-color: #0b5ed7;
+    color: #ffffff;
+  }
+  
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-head button {
+    color: #f0f0f0;
+  }
+
+  ::ng-deep .bs-datepicker.black-theme .bs-datepicker-body table td.disabled span {
+    background-color: transparent !important;
+    color: #555 !important;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  

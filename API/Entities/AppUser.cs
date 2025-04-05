@@ -9,11 +9,11 @@ public class AppUser
     public required byte[] PasswordSalt { get; set; } = [];
 
 
-    public DateOnly? DateOfBirth { get; set; }  // nullable
+    public DateOnly DateOfBirth { get; set; }
 
-    public string? Weight { get; set; }
+    public int Weight { get; set; }
 
-    public string? Height { get; set; }
+    public int Height { get; set; }
 
     public string? Gender { get; set; } 
 

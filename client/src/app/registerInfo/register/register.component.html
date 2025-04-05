@@ -1,103 +1,46 @@
 
-<div class="d-flex align-items-center py-4 bg-dark content d-flex vh-100">
-    
+<div class="d-flex align-items-center py-4 bg-dark content d-flex min-vh-100">
     
     <div class="form-signin w-100 m-auto text-center" style="max-width: 400px;">
-      
       
         <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="register()">
         
        <h1 class="h3 mb-3 fw-normal" style="color: lightblue;">Please Sign Up</h1>
        <p style="color: white;">Our New User ;</p>
 
-        <div class="form-floating mb-3">
-          
+        
+       <div class="mb-3 me-3" style="color: white;">
+        <label style="margin-right: 10px;"> I am a:</label>
 
-
-          <input formControlName="username" class="form-control" placeholder="Username"
-          [class.is-valid]="registerForm.get('username')?.valid && registerForm.get('username')?.touched"
-          [class.is-invalid]="registerForm.get('username')?.errors && registerForm.get('username')?.touched">
-
-          <label>Username</label>
-          <div class="invalid-feedback text-start">Please enter a username</div>
-
-        </div>
-
-
-        <div class="form-floating mb-3">
-          
-          <input formControlName="password" type="password" class="form-control" placeholder="Password"
-          [class.is-invalid]="registerForm.get('password')?.errors && registerForm.get('password')?.touched"
-          [class.is-valid]="registerForm.get('password')?.valid && registerForm.get('password')?.touched">
-          
-          <label>Password</label>
-          <div *ngIf="registerForm.get('password')?.hasError('required')" class="invalid-feedback text-start">Please enter a password</div>
-          <div *ngIf="registerForm.get('password')?.hasError('maxlength')" class="invalid-feedback text-start">password must be at most 8 characters</div>
-          <div *ngIf="registerForm.get('password')?.hasError('minlength')" class="invalid-feedback text-start">password Must be at least 4 characters</div>
-
-        </div>
-
-        <div class="form-floating mb-3">
-
-          <input 
-          formControlName="confirmPassword" type="password" class="form-control" placeholder="confirmPassword"
-          [class.is-invalid]="registerForm.get('confirmPassword')?.errors && registerForm.get('confirmPassword')?.touched"
-          [class.is-valid]="registerForm.get('confirmPassword')?.valid && registerForm.get('confirmPassword')?.touched">
-          
-          <label>Confirm Password</label>
-          <div *ngIf="registerForm.get('confirmPassword')?.hasError('required')" class="invalid-feedback text-start">Please enter a Confirmation password</div>
-          <div *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')" class="invalid-feedback text-start">Passwrods do not Match</div>
-
-        </div>
-
-
-      <div class="form-floating mb-3">    
-
-        <input type="date" formControlName="dateOfBirth" class="form-control" placeholder="Date of Birth"
-          [class.is-valid]="registerForm.get('dateOfBirth')?.valid && registerForm.get('dateOfBirth')?.touched"
-          [class.is-invalid]="registerForm.get('dateOfBirth')?.errors && registerForm.get('dateOfBirth')?.touched">
-
-
-        <label>Date of Birth</label>
-        <div class="invalid-feedback text-start">Please enter the Age</div>
-
-      </div>
-
-
-      <div class="form-floating mb-3">    
-
-        <input formControlName="weight" class="form-control" placeholder="Weight"
-        [class.is-valid]="registerForm.get('weight')?.valid && registerForm.get('weight')?.touched"
-        [class.is-invalid]="registerForm.get('weight')?.errors && registerForm.get('weight')?.touched">
-
-        <label>Weight</label>
-        <div class="invalid-feedback text-start">Please enter the Weight</div>
-
-      </div>
-
-      <div class="form-floating mb-3">    
-
-        <input formControlName="height" class="form-control" placeholder="Height"
-        [class.is-valid]="registerForm.get('height')?.valid && registerForm.get('height')?.touched"
-        [class.is-invalid]="registerForm.get('height')?.errors && registerForm.get('height')?.touched">
-
-        <label>Height</label>
-        <div class="invalid-feedback text-start">Please enter the Height</div>
-
-      </div>
-
-      <div class="mb-3">
-        <label style="margin-right: 10px; color: white;" class="me-4"> I am a:</label>
-
-        <label style="color: white;" class="form-check-label me-4">
+        <label class="form-check-label me-4">
             <input type="radio" class="form-check-input" value="male" formControlName="gender">Male
         </label>
-        <label style="color: white; margin-left: 30px;" class="form-check-label me-4">
+        <label class="form-che ck-label">
             <input type="radio" class="form-check-input" value="Female" formControlName="gender">Female
         </label>
     </div>
 
-        
+
+          <app-text-input 
+          [formControl]="$any(registerForm.controls['username'])" [label]="'Username'"
+          ></app-text-input>
+
+          <app-text-input [formControl]="$any(registerForm.controls['height'])" [label]="'Height'"></app-text-input>
+
+          <app-text-input [formControl]="$any(registerForm.controls['weight'])" [label]="'weight'"></app-text-input>
+
+          <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])"
+          [label]="'Date of birth'" [maxDate]="maxDate"></app-date-picker>
+
+
+          <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'password'"
+          [type]="'password'"></app-text-input>
+  
+  
+      <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'confirmPassword'"
+          [type]="'password'"></app-text-input>
+
+
         <button [routerLink]="['/login']" class="btn btn-danger py-2 mr-2">Cancel</button>
         <button [disabled]="!registerForm.valid" class="btn btn-primary py-2" type="submit">Sign Up</button>
         
