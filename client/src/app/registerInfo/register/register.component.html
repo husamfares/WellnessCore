@@ -1,18 +1,19 @@
 
 <div class="d-flex align-items-center py-4 bg-dark content d-flex vh-100">
     
-    <!-- Login Form -->
+    
     <div class="form-signin w-100 m-auto text-center" style="max-width: 400px;">
       
       
-        <form [formGroup]="registerForm" >
-       <!--<img class="mb-4" src="assets/Icon.jpg" alt="" width="72" height="57">    Doesnt work img      -->
+        <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="register()">
         
        <h1 class="h3 mb-3 fw-normal" style="color: lightblue;">Please Sign Up</h1>
        <p style="color: white;">Our New User ;</p>
 
         <div class="form-floating mb-3">
           
+        
+
           <input formControlName="username" class="form-control" placeholder="Username"
           [class.is-valid]="registerForm.get('username')?.valid && registerForm.get('username')?.touched"
           [class.is-invalid]="registerForm.get('username')?.errors && registerForm.get('username')?.touched">
@@ -21,6 +22,37 @@
           <div class="invalid-feedback text-start">Please enter a username</div>
 
         </div>
+
+
+        <div class="mb-3">
+          <label style="margin-right: 10px; color: white;" class="me-4"> I am a:</label>
+  
+          <label style="color: white;" class="form-check-label">
+              <input type="radio" class="form-check-input" value="male" formControlName="gender">Male
+          </label>
+          <label style="color: white; margin-left: 30px;" class="form-che ck-label me-4">
+              <input type="radio" class="form-check-input" value="Female" formControlName="gender">Female
+          </label>
+      </div>
+
+
+
+      <div class="form-floating mb-3">
+          
+        
+
+        <input formControlName="username" class="form-control" placeholder="Username"
+        [class.is-valid]="registerForm.get('username')?.valid && registerForm.get('username')?.touched"
+        [class.is-invalid]="registerForm.get('username')?.errors && registerForm.get('username')?.touched">
+
+        <label>Username</label>
+        <div class="invalid-feedback text-start">Please enter a username</div>
+
+      </div>
+
+
+
+      
 
         <div class="form-floating mb-3">
           
@@ -52,7 +84,7 @@
 
         
         <button [routerLink]="['/login']" class="btn btn-danger py-2 mr-2">Cancel</button>
-        <button [disabled]="!registerForm.valid" (click)="register()" class="btn btn-primary py-2" type="submit">Sign Up</button>
+        <button [disabled]="!registerForm.valid" class="btn btn-primary py-2" type="submit">Sign Up</button>
         
         
 

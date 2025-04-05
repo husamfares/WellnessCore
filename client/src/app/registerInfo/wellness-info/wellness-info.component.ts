@@ -25,9 +25,9 @@ constructor() {
 
 }
 
-wellness_Info()
+wellnessInfo()
 {
-  this.accountService.wellness_info(this.model).subscribe({
+  this.accountService.wellnessInfo(this.model).subscribe({
     next : response => console.log("Wellness info saved", response),
     error: error => console.error(error)
    
