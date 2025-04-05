@@ -1,10 +1,6 @@
 using API.Extensions;
-<<<<<<< HEAD
 using API.Helpers;
-=======
 using API.Middleware;
-using Microsoft.AspNetCore.Builder;
->>>>>>> 56f0f84ac3016c75f5c71b2490ee6a937fb5df45
 
 
 var builder = WebApplication.CreateBuilder(args);
