@@ -1,11 +1,5 @@
-/* General Styles */
-body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: 'Poppins', sans-serif; /* Use a clean, modern font */
-}
 
-/* Navbar */
+
 .navbar {
   background-color: #000000 !important;
   color: #ffffff;
@@ -18,7 +12,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #DADADA !important;
+  color: #aa2424 !important;
 }
 
 /* Buttons */
@@ -54,7 +48,6 @@ body {
   color: #333333;
 }
 
-/* Icons or Decorative Stars */
 .decor-stars {
   color: #000000;
   font-size: 30px;
