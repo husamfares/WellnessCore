@@ -7,14 +7,17 @@ import { importProvidersFrom } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { jwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { loadingInterceptor } from './_interceptors/loading.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
   providers:[
   provideZoneChangeDetection({ eventCoalescing: true }),
   provideRouter(routes),
-  provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor])),
+  provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor, loadingInterceptor])),
   importProvidersFrom(ToastrModule.forRoot()),
+  importProvidersFrom(NgxSpinnerModule),
   importProvidersFrom(BrowserAnimationsModule)
   ]
 };
