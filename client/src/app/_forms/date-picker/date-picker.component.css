@@ -40,3 +40,33 @@
     opacity: 0.5;
   }
   
+  input.form-control {
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    outline: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+    border-color: #fff;
+}
+
+label {
+    color: #ccc;
+}
+
+.is-valid {
+    border-bottom-color: lightgreen;
+}
+
+.is-invalid {
+    border-bottom-color: red;
+}
+
+.invalid-feedback {
+    font-size: 0.8rem;
+    color: lightcoral;
+}

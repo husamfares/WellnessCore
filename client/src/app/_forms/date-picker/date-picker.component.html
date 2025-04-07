@@ -6,9 +6,10 @@
 
     class="form-control" [formControl]="control" placeholder={{label()}} 
     bsDatepicker [bsConfig]="bsConfig" [maxDate]="maxDate()"
-    
     >
-
+    <span *ngIf="control.valid && control.touched" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+        ✓
+      </span>
     <label>{{label()}}</label>
    
     <div *ngIf="control.hasError('required')" class="invalid-feedback text-start">Please enter a {{label()}}</div>

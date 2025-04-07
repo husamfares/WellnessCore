@@ -1,14 +1,14 @@
 import { Component, inject, OnInit, output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { AccountService } from '../../_services/account.service';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DatePickerComponent } from '../../_forms/date-picker/date-picker.component';
-import { TextInputComponent } from '../../text-input/text-input.component';
+import { DatePickerComponent } from '../_forms/date-picker/date-picker.component';
+import { TextInputComponent } from '../text-input/text-input.component';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, RouterLink, ReactiveFormsModule, DatePickerComponent, TextInputComponent],
+  imports: [FormsModule, RouterLink, ReactiveFormsModule, DatePickerComponent,TextInputComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

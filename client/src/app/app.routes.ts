@@ -1,12 +1,12 @@
 import {  Routes } from '@angular/router';
-import { RegisterComponent } from './registerInfo/register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { authGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { TestComponent } from './test/test.component';
+import { RegisterComponent } from './register/register.component';
+
 
 export const routes: Routes = 
 [
@@ -17,7 +17,6 @@ export const routes: Routes =
     {path: 'errors', component: TestErrorsComponent},
     {path: 'not-found', component: NotFoundComponent},
     {path: 'server-error', component: ServerErrorComponent},
-    {path: 'test', component: TestComponent},
     {path: '**', component: LoginComponent},
     
 
