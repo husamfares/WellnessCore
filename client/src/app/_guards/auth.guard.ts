@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
 
   } else {
-    toastr.error('You Shall not pass!');
+    toastr.error('You Shall not pass, Log in first!');
     router.navigateByUrl('/login');
     return false;
   }
