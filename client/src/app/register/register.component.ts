@@ -38,7 +38,14 @@ export class RegisterComponent implements OnInit{
       dateOfBirth: ['', Validators.required],
       weight: ['', Validators.required],
       height: ['', Validators.required],
-      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),  
+        Validators.maxLength(100),
+        Validators.pattern(/(?=.*[a-z])/),    
+        Validators.pattern(/(?=.*[0-9])/),    
+        Validators.pattern(/(?=.*[!@#$%^&*])/) 
+      ]],
       confirmPassword: new FormControl('',[Validators.required, this.matchValues('password')])
     });
     this.registerForm.controls['password'].valueChanges.subscribe({

@@ -1,0 +1,40 @@
+[
+    {
+        "UserName": 80,
+        "Gender": "female",
+        "DateOfBirth": "1956-07-22",
+        "weight": 80,
+        "height": 180
+
+    },
+    {
+        "UserName": "dave",
+        "Gender": "female",
+        "DateOfBirth": "1956-07-22",
+        "weight": 80,
+        "height": 180
+
+    },  {
+        "UserName": "alex",
+        "Gender": "female",
+        "DateOfBirth": "1956-07-22",
+        "weight": 80,
+        "height": 180
+
+    },  {
+        "UserName": "faisal",
+        "Gender": "male",
+        "DateOfBirth": "1956-07-22",
+        "weight": 80,
+        "height": 180
+
+    },  {
+        "UserName": "hussam",
+        "Gender": "male",
+        "DateOfBirth": "1956-07-22",
+        "weight": 80,
+        "height": 180
+
+    }
+    
+]

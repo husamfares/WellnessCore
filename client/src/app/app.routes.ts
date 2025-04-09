@@ -7,6 +7,8 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { RegisterComponent } from './register/register.component';
 import { loggedInGuard } from './_guards/logged-in.guard';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { adminGuard } from './_guards/admin.guard';
 
 
 export const routes: Routes = [
@@ -29,6 +31,11 @@ export const routes: Routes = [
       path: 'home', 
       component: HomeComponent,
       canActivate: [authGuard] 
+    },
+    { 
+      path: 'admin', 
+      component: AdminPanelComponent,
+      canActivate: [authGuard,adminGuard] 
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },

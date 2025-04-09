@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { jwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './_interceptors/loading.interceptor';
+import { ModalModule} from 'ngx-bootstrap/modal';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +19,7 @@ export const appConfig: ApplicationConfig = {
   provideRouter(routes),
   provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor, loadingInterceptor])),
   importProvidersFrom(ToastrModule.forRoot()),
-  importProvidersFrom(NgxSpinnerModule),
+  importProvidersFrom(NgxSpinnerModule, ModalModule.forRoot()),
   importProvidersFrom(BrowserAnimationsModule)
   ]
 };

@@ -1,14 +1,10 @@
 using API.Extensions;
+using Microsoft.AspNetCore.Identity;
 namespace API.Entities;
 
-public class AppUser
+public class AppUser : IdentityUser<int>
 {
-    public int Id { get; set; }
-    public required string UserName { get; set; }
-    public required byte[] PasswordHash { get; set; } = [];
-    public required byte[] PasswordSalt { get; set; } = [];
-
-
+    
     public DateOnly DateOfBirth { get; set; }
 
     public int Weight { get; set; }
@@ -17,8 +13,6 @@ public class AppUser
 
     public string? Gender { get; set; } 
 
-    // public int GetAge()
-    // {
-    //     return DateOfBirth.CalculateAge();
-    // }
+    public ICollection<AppUserRole> UserRoles { get; set; } = [];
+
 }

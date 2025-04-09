@@ -13,7 +13,7 @@
       </span>
     <label>{{label()}}</label>
    
-    <div *ngIf="control.hasError('required')" class="invalid-feedback text-start">Please enter a {{label()}}</div>
+    <div *ngIf="control.hasError('notInteger')" class="invalid-feedback text-start">{{ label() }} must be a valid whole number</div>
     
     <div *ngIf="control.hasError('minlength')" class="invalid-feedback text-start">{{label()}} must be at least {{control.errors?.['minlength'].requiredLength}} characters</div>
     
@@ -21,4 +21,5 @@
 
     <div *ngIf="control.hasError('isMatching')" class="invalid-feedback text-start">passwords do not match</div>
 
+    <div *ngIf="control.hasError('pattern')" class="invalid-feedback text-start">Please enter a valid {{label()}} make sure at least it has a small character, uppercase character and special character</div>
 </div>
