@@ -69,6 +69,25 @@ public class QuestionsController(DataContext context) : BaseApiController
     return Ok(answerResult);
     }
 
+    [HttpPut("{questionId}/answers/{answerId}")]
+public async Task<ActionResult> UpdateAnswer(int questionId, int answerId, [FromBody] CreateAnswerDto updatedDto)
+{
+    var username = User.Identity?.Name;
+    if (string.IsNullOrEmpty(username)) return Unauthorized("User not authenticated");
+
+    var answer = await context.Answers.FirstOrDefaultAsync(a => a.Id == answerId && a.QuestionId == questionId);
+    if (answer == null) return NotFound("Answer not found");
+
+    if (answer.AnsweredBy != username)
+        return Forbid("You can only edit your own answers");
+
+    answer.AnswerText = updatedDto.AnswerText;
+    await context.SaveChangesAsync();
+
+    return NoContent();
+}
+
+
     [HttpGet]
     public async Task<ActionResult<List<QuestionDto>>> GetQuestions()
     {
@@ -96,4 +115,54 @@ public class QuestionsController(DataContext context) : BaseApiController
         
        return Ok(result);
     }
+
+    [HttpPut("{id}")]
+public async Task<ActionResult> UpdateQuestion(int id, [FromBody] CreateQuestionDto updatedDto)
+{
+    var username = User.Identity?.Name;
+    if (string.IsNullOrEmpty(username)) return Unauthorized("User not authenticated");
+
+    var question = await context.Questions.FindAsync(id);
+    if (question == null) return NotFound("Question not found");
+
+    if (question.AskedBy != username)
+        return Forbid("You can only edit your own questions");
+
+    question.Caption = updatedDto.Caption;
+    await context.SaveChangesAsync();
+
+    return NoContent();
+}
+
+[HttpDelete("delete/{id}")]
+public async Task<IActionResult> DeleteQuestion(int id)
+{
+    var username = User.Identity?.Name;
+    var question = await context.Questions.Include(q => q.Answers).FirstOrDefaultAsync(q => q.Id == id);
+    if (question == null) return NotFound("Question not found");
+
+    if (question.AskedBy != username) return Unauthorized("You can only delete your own questions");
+
+    context.Questions.Remove(question);
+    await context.SaveChangesAsync();
+
+    return NoContent();
+}
+
+[HttpDelete("{questionId}/answers/{answerId}")]
+public async Task<IActionResult> DeleteAnswer(int questionId, int answerId)
+{
+    var username = User.Identity?.Name;
+    var answer = await context.Answers.FirstOrDefaultAsync(a => a.Id == answerId && a.QuestionId == questionId);
+
+    if (answer == null) return NotFound("Answer not found");
+
+    if (answer.AnsweredBy != username) return Unauthorized("You can only delete your own answers");
+
+    context.Answers.Remove(answer);
+    await context.SaveChangesAsync();
+
+    return NoContent();
+}
+
 }

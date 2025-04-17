@@ -30,5 +30,23 @@ export class QuestionService {
     return this.http.post<Answer>(`${this.baseUrl}/${questionId}/answers`, answer);
   }
 
+  updateQuestion(id: number, data: Partial<Question>): Observable<Question> {
+    return this.http.put<Question>(`${this.baseUrl}/${id}`, data);
+  }
+  
+  updateAnswer(questionId: number, answerId: number, data: Partial<Answer>): Observable<Answer> {
+    return this.http.put<Answer>(`${this.baseUrl}/${questionId}/answers/${answerId}`, data);
+  }
+
+  deleteQuestion(id: number) {
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
+  }
+  
+  deleteAnswer(questionId: number, answerId: number) {
+    return this.http.delete(`${this.baseUrl}/${questionId}/answers/${answerId}`);
+  }
+  
+  
+
   
 }
