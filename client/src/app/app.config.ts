@@ -13,6 +13,7 @@ import { ModalModule} from 'ngx-bootstrap/modal';
 
 
 
+
 export const appConfig: ApplicationConfig = {
   providers:[
   provideZoneChangeDetection({ eventCoalescing: true }),
@@ -20,6 +21,6 @@ export const appConfig: ApplicationConfig = {
   provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor, loadingInterceptor])),
   importProvidersFrom(ToastrModule.forRoot()),
   importProvidersFrom(NgxSpinnerModule, ModalModule.forRoot()),
-  importProvidersFrom(BrowserAnimationsModule)
-  ]
+  importProvidersFrom(BrowserAnimationsModule),  
+]
 };

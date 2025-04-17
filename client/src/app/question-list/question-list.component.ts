@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { QuestionService } from '../_services/question.service';
 import { Question } from '../_models/Question';
 import { CommonModule } from '@angular/common';
+import { TimeAgoPipe } from "../pipes/time-ago.pipe";
 
 
 @Component({
   selector: 'app-question-list',
-  imports: [FormsModule, CommonModule,ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, TimeAgoPipe],
   templateUrl: './question-list.component.html',
   styleUrl: './question-list.component.css'
 })
@@ -20,6 +21,11 @@ export class QuestionListComponent implements OnInit {
 
   ngOnInit() {
     this.loadQuestions();
+
+    this.questionService.newQuestion$.subscribe((newQuestion) => {
+      this.questions.unshift(newQuestion); // Add to top
+      this.answerForms[newQuestion.id] = this.fb.group({ answerText: [''] });
+    });
   }
 
   loadQuestions() {

@@ -1,0 +1,53 @@
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .card small {
+    display: block;
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .border-start {
+    border-left: 3px solid #4caf50;
+    background-color: #f9f9f9;
+    padding-left: 1rem;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+  
+  .fst-italic {
+    font-style: italic;
+    color: #444;
+  }
+  
+  textarea, input.form-control {
+    border-radius: 8px;
+  }
+  
+  button.btn-success {
+    background-color: #245a7b;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+  
+  button.btn-success:hover {
+    background-color: #358b7a;
+  }
+
+  

@@ -6,7 +6,7 @@ import { QuestionService } from '../_services/question.service';
 
 @Component({
   selector: 'app-question-component',
-  imports: [RouterLink, FormsModule, CommonModule,ReactiveFormsModule],
+  imports: [FormsModule, CommonModule,ReactiveFormsModule],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
 
@@ -21,6 +21,7 @@ export class QuestionComponent {
       caption: ['', Validators.required],
     });
   }
+  
 
   submit() {
     if (this.form.invalid) return;
