@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Router, RouterLink } from '@angular/router';
-import { HasRoleDirective } from '../_directives/has-role.directive';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, HasRoleDirective, CommonModule, MatIconModule],
+  imports: [RouterLink,CommonModule, MatIconModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

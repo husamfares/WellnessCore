@@ -12,7 +12,9 @@ export class AccountService {
   baseUrl = environment.apiUrL;
   currentUser = signal<User | null>(null);
   roles = computed(() => {
-    const user = this.currentUser();
+  
+  
+    const user = this.currentUser() 
     if(user && user.token){
       const role = JSON.parse(atob(user.token.split('.')[1])).role
       return Array.isArray(role) ? role : [role];

@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { loggedInGuard } from './_guards/logged-in.guard';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { QuestionPageComponent } from './question-page/question-page.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,11 @@ export const routes: Routes = [
       path: 'home', 
       component: HomeComponent,
       canActivate: [authGuard] 
+    },
+    {
+      path: 'questions',
+      component: QuestionPageComponent,
+
     },
     { 
       path: 'admin', 

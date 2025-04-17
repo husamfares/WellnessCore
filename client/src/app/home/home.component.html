@@ -18,9 +18,9 @@
       <span>Nutrition Guide</span>
     </div>
     
-    <div class="nav-item">
-      <mat-icon>help</mat-icon>
-      <span>Questions</span>
+    <div class="nav-item" [routerLink]="['/questions']">
+      <mat-icon>groups</mat-icon>
+      <span>Community</span>
     </div>
     
     <div class="nav-item">
@@ -28,11 +28,11 @@
       <span>Session Reservation</span>
     </div>
     
-    <div class="nav-item">
+    <div class="nav-item" (click)="logout()">
       <mat-icon>logout</mat-icon>
-      <span (click)="logout()">Sign Out</span>
-      
+      <span>Sign Out</span>
     </div>
+
   </div>
 
   <div class="main-content">
