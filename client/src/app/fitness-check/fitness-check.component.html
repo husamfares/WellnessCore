@@ -1,0 +1,113 @@
+<div class="container p-4 max-w-lg mx-auto">
+
+    <!-- Stepper Header -->
+    <div class="mb-6 text-center">
+      <h2 class="text-xl font-bold">Fitness Check</h2>
+      <p *ngIf="step === 0">Welcome! Click start to begin your fitness test.</p>
+      <p *ngIf="step === 1">Push-Ups (Upper Body Strength)</p>
+      <p *ngIf="step === 2">Squats or Jumping Jacks (Lower Body/Cardio)</p>
+      <p *ngIf="step === 3">Plank (Core Endurance)</p>
+    </div>
+  
+    <!-- Step 0: Intro -->
+    <div *ngIf="step === 0" class="text-center">
+      <button class="btn btn-primary" (click)="step = 1">Start Fitness Check</button>
+    </div>
+  
+    <!-- Step 1–3: Tasks -->
+    <div *ngIf="step > 0 && step < 4">
+      <div class="text-center text-2xl font-semibold mb-4">
+        Time Left: {{ timeLeft }} sec
+      </div>
+  
+      <div  *ngIf="!exerciseCompleted" class="flex justify-center mb-4" >
+        <button class="btn btn-accent" [disabled]="isTiming" (click)="startTimer()">Start Timer</button>
+        <button class="btn btn-danger" [disabled]="!isTiming" (click)="stopTimer()">Finish</button>
+      </div>
+  
+      <div *ngIf="exerciseCompleted" class="mb-6" >
+        <label class="block text-sm font-bold mb-2">Enter your result:</label>
+
+        <input 
+          type="number"
+          [(ngModel)]="currentResult"
+          class="input input-bordered w-full"
+          placeholder="Number of reps or seconds"
+        />
+      </div>
+  
+      <button class="btn btn-success w-full" (click)="nextStep()">Next</button>
+    </div>
+  
+    <!-- Step 4: Summary -->
+    <div *ngIf="step === 4" class="text-center">
+      <h3 class="text-lg font-semibold mb-4">You’ve completed the fitness check!</h3>
+  
+      <ul class="text-left mb-4">
+        <li>✅ Push-ups: {{ pushUpsResult }}</li>
+        <li>✅ Squats: {{ squatsResult }}</li>
+        <li>✅ Plank (seconds): {{ plankResult }}</li>
+        <p>Age: {{ allDataMember.age }}</p>
+      </ul>
+  
+
+         <div *ngIf="showResults">
+          <p >✅ Good Job! You made it very well. Your total score is: {{ totalScore }}</p>
+
+          <p>Your fitness level is: <strong>{{ fitnessLevel }}</strong></p>
+          </div>
+
+          <div class="flex flex-wrap gap-3 justify-center my-6">
+            <button
+              class="px-5 py-2 rounded-full border border-accent text-accent transition-all duration-200"
+              [class.bg-accent]="traineeGoal === 'Lose Weight'"
+              [class.text-white]="traineeGoal === 'Lose Weight'"
+              (click)="toggleGoal('Lose Weight')"
+              [disabled]="goalConfirmed"
+
+            >
+              🔥 Lose Weight
+            </button>
+          
+            <button
+              class="px-5 py-2 rounded-full border border-accent text-accent transition-all duration-200"
+              [class.bg-accent]="traineeGoal === 'Build Muscle'"
+              [class.text-white]="traineeGoal === 'Build Muscle'"
+              (click)="toggleGoal('Build Muscle')"
+              [disabled]="goalConfirmed"
+
+            >
+              💪 Build Muscle
+            </button>
+          
+            <button
+              class="px-5 py-2 rounded-full border border-accent text-accent transition-all duration-200"
+              [class.bg-accent]="traineeGoal === 'Improve Endurance'"
+              [class.text-white]="traineeGoal === 'Improve Endurance'"
+              (click)="toggleGoal('Improve Endurance')"
+              [disabled]="goalConfirmed"
+            >
+              🏃 Improve Endurance
+            </button>
+          
+            <button
+              class="px-5 py-2 rounded-full border border-accent text-accent transition-all duration-200"
+              [class.bg-accent]="traineeGoal === 'Improve Overall Health'"
+              [class.text-white]="traineeGoal === 'Improve Overall Health'"
+              (click)="toggleGoal('Improve Overall Health')"
+              [disabled]="goalConfirmed"
+
+            >
+              🌿 Improve Health
+            </button>
+          </div>
+          
+          <div class="mt-4" *ngIf="traineeGoal && !goalConfirmed">
+            <button class="btn btn-success w-full" (click)="confirmGoal()">Confirm Goal</button>
+          </div>
+          
+          <button class="btn btn-primary" (click)="submitFitnessCheck()">Submit Results</button>
+
+    </div>
+  </div>
+  

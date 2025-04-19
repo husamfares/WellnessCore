@@ -76,6 +76,9 @@ namespace API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("FitnessLevel")
+                        .HasColumnType("text");
+
                     b.Property<string>("Gender")
                         .HasColumnType("text");
 
@@ -106,6 +109,9 @@ namespace API.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TraineeGoal")
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")

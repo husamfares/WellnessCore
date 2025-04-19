@@ -46,4 +46,10 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
             .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
     }
+
+    public async Task<bool> SaveAllAsync()
+        {
+            return await context.SaveChangesAsync() > 0;
+        }
+
 }
