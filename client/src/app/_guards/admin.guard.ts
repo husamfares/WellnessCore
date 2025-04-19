@@ -3,15 +3,15 @@ import { CanActivateFn } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 
-export const adminGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = () => {
   const accountService = inject(AccountService);
   const toastr = inject(ToastrService);
-  
-  if(accountService.roles().includes('Admin') || accountService.roles().includes('Moderator')){
+  const roles = accountService.roles();
+
+  if (roles.includes('Admin')) {
     return true;
-  }else 
-  {
-  toastr.error('You are not authorized to access this area');
-  return false;
   }
+
+  toastr.error("Access Denied");
+  return false;
 };
