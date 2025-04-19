@@ -36,7 +36,7 @@ export const routes: Routes = [
     {
       path: 'questions',
       component: QuestionPageComponent,
-
+      canActivate: [authGuard]
     },
     { 
       path: 'admin', 
