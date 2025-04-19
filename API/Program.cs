@@ -4,6 +4,7 @@ using API.Extensions;
 using API.Helpers;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
+using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -18,6 +19,8 @@ builder.Services.AddIdentityServices(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+
 
 
 var app = builder.Build();
@@ -36,17 +39,18 @@ app.MapControllers();
  var services = scope.ServiceProvider;
 
 try
- {
-     var context = services.GetRequiredService<DataContext>();
-     var userManager = services.GetRequiredService<UserManager<AppUser>>();
-     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
-     await context.Database.MigrateAsync();
-    //  await context.Database.ExecuteSqlRawAsync("DELETE FROM [Connections]");
-    await Seed.SeedUsers(userManager, roleManager);
- }
- catch (Exception ex)
- {
-     var logger = services.GetRequiredService<ILogger<Program>>();
-     logger.LogError(ex, "An error occurred during migration");
- }
+{
+    var context = services.GetRequiredService<DataContext>();
+    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
+    
+    await context.Database.MigrateAsync();
+    await Seed.SeedRolesAsync(userManager, roleManager);
+}
+catch (Exception ex)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error occurred during migration");
+}
+
 app.Run();

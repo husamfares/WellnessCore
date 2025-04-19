@@ -1,0 +1,156 @@
+/* Card styling for questions */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+  padding: 16px;
+  margin-bottom: 1rem;
+  position: relative; /* Needed for absolute buttons */
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+}
+
+.card small {
+  display: block;
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Answers inside the card */
+.border-start {
+  border-left: 3px solid #4caf50;
+  background-color: #f9f9f9;
+  padding-left: 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  padding: 10px;
+}
+
+/* Editable block for answers */
+.answer-block {
+  position: relative;
+  padding-top: 1.5rem; /* So button doesn't overlap */
+}
+
+/* Text appearance */
+.fst-italic {
+  font-style: italic;
+  color: #444;
+}
+
+/* Inputs and textareas */
+textarea,
+input.form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* General button styling */
+button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button.btn-success {
+  background-color: #245a7b;
+  color: #fff;
+  border: none;
+}
+
+button.btn-success:hover {
+  background-color: #358b7a;
+}
+
+button.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+}
+
+button.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* Edit pencil buttons */
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #888;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.edit-btn:hover {
+  color: #245a7b;
+}
+
+.edit-btn.small-btn {
+  font-size: 0.95rem;
+  top: 6px;
+  right: 6px;
+}
+
+/* Optional animation */
+.animate-slide-in {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Button wrapper for edit/delete in top right */
+.top-right-btns {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+/* Reuse styles for small variant too */
+.answer-block .top-right-btns {
+  top: 6px;
+  right: 6px;
+}
+
+/* Style for delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #c00;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #a00;
+}

@@ -1,0 +1,74 @@
+<div *ngFor="let q of questions" class="card mb-3 p-3 animate-slide-in position-relative">
+  <small class="text-muted">Posted {{ q.createdAt | timeAgo }}</small>
+  <p><strong>{{ q.askedBy }}</strong> asked:</p>
+
+  <div *ngIf="editQuestionId === q.id; else normalCaption">
+    <input [(ngModel)]="editedCaption" class="form-control mb-2" />
+    <button (click)="saveEditedQuestion(q)" class="btn btn-sm btn-success me-2">Save</button>
+    <button (click)="cancelEditQuestion()" class="btn btn-sm btn-secondary">Cancel</button>
+  </div>
+
+  <ng-template #normalCaption>
+    <p>{{ q.caption }}</p>
+    <button *ngIf="q.askedBy === currentUsername" (click)="deleteQuestion(q.id)" class="edit-btn"  title="Delete question">🗑️</button>
+    <button
+      *ngIf="q.askedBy === currentUsername"
+      (click)="startEditQuestion(q)"
+      class="edit-btn me-4"
+      title="Edit question"
+    >✏️
+    </button>
+    
+  </ng-template>
+
+  <!-- Answers -->
+  <div
+    *ngFor="let a of q.answers"
+    class="mt-2 ms-3 border-start ps-2 animate-fade-in answer-block"
+  >
+    <small class="text-muted">{{ a.createdAt | timeAgo }}</small>
+    <p class="mb-0"><strong>{{ a.answeredBy }}</strong></p>
+
+    <div *ngIf="editAnswerId === a.id; else normalAnswer">
+      <input [(ngModel)]="editedAnswerText" class="form-control mb-2" />
+      <button
+        (click)="saveEditedAnswer(q.id, a.id)"
+        class="btn btn-sm btn-success me-2"
+      >
+        Save
+      </button>
+      <button
+        (click)="cancelEditAnswer()"
+        class="btn btn-sm btn-secondary"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <ng-template #normalAnswer>
+      <p class="fst-italic">{{ a.answerText }}</p>
+      <button
+        *ngIf="a.answeredBy === currentUsername"
+        (click)="startEditAnswer(q.id, a.id, a.answerText)"
+        class="edit-btn small-btn"
+        title="Edit answer"
+      >✏️
+      <button (click)="deleteAnswer(q.id, a.id)" class="delete-btn small-btn" title="Delete answer">🗑️</button>  
+    </button>
+    </ng-template>
+  </div>
+
+  <!-- Answer form -->
+  <form
+    [formGroup]="answerForms[q.id]"
+    (ngSubmit)="submitAnswer(q.id)"
+    class="mt-3"
+  >
+    <input
+      formControlName="answerText"
+      class="form-control mb-2"
+      placeholder="Your answer..."
+    />
+    <button class="btn btn-sm btn-success" type="submit">Submit Answer</button>
+  </form>
+</div>
