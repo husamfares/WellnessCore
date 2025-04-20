@@ -9,11 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { loggedInGuard } from './_guards/logged-in.guard';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
-<<<<<<< HEAD
 import { FitnessCheckComponent } from './fitness-check/fitness-check.component';
-=======
 import { QuestionPageComponent } from './question-page/question-page.component';
->>>>>>> fa3a3ca2062c0bc79f9d999908112b1e3ce63688
 
 
 export const routes: Routes = [

@@ -21,7 +21,7 @@ export class UserService {
     console.log("in user service : fitnessLevel" , fitnessLevel , traineeGoal);
     return this.http.put(this.baseUrl+ 'users/user/update-fitness-value' , {
       fitnessLevel : fitnessLevel,
-      goal : traineeGoal
+      traineeGoal : traineeGoal
     });
   }
 

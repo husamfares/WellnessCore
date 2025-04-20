@@ -1,12 +1,13 @@
 import { NgIf } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { Member } from '../_models/member';
-
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-fitness-check',
-  imports: [NgIf , FormsModule],
+  imports: [NgIf , FormsModule , CommonModule ],
   templateUrl: './fitness-check.component.html',
   styleUrl: './fitness-check.component.css'
 })
@@ -30,7 +31,7 @@ export class FitnessCheckComponent implements OnInit{
   exerciseCompleted: boolean = false; // New flag
   traineeGoal : string ="";
   goalConfirmed: boolean = false;
-
+  showSubmitClick:  boolean = false;
 
   allDataMember: Member = {
     age: 25,
@@ -41,6 +42,10 @@ export class FitnessCheckComponent implements OnInit{
     gender: ''
 
   };
+progressPercentage: any;
+isCountingUp: any;
+elapsedTime: any;
+router = inject(Router);
   
   ngOnInit(): void {
     this.userService.getUserFitnessInfo().subscribe( data => 
@@ -54,6 +59,7 @@ export class FitnessCheckComponent implements OnInit{
   {
     if(this.traineeGoal)
     this.goalConfirmed = true;
+    this,this.showSubmitClick = true;
     console.log("Goal confirmed:", this.traineeGoal);
   }
 
@@ -89,27 +95,26 @@ export class FitnessCheckComponent implements OnInit{
 
     console.log('Timer stopped');
   }
-
   nextStep() {
-      this.exerciseCompleted = false;
-      this.hasTimerStarted = false;
-      this.timeLeft = 30;
-      this.currentResult = 0;
-      
-    if(this.step === 1)
+    this.exerciseCompleted = false;
+    this.hasTimerStarted = false;
+    
+    // Save the current result to the appropriate variable
+    if (this.step === 1) {
       this.pushUpsResult = this.currentResult;
-    else if(this.step === 2)
+    } else if (this.step === 2) {
       this.squatsResult = this.currentResult;
-    else if(this.step === 3 )
+    } else if (this.step === 3) {
       this.plankResult = this.currentResult;
-
+    }
+    
+    this.timeLeft = 30;
     this.currentResult = 0;
-
+  
     if (this.step < 3) {
-      this.step++;
-      this.timeLeft = 0; // Reset timer for next step
+      this.step++;  // Go to next step
     } else {
-      this.step = 4; // Go to summary when all steps are completed
+      this.step = 4;  // Go to summary
     }
   }
 
@@ -169,13 +174,6 @@ export class FitnessCheckComponent implements OnInit{
       this.updateFitnessLevel();
       this.showResults = true; // Show results
     
-      console.log('Fitness check submitted:', {
-        pushUps: this.pushUpsResult,
-        squats: this.squatsResult,
-        plank: this.plankResult,
-        TotalScore: this.totalScore,
-      });
-    
       // Only perform the PUT request to update the fitness level
       this.userService.setFitnessLevel(this.fitnessLevel , this.traineeGoal).subscribe({
         next: () => {
@@ -185,6 +183,10 @@ export class FitnessCheckComponent implements OnInit{
           console.error('Error updating fitness level:', err);
         },
       });
+    }
+
+    goHome(){
+      this.router.navigate(['/home']);
     }
   }    
 
