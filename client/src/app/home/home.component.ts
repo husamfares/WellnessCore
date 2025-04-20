@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  private accountService = inject(AccountService);
+  accountService = inject(AccountService);
   private router = inject(Router);
   sidebarVisible = true;
 
