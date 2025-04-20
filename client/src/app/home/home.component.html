@@ -38,7 +38,14 @@
       <span>Sign Out</span>
     </div>
 
-
+    <!-- <div class="dashboard">
+      <router-outlet></router-outlet> 
+    </div> -->
+    
+    <div *ngIf="accountService.isAdmin()" class="nav-item" style="color: red;"[routerLink]="['/admin']">
+      <mat-icon>Admin</mat-icon>
+      <span>Admin</span>
+    </div>
 
   </div>
 
