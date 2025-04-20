@@ -27,9 +27,10 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+
 # Ignore build output folders
-bin/
-obj/
+API/bin
+API/obj
 
 
 # Miscellaneous
