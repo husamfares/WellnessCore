@@ -1,0 +1,146 @@
+<!-- fitness-check.component.html -->
+<div class="fitness-check-page">
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h2>Fitness Check</h2>
+      <p *ngIf="step === 0">Welcome! Click start to begin your fitness test.</p>
+      <p *ngIf="step === 1">Push-Ups (Upper Body Strength)</p>
+      <p *ngIf="step === 2">Squats or Jumping Jacks (Lower Body/Cardio)</p>
+      <p *ngIf="step === 3">Plank (Core Endurance)</p>
+      <p *ngIf="step === 4">Your Fitness Results Summary</p>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Step Progress -->
+      <div class="step-progress">
+        <div class="progress-bar" [style.width]="step === 0 ? '0%' : (step / 4) * 100 + '%'"></div>
+        <div class="step-circle" [ngClass]="{'active': step === 0, 'completed': step > 0}">1</div>
+        <div class="step-circle" [ngClass]="{'active': step === 1, 'completed': step > 1}">2</div>
+        <div class="step-circle" [ngClass]="{'active': step === 2, 'completed': step > 2}">3</div>
+        <div class="step-circle" [ngClass]="{'active': step === 3, 'completed': step > 3}">4</div>
+      </div>
+
+      <!-- Step Content -->
+      <div class="step-content animated">
+        <!-- Step 0: Intro -->
+        <div *ngIf="step === 0" class="text-center">
+          <p class="intro-text">
+            This fitness check will measure your strength, endurance, and overall fitness level.
+            Complete all exercises to receive your personalized fitness assessment.
+          </p>
+          <button class="btn btn-primary" (click)="startFitnessCheck()">Start Fitness Check</button>
+        </div>
+
+        <!-- Steps 1-3: Tasks -->
+        <div *ngIf="step > 0 && step < 4">
+          <div class="timer-display">
+            {{ timeLeft }} sec
+          </div>
+
+          <div *ngIf="!exerciseCompleted" class="btn-group">
+            <button class="btn btn-accent" [disabled]="isTiming" (click)="startTimer()">Start Timer</button>
+            <button class="btn btn-danger" [disabled]="!isTiming" (click)="stopTimer()">Finish</button>
+          </div>
+
+          <div *ngIf="exerciseCompleted" class="input-group">
+            <label class="input-label">Enter your result:</label>
+            <input
+              type="number"
+              [(ngModel)]="currentResult"
+              class="input-field"
+              placeholder="Number of reps or seconds"
+            />
+          </div>
+
+          <button *ngIf="exerciseCompleted" class="btn btn-success btn-full" (click)="nextStep()">
+            <span *ngIf="step < 3">Next Exercise</span>
+            <span *ngIf="step === 3">See Results</span>
+          </button>
+        </div>
+
+        <!-- Step 4: Summary -->
+        <div *ngIf="step === 4" class="text-center">
+          <h3 class="summary-title">Your Fitness Results</h3>
+
+          <ul class="results-list">
+            <li>✅ Push-ups <span>{{ pushUpsResult }}</span></li>
+            <li>✅ Squats <span>{{ squatsResult }}</span></li>
+            <li>✅ Plank (seconds) <span>{{ plankResult }}</span></li>
+          </ul>
+
+          <!-- Goals Buttons -->
+          <h4 class="goals-title">What's your fitness goal?</h4>
+
+          <div class="goals-container">
+            <button
+              class="goal-button"
+              [class.selected]="traineeGoal === 'Lose Weight'"
+              (click)="toggleGoal('Lose Weight')"
+              [disabled]="goalConfirmed"
+            >
+              🔥 Lose Weight
+            </button>
+
+            <button
+              class="goal-button"
+              [class.selected]="traineeGoal === 'Build Muscle'"
+              (click)="toggleGoal('Build Muscle')"
+              [disabled]="goalConfirmed"
+            >
+              💪 Build Muscle
+            </button>
+
+            <button
+              class="goal-button"
+              [class.selected]="traineeGoal === 'Improve Endurance'"
+              (click)="toggleGoal('Improve Endurance')"
+              [disabled]="goalConfirmed"
+            >
+              🏃 Improve Endurance
+            </button>
+
+            <button
+              class="goal-button"
+              [class.selected]="traineeGoal === 'Improve Overall Health'"
+              (click)="toggleGoal('Improve Overall Health')"
+              [disabled]="goalConfirmed"
+            >
+              🌿 Improve Health
+            </button>
+          </div>
+
+          <!-- Confirm & Submit -->
+          <div class="mt-10" *ngIf="traineeGoal && !goalConfirmed">
+            <button class="btn btn-success btn-full" (click)="confirmGoal()">Confirm Goal</button>
+          </div>
+          
+
+          
+          <div *ngIf="showResults" class="score-display">
+            Total Score: {{ totalScore }}
+          </div>
+
+          <div *ngIf="showResults" class="fitness-level">
+            Your fitness level: <strong>{{ fitnessLevel }}</strong>
+          </div>
+
+
+          <div class="mt-4">
+            <button *ngIf="showSubmitClick && !showResults" class="btn btn-primary btn-full" (click)="submitFitnessCheck()">Submit Results</button>
+          </div>
+
+          <button 
+          *ngIf="showResults"
+          class="btn btn-primary go-home-btn"
+          (click)="goHome()">
+          🏠 Go to Home Page
+        </button>
+        
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
