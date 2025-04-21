@@ -25,4 +25,7 @@ API/appsettings.Development.json
 # Ignore build output folders
 bin/
 obj/
-
+# Compiled binaries and debug files
+*.dll
+*.exe
+*.pdb
