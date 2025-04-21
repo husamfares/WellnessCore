@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, HasRoleDirective, CommonModule, MatIconModule , RouterModule],
+  imports: [RouterLink, CommonModule, MatIconModule , RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

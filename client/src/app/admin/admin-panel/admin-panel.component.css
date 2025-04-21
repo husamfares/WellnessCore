@@ -1,4 +1,10 @@
 /* User Roles Management CSS */
+:host {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #112d4e 0%, #3f72af 100%);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
