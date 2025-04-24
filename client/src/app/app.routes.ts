@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { loggedInGuard } from './_guards/logged-in.guard';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { FitnessCheckComponent } from './fitness-check/fitness-check.component';
 import { QuestionPageComponent } from './question-page/question-page.component';
 import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.component';
 
@@ -38,7 +39,7 @@ export const routes: Routes = [
     {
       path: 'questions',
       component: QuestionPageComponent,
-
+      canActivate: [authGuard]
     },
     { 
       path: 'admin', 
@@ -46,9 +47,14 @@ export const routes: Routes = [
       canActivate: [authGuard,adminGuard] 
     },
     {
+<<<<<<< HEAD
       path: 'recovery', 
       component: RecoveryComponent, 
       canActivate: [authGuard] 
+=======
+      path : 'fitness-check',
+      component: FitnessCheckComponent
+>>>>>>> 11c61f53b12fdddc97c5ca0e185ee912b9e25669
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },

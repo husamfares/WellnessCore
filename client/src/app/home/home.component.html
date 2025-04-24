@@ -12,7 +12,12 @@
       <mat-icon>card_giftcard</mat-icon>
       <span>Analysis Meal Nutrition</span>
     </div>
-    
+
+    <div class="nav-item" [routerLink]="['/fitness-check']">
+      <mat-icon>fitness_center</mat-icon>
+      <span>Fitness Check</span>
+    </div>
+
     <div class="nav-item">
       <mat-icon>menu_book</mat-icon>
       <span>Nutrition Guide</span>
@@ -28,9 +33,18 @@
       <span>Session Reservation</span>
     </div>
     
-    <div class="nav-item" (click)="logout()">
+    <div (click)="logout()" class="nav-item">
       <mat-icon>logout</mat-icon>
       <span>Sign Out</span>
+    </div>
+
+    <!-- <div class="dashboard">
+      <router-outlet></router-outlet> 
+    </div> -->
+    
+    <div *ngIf="accountService.isAdmin()" class="nav-item" style="color: red;"[routerLink]="['/admin']">
+      <mat-icon>Admin</mat-icon>
+      <span>Admin</span>
     </div>
 
   </div>

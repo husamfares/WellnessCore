@@ -1,18 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { HasRoleDirective } from '../_directives/has-role.directive';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink,CommonModule, MatIconModule],
+  imports: [RouterLink, CommonModule, MatIconModule , RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  private accountService = inject(AccountService);
+  accountService = inject(AccountService);
   private router = inject(Router);
   sidebarVisible = true;
 

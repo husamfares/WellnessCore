@@ -44,8 +44,8 @@ public class QuestionsController(DataContext context) : BaseApiController
 
         
 
-        var question = await context.Questions.FindAsync(id);
-        if (question == null) return NotFound("Question not found");
+          var questions = await context.Questions.ToListAsync();
+        if(questions == null) return Ok(questions); 
 
         var answer = new Answer
     {
@@ -95,7 +95,7 @@ public async Task<ActionResult> UpdateAnswer(int questionId, int answerId, [From
             .Include(q => q.Answers)
             .OrderByDescending(q => q.CreatedAt)
             .ToListAsync();
-        if (questions == null || questions.Count == 0) return NotFound("No questions found");
+        if (questions == null || questions.Count == 0) return Ok(questions);
 
         var result = questions.Select(q => new QuestionDto
     {
@@ -123,7 +123,7 @@ public async Task<ActionResult> UpdateQuestion(int id, [FromBody] CreateQuestion
     if (string.IsNullOrEmpty(username)) return Unauthorized("User not authenticated");
 
     var question = await context.Questions.FindAsync(id);
-    if (question == null) return NotFound("Question not found");
+    if (question == null) return Ok("Question not found");
 
     if (question.AskedBy != username)
         return Forbid("You can only edit your own questions");

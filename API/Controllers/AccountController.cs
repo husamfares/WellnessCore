@@ -38,6 +38,9 @@ public class AccountController(UserManager<AppUser> userManager, ItokenService t
             return BadRequest(result.Errors);
         }
 
+            await userManager.AddToRoleAsync(user, "User");
+
+
         return Ok(new UserDto
         {
             Username = user.UserName,
