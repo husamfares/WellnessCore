@@ -10,6 +10,8 @@ import { loggedInGuard } from './_guards/logged-in.guard';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
 import { QuestionPageComponent } from './question-page/question-page.component';
+import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.component';
+
 
 
 export const routes: Routes = [
@@ -42,6 +44,11 @@ export const routes: Routes = [
       path: 'admin', 
       component: AdminPanelComponent,
       canActivate: [authGuard,adminGuard] 
+    },
+    {
+      path: 'recovery', 
+      component: RecoveryComponent, 
+      canActivate: [authGuard] 
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },

@@ -1,0 +1,33 @@
+<form (ngSubmit)="calculate()">
+  <label>Sleep Hours:</label>
+  <input type="number" [(ngModel)]="sleepHours" name="sleepHours" />
+
+  <label>Workout Intensity:</label>
+  <select [(ngModel)]="workoutIntensity" name="workoutIntensity">
+    <option value="light">Light</option>
+    <option value="moderate">Moderate</option>
+    <option value="intense">Intense</option>
+  </select>
+
+  <label>Fatigue Level:</label>
+  <select [(ngModel)]="fatigueLevel" name="fatigueLevel">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  <button type="submit">Calculate</button>
+</form>
+
+<!-- Show recovery percentage -->
+<div *ngIf="recoveryPercentage !== null">
+  <h2>Recovery: {{ recoveryPercentage }} %</h2>
+</div>
+
+<!-- Show history list -->
+<h3>History</h3>
+<ul>
+  <li *ngFor="let h of history">
+    {{ h.date | date: 'short' }} - {{ h.recoveryPercentage }}%
+  </li>
+</ul>

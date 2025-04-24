@@ -10,6 +10,8 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
 {
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
+public DbSet<RecoveryRecord> RecoveryRecords{get; set;}
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

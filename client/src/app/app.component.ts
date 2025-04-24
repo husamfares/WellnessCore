@@ -3,6 +3,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AccountService } from './_services/account.service';
 import { NgxSpinnerComponent } from 'ngx-spinner';
+import { NgModule } from '@angular/core';
+
 
 
 @Component({
