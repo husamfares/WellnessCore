@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Controllers;
 
 [Authorize(Roles = "Admin")]
-public class AdminController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager) : BaseApiController
+public class AdminController(UserManager<AppUser> userManager) : BaseApiController
 {
     [Authorize(Policy = "RequireAdminRole")]
     [HttpGet("users-with-roles")]

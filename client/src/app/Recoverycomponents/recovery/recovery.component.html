@@ -21,13 +21,7 @@
 
 <!-- Show recovery percentage -->
 <div *ngIf="recoveryPercentage !== null">
-  <h2>Recovery: {{ recoveryPercentage }} %</h2>
+  <h2>Recovery Percentage: {{ recoveryPercentage }}%</h2>
 </div>
 
-<!-- Show history list -->
-<h3>History</h3>
-<ul>
-  <li *ngFor="let h of history">
-    {{ h.date | date: 'short' }} - {{ h.recoveryPercentage }}%
-  </li>
-</ul>
+

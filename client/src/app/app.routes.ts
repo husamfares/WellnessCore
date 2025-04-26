@@ -48,8 +48,13 @@ export const routes: Routes = [
     },
     {
       path: 'recovery', 
-      component: RecoveryComponent
-       
+      component: RecoveryComponent,
+     canActivate: [authGuard] 
+    },
+    {
+      path : 'fitness-check',
+      component: FitnessCheckComponent,
+      canActivate: [authGuard]
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
