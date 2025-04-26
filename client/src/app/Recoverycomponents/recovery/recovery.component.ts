@@ -14,7 +14,7 @@ export class RecoveryComponent {
   workoutIntensity: string = 'light';
   fatigueLevel: string = 'low';
   recoveryPercentage: number | null = null;
-  history: any[] = [];
+
 
   constructor(private http: HttpClient) {}
 
@@ -27,11 +27,7 @@ export class RecoveryComponent {
 
     this.http.post<any>('http://localhost:5000/api/recovery/calculate', data)
       .subscribe(result => {
-        this.recoveryPercentage = result.recoveryPercentage;
-        this.history.unshift({
-          date: new Date(),
-          recoveryPercentage: result
+        this.recoveryPercentage = result;
         });
-      });
   }
 }
