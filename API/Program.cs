@@ -4,7 +4,6 @@ using API.Extensions;
 using API.Helpers;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
-using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 

@@ -47,14 +47,9 @@ export const routes: Routes = [
       canActivate: [authGuard,adminGuard] 
     },
     {
-<<<<<<< HEAD
       path: 'recovery', 
-      component: RecoveryComponent, 
-      canActivate: [authGuard] 
-=======
-      path : 'fitness-check',
-      component: FitnessCheckComponent
->>>>>>> 11c61f53b12fdddc97c5ca0e185ee912b9e25669
+      component: RecoveryComponent
+       
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
