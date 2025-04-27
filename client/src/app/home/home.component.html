@@ -8,10 +8,30 @@
         <span>Dashboard</span>
       </a>
 
-      <a class="nav-item" routerLink="/meal-analysis">
-        <mat-icon>local_dining</mat-icon>
-        <span>Analyze Meal</span>
-      </a>
+    <div class="nav-item">
+      <mat-icon>menu_book</mat-icon>
+      <span>Nutrition Guide</span>
+    </div>
+    
+    <div class="nav-item" [routerLink]="['/questions']">
+      <mat-icon>groups</mat-icon>
+      <span>Community</span>
+    </div>
+    
+    <div class="nav-item" [routerLink]="['/recovery']">
+      <mat-icon>health_and_safety</mat-icon>
+      <span>recovery</span>
+    </div>
+
+    <div class="nav-item">
+      <mat-icon>calendar_today</mat-icon>
+      <span>Session Reservation</span>
+    </div>
+    
+    <div (click)="logout()" class="nav-item">
+      <mat-icon>logout</mat-icon>
+      <span>Sign Out</span>
+    </div>
 
       <a class="nav-item" routerLink="/fitness-check">
         <mat-icon>fitness_center</mat-icon>

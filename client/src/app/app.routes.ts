@@ -49,8 +49,8 @@ export const routes: Routes = [
     },
     {
       path: 'recovery', 
-      component: RecoveryComponent, 
-      canActivate: [authGuard] 
+      component: RecoveryComponent,
+     canActivate: [authGuard] 
     },
     {
       path : 'fitness-check',

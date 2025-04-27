@@ -17,6 +17,8 @@ export class RecoveryComponent {
 
 
   constructor(private http: HttpClient) {}
+  
+  showClassificationTable: boolean = false;
 
   calculate() {
     const data = {
@@ -28,6 +30,8 @@ export class RecoveryComponent {
     this.http.post<any>('http://localhost:5000/api/recovery/calculate', data)
       .subscribe(result => {
         this.recoveryPercentage = result;
+        this.showClassificationTable = true;
         });
   }
+  
 }

@@ -8,76 +8,156 @@
   color: white;
 }
 
+:host::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("https://res.cloudinary.com/djbpwawux/image/upload/v1714301234/victor-freitas-JbI04nYfaJk-unsplash_a5c84w.jpg"),
+      #000;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+
 form {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+h2 {
+  text-align: center;
+  color: #2e7d32;
+  margin-top: 1rem;
+}
+
+h3 {
+  margin-top: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 400px;
+  margin: 1rem auto;
+}
+
+li {
+  background-color: #fff;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.classification-table {
+  background-color: rgba(255, 255, 255, 0.9); 
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  max-width: 500px;
+  width: 100%;
+  margin: 3rem ; 
+ 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+  color: #333;
+}
+
+thead {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.1rem;
+}
+
+tbody tr:nth-child(1) {
+  background-color: #d0f0c0; 
+}
+
+tbody tr:nth-child(2) {
+  background-color: #e0f7fa; 
+}
+
+tbody tr:nth-child(3) {
+  background-color: #fff9c4; 
+}
+
+tbody tr:nth-child(4) {
+  background-color: #ffe0b2;
+}
+
+tbody tr:nth-child(5) {
+  background-color: #ffcdd2;
+}
+
+tbody tr:nth-child(6) {
+  background-color: #ef9a9a; 
+}
+
+tbody tr:hover {
+  background-color: #c8e6c9;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #2e7d32;
   
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 0.6rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-  }
-  
-  button {
-    margin-top: 1.5rem;
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #2e7d32;
-    margin-top: 1rem;
-  }
-  
-  h3 {
-    margin-top: 2rem;
-    text-align: center;
-    color: #333;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    max-width: 400px;
-    margin: 1rem auto;
-  }
-  
-  li {
-    background-color: #fff;
-    margin-bottom: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    color: #555;
-    font-size: 0.95rem;
-  }
-  
+}
