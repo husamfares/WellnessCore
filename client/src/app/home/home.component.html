@@ -1,86 +1,93 @@
-<!-- fitness-dashboard.component.html -->
 <div class="dashboard-container">
-  <div class="sidebar">
-    <h2 class="sidebar-title">Fitness Management</h2>
-    
-    <div class="nav-item">
-      <mat-icon>dashboard</mat-icon>
-      <span>Dashboard</span>
-    </div>
-    
-    <div class="nav-item">
-      <mat-icon>card_giftcard</mat-icon>
-      <span>Analysis Meal Nutrition</span>
-    </div>
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Wellness Core</h2>
 
-    <div class="nav-item" [routerLink]="['/fitness-check']">
-      <mat-icon>fitness_center</mat-icon>
-      <span>Fitness Check</span>
-    </div>
+    <nav class="nav-links">
+      <a class="nav-item" routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
 
-    <div class="nav-item">
-      <mat-icon>menu_book</mat-icon>
-      <span>Nutrition Guide</span>
-    </div>
-    
-    <div class="nav-item" [routerLink]="['/questions']">
-      <mat-icon>groups</mat-icon>
-      <span>Community</span>
-    </div>
-    
-    <div class="nav-item">
-      <mat-icon>calendar_today</mat-icon>
-      <span>Session Reservation</span>
-    </div>
-    
-    <div (click)="logout()" class="nav-item">
-      <mat-icon>logout</mat-icon>
-      <span>Sign Out</span>
-    </div>
+      <a class="nav-item" routerLink="/meal-analysis">
+        <mat-icon>local_dining</mat-icon>
+        <span>Analyze Meal</span>
+      </a>
 
-    <!-- <div class="dashboard">
-      <router-outlet></router-outlet> 
-    </div> -->
-    
-    <div *ngIf="accountService.isAdmin()" class="nav-item" style="color: red;"[routerLink]="['/admin']">
-      <mat-icon>Admin</mat-icon>
-      <span>Admin</span>
-    </div>
+      <a class="nav-item" routerLink="/fitness-check">
+        <mat-icon>fitness_center</mat-icon>
+        <span>Fitness Check</span>
+      </a>
 
-  </div>
+      <a class="nav-item" routerLink="/nutrition-guide">
+        <mat-icon>restaurant_menu</mat-icon>
+        <span>Nutrition Guide</span>
+      </a>
 
-  <div class="main-content">
-    <div class="header">
-      <h1 class="page-title">Fitness Challenge</h1>
+      <a class="nav-item" routerLink="/questions">
+        <mat-icon>groups</mat-icon>
+        <span>Community</span>
+      </a>
+
+      <a class="nav-item" routerLink="/sessions">
+        <mat-icon>calendar_month</mat-icon>
+        <span>Reserve Session</span>
+      </a>
+
+      <a class="nav-item" [routerLink]="['/profile', username]">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </a>
+
+      <a class="nav-item" routerLink="/profiles">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </a>
+
+      <a *ngIf="accountService.isAdmin()" class="nav-item admin-link" routerLink="/admin">
+        <mat-icon>admin_panel_settings</mat-icon>
+        <span>Admin</span>
+      </a>
+
+      <div (click)="logout()" class="nav-item logout">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1 class="page-title">Fitness Dashboard</h1>
       <button mat-raised-button color="primary" class="create-challenge-btn">
-        <mat-icon>add</mat-icon>
-        Create New Challenge
+        <mat-icon>add</mat-icon> New Challenge
       </button>
-    </div>
+    </header>
 
-    <div class="challenge-card mat-elevation-z4">
-      <h3>No Challenges today unfortunately!</h3>
-      <p>Check back tomorrow or create your own challenge</p>
-    </div>
+    <section class="challenge-section">
+      <div class="challenge-card mat-elevation-z4">
+        <h3>No Challenges Today</h3>
+        <p>Come back later or create your own challenge!</p>
+      </div>
+    </section>
 
-    <div class="metrics-grid">
+    <section class="metrics-grid">
       <div class="metric-card mat-elevation-z2">
-        <h3>Recovery Percentage</h3>
+        <h3>Recovery</h3>
         <div class="metric-value">78%</div>
-        <p class="metric-description">Your body recovery status</p>
+        <p class="metric-description">Body recovery today</p>
       </div>
-      
+
       <div class="metric-card mat-elevation-z2">
-        <h3>Today's Activity</h3>
+        <h3>Steps</h3>
         <div class="metric-value">4,280</div>
-        <p class="metric-description">Steps taken today</p>
+        <p class="metric-description">Steps walked</p>
       </div>
-      
+
       <div class="metric-card mat-elevation-z2">
-        <h3>Nutrition Score</h3>
+        <h3>Nutrition</h3>
         <div class="metric-value">86/100</div>
-        <p class="metric-description">Based on your recent meals</p>
+        <p class="metric-description">Meal quality score</p>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </div>

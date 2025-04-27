@@ -19,6 +19,10 @@ public class AppUser : IdentityUser<int>
 
     public string? Traineegoal { get; set; }
 
+    public string? MobileNumber { get; set; }   // New
+    public string? Location { get; set; }       // New
+    public string? GymName { get; set; }         // Only for Trainer    
+
 
 
 }

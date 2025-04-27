@@ -12,7 +12,8 @@ import { adminGuard } from './_guards/admin.guard';
 import { FitnessCheckComponent } from './fitness-check/fitness-check.component';
 import { QuestionPageComponent } from './question-page/question-page.component';
 import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.component';
-
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileListComponent } from './profile-list/profile-list.component';
 
 
 export const routes: Routes = [
@@ -55,6 +56,16 @@ export const routes: Routes = [
       path : 'fitness-check',
       component: FitnessCheckComponent,
       canActivate: [authGuard]
+    },
+    {
+      path : 'profile/:username',
+      component: ProfileComponent,
+      canActivate: [authGuard]
+    },
+    { 
+      path: 'profiles',
+      component: ProfileListComponent,
+      canActivate: [authGuard] 
     },
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },

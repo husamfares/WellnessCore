@@ -1,93 +1,62 @@
-/* Host/Page Background */
 :host {
-  display: flex;
+  display: block;
   min-height: 100vh;
-  background: linear-gradient(135deg, #112d4e 0%, #3f72af 100%);
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 40px 20px;
 }
 
-/* Container Styling */
-.container {
-  max-width: 850px;
+/* Main container */
+.qa-page-container {
+  max-width: 1000px;
   margin: auto;
-  padding: 20px;
-  background-color: #f9f7f7;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Page Title */
-h2.text-center {
-  font-weight: 600;
-  font-size: 2rem;
-  color: #112d4e;
+/* Header */
+.qa-header h2 {
+  color: #03dac6;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
   position: relative;
 }
 
-h2.text-center::after {
-  content: "";
-  width: 60px;
-  height: 3px;
-  background-color: #3f72af;
+.qa-header h2::after {
+  content: '';
   display: block;
+  width: 80px;
+  height: 3px;
+  background: #03dac6;
   margin: 10px auto 0;
   border-radius: 4px;
 }
 
-/* Horizontal Rule */
-hr.my-4 {
-  border: none;
-  height: 1px;
-  background-color: #dbe2ef;
-  margin: 2.5rem 0;
-}
-
-/* Angular Component Animations */
-app-question-component,
-app-question-list {
-  animation: fadeIn 0.4s ease-in-out;
-  display: block;
-}
-
 /* Card Styling */
-.card {
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  border: 1px solid #dbe2ef;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-bottom: 1rem;
-  overflow: hidden;
+.qa-card {
+  background: #1e1e2f;
+  border-radius: 12px;
+  padding: 30px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  animation: fadeIn 0.7s ease-in-out;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+/* Divider */
+.divider {
+  height: 2px;
+  background: #03dac6;
+  margin: 40px 0;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
 }
 
-/* Animation for new elements */
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out forwards;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
-}
-
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -95,173 +64,13 @@ app-question-list {
   }
 }
 
-/* Question section styling */
-.text-muted {
-  color: #7286a0 !important;
-  font-size: 0.8rem;
-}
-
-/* Answer section styling */
-.answer-block {
-  position: relative;
-  border-left: 3px solid #3f72af !important;
-  margin-top: 12px;
-  padding-left: 12px;
-  background-color: #eef2fa;
-  border-radius: 0 4px 4px 0;
-}
-
-.answer-block p.fst-italic {
-  color: #112d4e;
-  margin-bottom: 8px;
-}
-
-/* Action buttons */
-.edit-btn, .delete-btn {
-  position: absolute;
-  right: 10px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-
-.edit-btn {
-  right: 40px;
-}
-
-.edit-btn:hover, .delete-btn:hover {
-  opacity: 1;
-}
-
-.small-btn {
-  font-size: 0.8rem;
-  top: 22px;
-}
-
-/* Input styling */
-.form-control {
-  border-radius: 4px;
-  border: 1px solid #dbe2ef;
-  padding: 8px 12px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: #ffffff;
-}
-
-.form-control:focus {
-  border-color: #3f72af;
-  box-shadow: 0 0 0 0.2rem rgba(63, 114, 175, 0.25);
-  outline: 0;
-}
-
-/* Button styling */
-.btn {
-  border-radius: 4px;
-  padding: 6px 12px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.btn-success {
-  background-color: #3f72af;
-  border-color: #3f72af;
-  color: white;
-}
-
-.btn-success:hover {
-  background-color: #112d4e;
-  border-color: #112d4e;
-}
-
-.btn-secondary {
-  background-color: #7286a0;
-  border-color: #7286a0;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #5c6f8a;
-  border-color: #5c6f8a;
-}
-
-.btn-sm {
-  font-size: 0.875rem;
-  padding: 4px 8px;
-}
-
-/* Additional spacing utilities */
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-3 {
-  margin-bottom: 1rem;
-}
-
-.mb-4 {
-  margin-bottom: 1.5rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mt-3 {
-  margin-top: 1rem;
-}
-
-.mt-4 {
-  margin-top: 1.5rem;
-}
-
-.me-2 {
-  margin-right: 0.5rem;
-}
-
-.me-4 {
-  margin-right: 1.5rem;
-}
-
-.ms-3 {
-  margin-left: 1rem;
-}
-
-.p-3 {
-  padding: 1rem;
-}
-
-.ps-2 {
-  padding-left: 0.5rem;
-}
-
-.my-4 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-  .container {
-    padding: 15px;
-    margin: 10px;
+  .qa-card {
+    padding: 20px;
   }
 
-  .card {
-    padding: 0.75rem !important;
-  }
-  
-  .answer-block {
-    margin-left: 0.5rem !important;
-    padding-left: 0.5rem !important;
-  }
-  
-  .edit-btn, .delete-btn {
-    font-size: 0.9rem;
-  }
-
-  h2.text-center {
+  .qa-header h2 {
     font-size: 1.5rem;
   }
 }

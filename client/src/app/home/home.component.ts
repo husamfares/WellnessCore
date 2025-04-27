@@ -16,6 +16,7 @@ export class HomeComponent {
   accountService = inject(AccountService);
   private router = inject(Router);
   sidebarVisible = true;
+  username = this.accountService.currentUser()?.username.toString() || '';
 
 
   logout(){
