@@ -10,19 +10,14 @@ using System.Security.Claims;
 namespace API.Controllers
 {
     [Authorize]
-    public class ProfileController : BaseApiController
+    public class ProfileController(DataContext context) : BaseApiController
     {
-        private readonly DataContext _context;
-
-        public ProfileController(DataContext context)
-        {
-            _context = context;
-        }
+        
 
         [HttpGet("{username}")]
         public async Task<ActionResult<ProfileDto>> GetProfile(string username)
         {
-            var user = await _context.Users
+            var user = await context.Users
                 .Include(u => u.UserRoles)
                 .ThenInclude(r => r.Role)
                 .FirstOrDefaultAsync(x => x.UserName == username);
@@ -45,7 +40,7 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateProfile(ProfileDto profileDto)
         {
             var username = User.FindFirst(ClaimTypes.Name)?.Value;
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserName == username);
+            var user = await context.Users.FirstOrDefaultAsync(x => x.UserName == username);
 
             if (user == null) return NotFound();
 
@@ -53,7 +48,7 @@ namespace API.Controllers
             user.Location = profileDto.Location;
             user.GymName = profileDto.GymName;
 
-            await _context.SaveChangesAsync();
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -61,7 +56,7 @@ namespace API.Controllers
         [HttpGet]
 public async Task<ActionResult<IEnumerable<ProfileDto>>> GetAllProfiles([FromQuery] string? role = null)
 {
-    var usersQuery = _context.Users
+    var usersQuery = context.Users
         .Include(u => u.UserRoles)
         .ThenInclude(r => r.Role)
         .AsQueryable();
