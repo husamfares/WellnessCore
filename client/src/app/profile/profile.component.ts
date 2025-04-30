@@ -5,10 +5,11 @@ import { AccountService } from '../_services/account.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Profile } from '../_models/profile';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
-  imports: [FormsModule, CommonModule,ReactiveFormsModule],
+  imports: [FormsModule, CommonModule,ReactiveFormsModule, MatIconModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

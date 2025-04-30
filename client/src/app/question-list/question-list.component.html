@@ -1,6 +1,6 @@
 <div *ngFor="let q of questions" class="card mb-3 p-3 animate-slide-in position-relative">
   <small class="text-muted">Posted {{ q.createdAt | timeAgo }}</small>
-  <p><strong>{{ q.askedBy }}</strong> asked:</p>
+  <h6>{{ q.askedBy}}:</h6>
 
   <div *ngIf="editQuestionId === q.id; else normalCaption">
     <input [(ngModel)]="editedCaption" class="form-control mb-2" />
@@ -23,40 +23,50 @@
 
   <!-- Answers -->
   <div
-    *ngFor="let a of q.answers"
-    class="mt-2 ms-3 border-start ps-2 animate-fade-in answer-block"
-  >
-    <small class="text-muted">{{ a.createdAt | timeAgo }}</small>
-    <p class="mb-0"><strong>{{ a.answeredBy }}</strong></p>
+  *ngFor="let a of q.answers"
+  class="mt-2 ms-3 border-start ps-2 animate-fade-in answer-block position-relative"
+>
+  <small class="text-muted">{{ a.createdAt | timeAgo }}</small>
+  <h6 class="mb-1" style="color: white;">{{ a.answeredBy}}:</h6>
 
-    <div *ngIf="editAnswerId === a.id; else normalAnswer">
-      <input [(ngModel)]="editedAnswerText" class="form-control mb-2" />
-      <button
-        (click)="saveEditedAnswer(q.id, a.id)"
-        class="btn btn-sm btn-success me-2"
-      >
-        Save
-      </button>
-      <button
-        (click)="cancelEditAnswer()"
-        class="btn btn-sm btn-secondary"
-      >
-        Cancel
-      </button>
-    </div>
-
-    <ng-template #normalAnswer>
-      <p class="fst-italic">{{ a.answerText }}</p>
-      <button
-        *ngIf="a.answeredBy === currentUsername"
-        (click)="startEditAnswer(q.id, a.id, a.answerText)"
-        class="edit-btn small-btn"
-        title="Edit answer"
-      >✏️
-      <button (click)="deleteAnswer(q.id, a.id)" class="delete-btn small-btn" title="Delete answer">🗑️</button>  
+  <div *ngIf="editAnswerId === a.id; else normalAnswer">
+    <input [(ngModel)]="editedAnswerText" class="form-control mb-2" />
+    <button
+      (click)="saveEditedAnswer(q.id, a.id)"
+      class="btn btn-sm btn-success me-2"
+    >
+      Save
     </button>
-    </ng-template>
+    <button
+      (click)="cancelEditAnswer()"
+      class="btn btn-sm btn-secondary"
+    >
+      Cancel
+    </button>
   </div>
+
+  <ng-template #normalAnswer>
+    <p class="fst-italic">{{ a.answerText }}</p>
+
+    <!-- ✏️ Edit Button -->
+    <button
+      *ngIf="a.answeredBy === currentUsername"
+      (click)="startEditAnswer(q.id, a.id, a.answerText)"
+      class="edit-btn answer-edit-btn"
+      title="Edit answer"
+    >✏️</button>
+
+    <!-- 🗑️ Delete Button -->
+    <button
+      *ngIf="a.answeredBy === currentUsername"
+      (click)="deleteAnswer(q.id, a.id)"
+      class="delete-btn answer-delete-btn"
+      title="Delete answer"
+    >🗑️</button>
+    
+  </ng-template>
+</div>
+
 
   <!-- Answer form -->
   <form

@@ -13,7 +13,7 @@ namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20250427191354_profile")]
-    partial class profile
+    partial class Profile
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

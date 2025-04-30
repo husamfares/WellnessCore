@@ -3,14 +3,14 @@ using API.Interfaces;
 using API.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace API.Controllers;
 
 [Authorize]
-public class RecoveryController(IRecoveryRepository repo) : BaseApiController
-
+public class RecoveryController : BaseApiController
 {
+   
+
     [HttpPost("calculate")]
 public ActionResult<double> CalculateRecovery([FromBody] RecoveryInputDto input)
 {

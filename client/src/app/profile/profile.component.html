@@ -11,7 +11,7 @@
 
   <div class="profile-details">
     <div class="detail-item">
-      <i class="fas fa-phone"></i>
+      <i class="fas"><mat-icon style="margin-top: 30px; height: fit-content;">phone</mat-icon></i>
       <div>
         <span class="detail-label">Mobile</span>
         <span class="detail-value">{{ profile?.mobileNumber || 'Not provided' }}</span>
@@ -19,7 +19,7 @@
     </div>
     
     <div class="detail-item">
-      <i class="fas fa-map-marker-alt"></i>
+      <i class="fas"><mat-icon style="margin-top: 30px;">location_on</mat-icon></i>
       <div>
         <span class="detail-label">Location</span>
         <span class="detail-value">{{ profile?.location || 'Not specified' }}</span>
@@ -27,7 +27,7 @@
     </div>
     
     <div class="detail-item" *ngIf="profile?.role === 'Trainer'">
-      <i class="fas fa-dumbbell"></i>
+      <i class="fas fa-dumbbell"><mat-icon style="margin-top: 30px;">fitness_center</mat-icon></i>
       <div>
         <span class="detail-label">Gym</span>
         <span class="detail-value">{{ profile?.gymName || 'Not specified' }}</span>
@@ -54,7 +54,7 @@
     </div>
     
     <button class="update-btn" type="submit" [disabled]="form.invalid">
-      <i class="fas fa-save"></i> Update Profile
+      <i class="fas"><mat-icon class="fas">save</mat-icon></i> Update Profile
     </button>
   </form>
 </div>
