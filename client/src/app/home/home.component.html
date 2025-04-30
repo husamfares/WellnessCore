@@ -34,12 +34,6 @@
         <span>Community</span>
       </a>
 
-     
-      <a class="nav-item" [routerLink]="['/profile', username]">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </a>
-
       <a class="nav-item" routerLink="/profiles">
         <mat-icon>search</mat-icon>
         <span>Search</span>
@@ -60,9 +54,12 @@
   <main class="main-content">
     <header class="header">
       <h1 class="page-title">Fitness Dashboard</h1>
-      <button mat-raised-button color="primary" class="create-challenge-btn">
+      <!-- <button mat-raised-button color="primary" class="create-challenge-btn">
         <mat-icon>add</mat-icon> New Challenge
-      </button>
+      </button> -->
+      <div class="profile-circle page-title" [routerLink]="['/profile', username]" title="Profile">
+        <mat-icon>person</mat-icon>
+      </div>
     </header>
 
     <section class="challenge-section">
