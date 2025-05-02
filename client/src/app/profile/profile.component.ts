@@ -9,25 +9,41 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
-  imports: [FormsModule, CommonModule,ReactiveFormsModule, MatIconModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   form!: FormGroup;
   isTrainer = false;
   isOwner = false;
   profile: Profile | null = null;
+
+  selectedFile?: File;
+  imageUrl: string = '';
+
   private profileService = inject(ProfileService);
   private accountService = inject(AccountService); 
   private fb = inject(FormBuilder); 
   private route = inject(ActivatedRoute);
- 
+
+
+  isImageModalOpen = false;
+
+  openImageModal() {
+    this.isImageModalOpen = true;
+  }
+  
+  closeImageModal() {
+    this.isImageModalOpen = false;
+  }
+  
 
   ngOnInit(): void {
     const username = this.route.snapshot.paramMap.get('username')!;
     this.profileService.getProfile(username).subscribe(profile => {
       this.profile = profile;
+      this.imageUrl = localStorage.getItem('profilePictureUrl') ?? profile.profilePictureUrl ?? '';
       this.setupForm();
 
       const currentUsername = this.accountService.currentUser()?.username;
@@ -50,10 +66,30 @@ export class ProfileComponent implements OnInit {
       ...this.profile,
       ...this.form.value
     };
-    
+
     this.profileService.updateProfile(updatedProfile).subscribe(() => {
-      alert('Profile updated successfully!');
     });
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.selectedFile = input.files[0];
+  }
+
+  uploadImage() {
+    if (this.selectedFile) {
+      this.profileService.uploadProfilePicture(this.selectedFile).subscribe(res => {
+        this.imageUrl = res.imageUrl;
+        localStorage.setItem('profilePictureUrl', res.imageUrl);
+      });
+    }
+ 
+  }
+ 
+  
 
 }
-}
+
+

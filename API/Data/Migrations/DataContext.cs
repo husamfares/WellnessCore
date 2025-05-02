@@ -11,6 +11,7 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
 public DbSet<RecoveryRecord> RecoveryRecords{get; set;}
+public DbSet<ProfilePicture> ProfilePictures { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -28,6 +29,12 @@ public DbSet<RecoveryRecord> RecoveryRecords{get; set;}
             .WithOne(u => u.Role)
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
+
+            builder.Entity<AppUser>()
+           .HasOne(u => u.ProfilePicture)
+           .WithOne(p => p.User)
+           .HasForeignKey<ProfilePicture>(p => p.UserId)
+           .OnDelete(DeleteBehavior.Cascade);
 
     }
 }
