@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DatePickerComponent } from '../_forms/date-picker/date-picker.component';
@@ -34,30 +34,92 @@ export class RegisterComponent implements OnInit{
   {
     this.registerForm = this.fb.group({
       gender: ['male'],
-      username: new FormControl('', Validators.required),
+      username: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       weight: ['', Validators.required],
       height: ['', Validators.required],
       password: ['', [
         Validators.required,
-        Validators.minLength(6),  
         Validators.maxLength(100),
-        Validators.pattern(/(?=.*[a-z])/),    
-        Validators.pattern(/(?=.*[0-9])/),    
-        Validators.pattern(/(?=.*[!@#$%^&*])/) 
+        this.passwordComplexityValidator()
       ]],
-      confirmPassword: new FormControl('',[Validators.required, this.matchValues('password')])
-    });
-    this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
-    })
+      confirmPassword: ['', Validators.required]
+    }, { validators: [this.passwordsMatchValidator()] });  // 🔥 group-level validator
+  }
+
+  passwordsMatchValidator(): ValidatorFn {
+    return (group: AbstractControl): ValidationErrors | null => {
+      const password = group.get('password');
+      const confirmPassword = group.get('confirmPassword');
+  
+      if (!password || !confirmPassword) return null;
+  
+      if (confirmPassword.errors && !confirmPassword.errors['isMatching']) {
+        // Other validators have found errors already
+        return null;
+      }
+  
+      // If password is invalid, confirmPassword should also be invalid
+      if (password.invalid) {
+        confirmPassword.setErrors({ passwordInvalid: true });
+        return null;
+      }
+  
+      // If values do not match
+      if (password.value !== confirmPassword.value) {
+        confirmPassword.setErrors({ isMatching: true });
+      } else {
+        // Clear matching errors if everything is good
+        confirmPassword.setErrors(null);
+      }
+  
+      return null;
+    };
+  }
+
+  passwordComplexityValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (!value) return null;
+  
+      const errors: any = {};
+  
+      if (!/[a-z]/.test(value)) {
+        errors.missingLowercase = true;
+      }
+      if (!/[A-Z]/.test(value)) {
+        errors.missingUppercase = true;
+      }
+      if (!/[0-9]/.test(value)) {
+        errors.missingNumber = true;
+      }
+      if (!/[!@#$%^&*]/.test(value)) {
+        errors.missingSpecial = true;
+      }
+      if (value.length < 6) {
+        errors.tooShort = true;
+      }
+  
+      return Object.keys(errors).length > 0 ? errors : null;
+    };
   }
 
   matchValues(matchTo: string): ValidatorFn
   {
     return (control: AbstractControl) => {
-      return control.value === control.parent?.get(matchTo)?.value ? null : {isMatching: true}
-    }
+      const parent = control.parent;
+      if (!parent) return null;
+  
+      const matchToControl = parent.get(matchTo);
+      if (!matchToControl) return null;
+  
+      // If password is invalid, confirm password should be invalid too
+      if (matchToControl.invalid) {
+        return { passwordInvalid: true };
+      }
+  
+      return control.value === matchToControl.value ? null : { isMatching: true };
+    };
   }
 
   register()
