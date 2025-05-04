@@ -28,16 +28,16 @@ export class ProfileComponent implements OnInit {
   private route = inject(ActivatedRoute);
 
 
-  isImageModalOpen = false;
+isImageModalOpen = false;
 
-  openImageModal() {
-    this.isImageModalOpen = true;
-  }
-  
-  closeImageModal() {
-    this.isImageModalOpen = false;
-  }
-  
+openImageModal() {
+  this.isImageModalOpen = true;
+}
+
+closeImageModal() {
+  this.isImageModalOpen = false;
+}
+
 
   ngOnInit(): void {
     const username = this.route.snapshot.paramMap.get('username')!;
