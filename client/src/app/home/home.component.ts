@@ -17,7 +17,8 @@ export class HomeComponent {
   private router = inject(Router);
   sidebarVisible = true;
   username = this.accountService.currentUser()?.username.toString() || '';
-
+  isSidebarClosed  = false;
+  
 
   logout(){
     this.accountService.logout();
@@ -25,7 +26,8 @@ export class HomeComponent {
 
   }
 
-  toggleSidebar() {
-    this.sidebarVisible = !this.sidebarVisible;
-  }
+toggleSidebar() {
+  this.isSidebarClosed  = !this.isSidebarClosed ;
+}
+
 }

@@ -21,5 +21,20 @@
 
     <div *ngIf="control.hasError('isMatching')" class="invalid-feedback text-start">passwords do not match</div>
 
-    <div *ngIf="control.hasError('pattern')" class="invalid-feedback text-start">Please enter a valid {{label()}} make sure at least it has a small character, uppercase character and special character</div>
+    <div *ngIf="control.hasError('missingLowercase')" class="invalid-feedback text-start">
+      Must include at least one lowercase letter
+    </div>
+    <div *ngIf="control.hasError('missingUppercase')" class="invalid-feedback text-start">
+      Must include at least one uppercase letter
+    </div>
+    <div *ngIf="control.hasError('missingNumber')" class="invalid-feedback text-start">
+      Must include at least one number
+    </div>
+    <div *ngIf="control.hasError('missingSpecial')" class="invalid-feedback text-start">
+      Must include at least one special character (!&#64;#$%^&*)
+    </div>
+    <div *ngIf="control.hasError('tooShort')" class="invalid-feedback text-start">
+      Password must be at least 6 characters long
+    </div>
+    
 </div>

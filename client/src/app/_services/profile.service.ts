@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Profile } from '../_models/profile';
+import { Profile, TrainerSubscription } from '../_models/profile';
 
 
 @Injectable({
@@ -33,4 +33,24 @@ export class ProfileService {
       formData
     );
   }
+
+  addTrainerSubscription(subscription: any) {
+    return this.http.post<TrainerSubscription>(this.baseUrl + 'trainersubscriptions', subscription);
+  }
+  
+  deleteProfilePicture() {
+    return this.http.delete(this.baseUrl + 'profilepicture');
+  }
+
+  addTherapistSessionPrice(sessionPrice: { title: string; price: number }) {
+    return this.http.post(this.baseUrl + 'therapistsessions', sessionPrice);
+  }
+  deleteSubscription(subId: number) {
+    return this.http.delete(this.baseUrl + 'trainersubscriptions/' + subId);
+  }
+  
+  deleteSessionPrice(sessionId: number) {
+    return this.http.delete(this.baseUrl + 'therapistsessions/' + sessionId);
+  }
+  
 }

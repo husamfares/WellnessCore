@@ -14,73 +14,183 @@
           <span>{{ profile?.username?.charAt(0) | uppercase }}</span>
         </div>
       </ng-template>
+
+      <div *ngIf="isOwner" class="upload-controls">
+        <input 
+          type="file" 
+          id="fileInput" 
+          (change)="onFileSelected($event)" 
+          hidden 
+        />
+        <button (click)="triggerFileSelect()" class="change-photo-btn">
+          Change Picture
+        </button>
+        <button (click)="deleteProfilePicture()" class="delete-photo-btn">
+          Delete Picture
+        </button>
+      </div>
     </div>
 
-    <div *ngIf="isOwner" class="upload-controls">
-      <input type="file" (change)="onFileSelected($event)" id="fileInput" />
-      <label for="fileInput" class="choose-file-btn">Choose File</label>
-      <button (click)="uploadImage()" class="upload-btn">Upload</button>
-    </div>
-
-    <h2>{{ profile?.username }}'s Profile</h2>
+    <h2>{{ profile?.username }}</h2>
     <div class="role-badge" [ngClass]="'role-' + profile?.role?.toLowerCase()">
       {{ profile?.role }}
     </div>
   </div>
 
-  <div class="profile-details">
-    <div class="detail-item">
-      <i class="fas"><mat-icon style="margin-top: 30px;">phone</mat-icon></i>
+  <div class="profile-details-grid">
+    <div class="detail-box">
+      <mat-icon>phone</mat-icon>
       <div>
-        <span class="detail-label">Mobile</span>
+        <span class="detail-label">Mobile</span><br>
         <span class="detail-value">{{ profile?.mobileNumber || 'Not provided' }}</span>
       </div>
     </div>
 
-    <div class="detail-item">
-      <i class="fas"><mat-icon style="margin-top: 30px;">location_on</mat-icon></i>
+    <div class="detail-box">
+      <mat-icon>location_on</mat-icon>
       <div>
-        <span class="detail-label">Location</span>
+        <span class="detail-label">Location</span><br>
         <span class="detail-value">{{ profile?.location || 'Not specified' }}</span>
       </div>
     </div>
 
-    <div class="detail-item" *ngIf="profile?.role === 'Trainer'">
-      <i class="fas"><mat-icon style="margin-top: 30px;">fitness_center</mat-icon></i>
+    <div class="detail-box" *ngIf="profile?.role === 'Trainer'">
+      <mat-icon>fitness_center</mat-icon>
       <div>
-        <span class="detail-label">Gym</span>
+        <span class="detail-label">Gym</span><br>
         <span class="detail-value">{{ profile?.gymName || 'Not specified' }}</span>
+      </div>
+    </div>
+
+    <div class="detail-box" *ngIf="profile?.role === 'Therapist'">
+      <mat-icon>local_hospital</mat-icon>
+      <div>
+        <span class="detail-label">Clinic</span><br>
+        <span class="detail-value">{{ profile?.clinicName || 'Not specified' }}</span>
       </div>
     </div>
   </div>
 
   <form *ngIf="isOwner" [formGroup]="form" (ngSubmit)="updateProfile()" class="edit-form">
-    <h3><i class="fas fa-user-edit"></i> Edit Profile</h3>
+    <h3>Edit Profile</h3>
 
     <div class="form-group">
-      <label for="mobileNumber">Mobile Number</label>
-      <input id="mobileNumber" type="tel" class="form-control white-placeholder" formControlName="mobileNumber" placeholder="Enter mobile number">
+      <label>Mobile Number</label>
+      <input type="tel" formControlName="mobileNumber" placeholder="Enter mobile number" class="form-control" />
     </div>
 
     <div class="form-group">
-      <label for="location">Location</label>
-      <input id="location" type="text" class="form-control white-placeholder" formControlName="location" placeholder="Enter your location">
+      <label>Location</label>
+      <input type="text" formControlName="location" placeholder="Enter your location" class="form-control" />
     </div>
 
     <div class="form-group" *ngIf="profile?.role === 'Trainer'">
-      <label for="gymName">Gym Name</label>
-      <input id="gymName" type="text" class="form-control white-placeholder" formControlName="gymName" placeholder="Enter gym name">
+      <label>Gym Name</label>
+      <input type="text" formControlName="gymName" placeholder="Enter gym name" class="form-control" />
     </div>
 
-    <button class="update-btn" type="submit" [disabled]="form.invalid">
-      <i class="fas"><mat-icon class="fas">save</mat-icon></i> Update Profile
-    </button>
+    <div class="form-group" *ngIf="profile?.role === 'Therapist'">
+      <label>Clinic Name</label>
+      <input type="text" formControlName="clinicName" placeholder="Enter clinic name" class="form-control" />
+    </div>
+
+    <button type="submit" [disabled]="form.invalid || form.pristine" class="update-btn">Update Profile</button>
   </form>
+
+  <!-- Trainer Subscriptions -->
+  <div *ngIf="profile?.role === 'Trainer' && profile?.subscriptions?.length">
+    <h3>Subscription Plans</h3>
+    <div class="subscriptions-grid">
+      <div *ngFor="let sub of profile?.subscriptions" class="subscription-card">
+        <div>
+          <strong [title]="sub.title" (click)="openTextModal(sub.title)">{{ sub.title }}</strong><br>
+          <small>({{ sub.type }})</small>
+        </div>
+        <div class="price-tag">
+          ${{ sub.price }}
+        </div>
+        <button 
+          *ngIf="isOwner" 
+          class="delete-small-btn" 
+          (click)="deleteSubscription(sub.id)">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Therapist Session Prices -->
+  <div *ngIf="profile?.role === 'Therapist' && profile?.sessionPrices?.length">
+    <h3>Session Prices</h3>
+    <div class="subscriptions-grid">
+      <div *ngFor="let session of profile?.sessionPrices" class="subscription-card">
+        <div>
+          <strong [title]="session.title" (click)="openTextModal(session.title)">{{ session.title }}</strong>
+        </div>
+        <div class="price-tag">
+          ${{ session.price }}
+        </div>
+        <button 
+          *ngIf="isOwner" 
+          class="delete-small-btn" 
+          (click)="deleteSessionPrice(session.id)">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Subscription -->
+  <div *ngIf="isOwner && profile?.role === 'Trainer'" class="add-subscription-form">
+    <h3>Add New Subscription</h3>
+
+    <div class="form-group">
+      <label>Type</label>
+      <select name="type" [(ngModel)]="newSubscription.type" class="form-control">
+        <option value="Online">Online</option>
+        <option value="InPerson">InPerson</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input name="title" [(ngModel)]="newSubscription.title" class="form-control" placeholder="e.g., 1 Month Coaching" />
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input name="price" [(ngModel)]="newSubscription.price" type="number" class="form-control" placeholder="e.g., 50" />
+    </div>
+
+    <button (click)="addSubscription()" class="add-btn">Add Subscription</button>
+  </div>
+
+  <!-- Add Session Price -->
+  <div *ngIf="isOwner && profile?.role === 'Therapist'" class="add-subscription-form">
+    <h3>Add New Session Price</h3>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input name="sessionTitle" [(ngModel)]="newSessionPrice.title" class="form-control" placeholder="e.g., 1 Hour Therapy" />
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input name="sessionPrice" [(ngModel)]="newSessionPrice.price" type="number" class="form-control" placeholder="e.g., 100" />
+    </div>
+
+    <button (click)="addSessionPrice()" class="add-btn">Add Session Price</button>
+  </div>
 </div>
 
+<!-- Image Modal -->
 <div class="image-modal" *ngIf="isImageModalOpen" (click)="closeImageModal()">
   <div class="image-modal-content" (click)="$event.stopPropagation()">
     <span class="close-button" (click)="closeImageModal()">×</span>
     <img [src]="imageUrl" alt="Full Image" />
+  </div>
+</div>
+
+<!-- Full Text Modal -->
+<div class="text-modal" *ngIf="selectedText" (click)="closeTextModal()">
+  <div class="text-modal-content" (click)="$event.stopPropagation()">
+    <span class="close-button" (click)="closeTextModal()">×</span>
+    <p>{{ selectedText }}</p>
   </div>
 </div>

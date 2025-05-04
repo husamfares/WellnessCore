@@ -23,6 +23,11 @@ public class AppUser : IdentityUser<int>
     public string? Location { get; set; }       // New
     public string? GymName { get; set; }         // Only for Trainer    
     public ProfilePicture? ProfilePicture { get; set; }
+    public ICollection<TrainerSubscription> TrainerSubscriptions { get; set; } = [];
+    public string? ClinicName { get; set; } // For therapists
+    public ICollection<TherapistSessionPrice> TherapistSessionPrices { get; set; } = [];
+
+
 
 
 }

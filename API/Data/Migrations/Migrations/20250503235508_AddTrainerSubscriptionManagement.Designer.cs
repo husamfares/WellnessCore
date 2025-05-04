@@ -3,6 +3,7 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250503235508_AddTrainerSubscriptionManagement")]
+    partial class AddTrainerSubscriptionManagement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,9 +91,6 @@ namespace API.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
-
-                    b.Property<string>("ClinicName")
-                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -261,31 +261,6 @@ namespace API.Migrations
                     b.ToTable("RecoveryRecords");
                 });
 
-            modelBuilder.Entity("API.Entities.TherapistSessionPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("TherapistId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TherapistId");
-
-                    b.ToTable("TherapistSessionPrices");
-                });
-
             modelBuilder.Entity("API.Entities.TrainerSubscription", b =>
                 {
                     b.Property<int>("Id")
@@ -453,17 +428,6 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Entities.TherapistSessionPrice", b =>
-                {
-                    b.HasOne("API.Entities.AppUser", "Therapist")
-                        .WithMany("TherapistSessionPrices")
-                        .HasForeignKey("TherapistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Therapist");
-                });
-
             modelBuilder.Entity("API.Entities.TrainerSubscription", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "Trainer")
@@ -519,8 +483,6 @@ namespace API.Migrations
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.Navigation("ProfilePicture");
-
-                    b.Navigation("TherapistSessionPrices");
 
                     b.Navigation("TrainerSubscriptions");
 
