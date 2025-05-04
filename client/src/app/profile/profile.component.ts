@@ -40,19 +40,6 @@ export class ProfileComponent implements OnInit {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
 
-<<<<<<< HEAD
-
-isImageModalOpen = false;
-
-openImageModal() {
-  this.isImageModalOpen = true;
-}
-
-closeImageModal() {
-  this.isImageModalOpen = false;
-}
-
-=======
   isImageModalOpen = false;
 
   selectedText: string | null = null;
@@ -73,7 +60,6 @@ closeTextModal() {
   closeImageModal() {
     this.isImageModalOpen = false;
   }
->>>>>>> d3cb55963cf7570d952cdf68c38fc600cbf535e4
 
   ngOnInit(): void {
     const username = this.route.snapshot.paramMap.get('username')!;
