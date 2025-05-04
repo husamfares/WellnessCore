@@ -28,6 +28,10 @@ public class CloudinaryService
         };
 
         var uploadResult = await _cloudinary.UploadAsync(uploadParams);
+        
+        if (uploadResult.StatusCode != System.Net.HttpStatusCode.OK)
+        throw new Exception($"Image upload failed: {uploadResult.Error?.Message}");
+        
         return uploadResult.SecureUrl.AbsoluteUri;
     }
 
