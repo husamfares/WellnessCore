@@ -34,39 +34,42 @@
     </nav>
   </aside>
 
-  <main class="main-content">
+  <main class="main-content" [class.sidebar-closed]="isSidebarClosed">
     <header class="header">
       <h1>Fitness Dashboard</h1>
       <div class="header-right">
         <span class="welcome-text">Welcome back, {{username}}!</span>
+       
         <div class="profile-circle" [routerLink]="['/profile', username]">
-          <mat-icon>person</mat-icon>
+          <img *ngIf="photoUrl; else defaultIcon" [src]="photoUrl" alt="Profile Picture">
+          <ng-template #defaultIcon>
+            <mat-icon>person</mat-icon>
+          </ng-template>
         </div>
+        
       </div>
     </header>
 
     <section class="welcome-banner">
       <h2>Welcome to Wellness Core</h2>
       <p>Your all-in-one fitness, therapy, and nutrition management platform.
-      Connect, track your progress, and achieve your wellness goals.</p>
+        Connect, track your progress, and achieve your wellness goals.</p>
     </section>
 
     <section class="metrics-grid">
-      <div class="metric-card mat-elevation-z2">
+      <div class="metric-card">
         <mat-icon class="metric-icon">favorite</mat-icon>
         <h3>Recovery</h3>
         <div class="metric-value">78%</div>
         <p class="metric-description">Body recovery today</p>
       </div>
-    
-      <div class="metric-card mat-elevation-z2">
+      <div class="metric-card">
         <mat-icon class="metric-icon">directions_walk</mat-icon>
         <h3>Steps</h3>
         <div class="metric-value">4,280</div>
         <p class="metric-description">Steps walked</p>
       </div>
-    
-      <div class="metric-card mat-elevation-z2">
+      <div class="metric-card">
         <mat-icon class="metric-icon">local_dining</mat-icon>
         <h3>Nutrition</h3>
         <div class="metric-value">86/100</div>

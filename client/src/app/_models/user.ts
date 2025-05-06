@@ -4,5 +4,4 @@ export interface User {
     roles: string[];
     gender: string;
     id: number;
-
 }
