@@ -1,0 +1,38 @@
+.nutrition-guide-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nutrition-guide {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .nutrition-guide h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #4CAF50;
+  }
+  
+  .nutrition-guide p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .nutrition-guide p strong {
+    color: #4CAF50;
+  }
+  
+  .error-message {
+    padding: 15px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  

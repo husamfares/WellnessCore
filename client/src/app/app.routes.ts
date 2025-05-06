@@ -14,6 +14,7 @@ import { QuestionPageComponent } from './question-page/question-page.component';
 import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
+import { NutritionGuideComponent } from './nutrition-guide/nutrition-guide.component';
 
 
 export const routes: Routes = [
@@ -67,6 +68,11 @@ export const routes: Routes = [
       component: ProfileListComponent,
       canActivate: [authGuard] 
     },
+    {
+      path: 'nutrition-guide/:userId',
+      component: NutritionGuideComponent,
+      canActivate: [authGuard]
+    },    
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'server-error', component: ServerErrorComponent },
