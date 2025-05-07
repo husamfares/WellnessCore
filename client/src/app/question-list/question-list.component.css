@@ -202,3 +202,143 @@
 ::-ms-input-placeholder { /* For Microsoft Edge */
   color: white;
 }
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #03dac6;
+  color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.user-avatar.small {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+}
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.user-pic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #03dac6;
+}
+
+.user-initial {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #03dac6;
+  color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.edit-btn, .delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  color: #fff;
+}
+
+.answer-block {
+  border-left: 3px solid #03dac6;
+  padding-left: 10px;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.avatar-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #03dac6;
+}
+
+.user-initial {
+  width: 32px;
+  height: 32px;
+  background-color: #03dac6;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.avatar-link:hover .user-pic,
+.avatar-link:hover .user-initial {
+  box-shadow: 0 0 8px #03dac6;
+  transform: scale(1.05);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;  /* Make sure it inherits the surrounding text color */
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.user-badge h6 {
+  transition: color 0.3s;
+}
+
+.user-badge h6:hover {
+  color: #03dac6;
+  cursor: pointer;
+}
+
