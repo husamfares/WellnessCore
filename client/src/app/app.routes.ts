@@ -69,10 +69,10 @@ export const routes: Routes = [
       canActivate: [authGuard] 
     },
     {
-      path: 'nutrition-guide/:userId',
-      component: NutritionGuideComponent,
-      canActivate: [authGuard]
-    },    
+        path: 'nutrition-guide/:username',
+        component: NutritionGuideComponent,
+        canActivate: [authGuard]
+    },        
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'server-error', component: ServerErrorComponent },

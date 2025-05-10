@@ -1,5 +1,5 @@
-namespace API.Entities;
-
+namespace API.Entities
+{
     public class NutritionGuide
     {
         public int Id { get; set; }
@@ -11,5 +11,12 @@ namespace API.Entities;
         public int ProteinGrams { get; set; }
         public int CarbsGrams { get; set; }
         public int FatGrams { get; set; }
-        public required string MealPlan { get; set; }
+        public required string Sunday { get; set; }
+        public required string Monday { get; set; }
+        public required string Tuesday { get; set; }
+        public required string Wednesday { get; set; }
+        public required string Thursday { get; set; }
+        public required string Friday { get; set; }
+        public required string Saturday { get; set; }
     }
+}

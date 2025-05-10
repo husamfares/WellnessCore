@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   isTrainer = false;
   isOwner = false;
   public profile: Profile | null = null;
+  userId: number | null = null;
 
   selectedFile?: File;
   imageUrl: string = '';
