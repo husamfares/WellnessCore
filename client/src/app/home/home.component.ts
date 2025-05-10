@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   isSidebarClosed  = false;
   profile : Profile | null = null;
   photoUrl: string | null = null;
+  userId: number | null = null;
 
   ngOnInit() {
     if (this.username) {
@@ -33,6 +34,11 @@ export class HomeComponent implements OnInit {
           next: (profile) => {
             this.profile = profile;
             this.photoUrl = profile?.profilePictureUrl || null;
+            this.userId = profile.id; 
+
+            console.log('✅ userId to send to Nutrition Guide:', this.userId);
+
+
           },
           error: (err) => {
             console.error('Failed to load profile', err);

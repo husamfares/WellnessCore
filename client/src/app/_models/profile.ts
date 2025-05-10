@@ -12,6 +12,8 @@ export interface TherapistSessionPrice {
 }
 
 export interface Profile {
+
+  id: number; 
   username: string;
   role: string;
   mobileNumber: string;
