@@ -35,10 +35,6 @@ export class HomeComponent implements OnInit {
             this.profile = profile;
             this.photoUrl = profile?.profilePictureUrl || null;
             this.userId = profile.id; 
-
-            console.log('✅ userId to send to Nutrition Guide:', this.userId);
-
-
           },
           error: (err) => {
             console.error('Failed to load profile', err);
