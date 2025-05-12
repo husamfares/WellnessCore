@@ -40,7 +40,12 @@
       <div class="header-right">
         <span class="welcome-text">Welcome back, {{username}}!</span>
         <div class="profile-circle" [routerLink]="['/profile', username]">
-          <mat-icon>person</mat-icon>
+          <ng-container *ngIf="photoUrl; else defaultIcon">
+            <img [src]="photoUrl" alt="Profile" class="profile-img" />
+          </ng-container>
+          <ng-template #defaultIcon>
+            <mat-icon>person</mat-icon>
+          </ng-template>
         </div>
       </div>
     </header>
