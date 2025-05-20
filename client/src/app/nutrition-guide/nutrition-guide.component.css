@@ -5,8 +5,10 @@
   justify-content: center;
   min-height: 100vh;
   padding: 0 10px;
-  color: white;
+  background-color: #1e1e2f;
+  color: #eee;
   position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
 :host::before {
@@ -14,79 +16,91 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url("https://res.cloudinary.com/djbpwawux/image/upload/v1746647021/brooke-lark-08bOYnH_r_E-unsplash_nhober.jpg"),
-    #000;
-  background-position: center;
-  background-size: cover;
+  background: url("https://res.cloudinary.com/djbpwawux/image/upload/v1714301234/victor-freitas-JbI04nYfaJk-unsplash_a5c84w.jpg") center/cover no-repeat;
+  opacity: 0.1;
   z-index: -1;
 }
 
 .nutrition-guide-container {
-  background-color: rgba(218, 101, 101, 0.9);
+  background-color: #23353d;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  max-width: 1400px;       /* Significantly increased */
-  width: 98vw;             /* Use 98% of the viewport width */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  max-width: 1300px;
+  width: 98vw;
   overflow-x: auto;
-  margin: 2rem auto;       /* Add vertical spacing */
-  transform: none;         /* Remove X translation */
+  margin: 2rem auto;
+  transform: none;
+  color: #eee;
 }
 
-
-
-
 .nutrition-guide {
-  font-family: Arial, sans-serif;
-  color: #333;
+  font-family: 'Roboto', sans-serif;
+  color: #ccc;
 }
 
 .nutrition-guide h2 {
   text-align: center;
   font-size: 36px;
-  color: #fffdfd;
+  color: #ff9966;
   margin-bottom: 1rem;
 }
 
 .nutrition-guide p {
   font-size: 22px;
   margin-bottom: 8px;
+  color: #ccc;
 }
 
 .nutrition-guide p strong {
-  color: #fffdfd;
+  color: #ff9966;
 }
 
 .weekly-table table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
+  background-color: #1e1e2f;
   border-radius: 8px;
   overflow: hidden;
   font-size: 14px;
+  color: #ccc;
 }
 
 .weekly-table th,
 .weekly-table td {
   padding: 8px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #552a00;
   text-align: center;
 }
 
 .weekly-table th {
-  background-color: #4caf50;
-  color: white;
+  background-color: #ff7043;
+  color: #121212;
+}
+
+.weekly-table tr:nth-child(odd) {
+  background-color: #4e342e;
 }
 
 .weekly-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #6d4c41;
+}
+
+.weekly-table tr:hover {
+  background-color: #bf7e57;
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .error-message {
   padding: 15px;
-  background-color: #f44336;
+  background-color: #ff6f61;
   color: white;
   border-radius: 8px;
   font-size: 16px;
   text-align: center;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
