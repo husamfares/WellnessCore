@@ -31,7 +31,12 @@ public class MealAnalyzerController(DataContext context, CloudinaryService cloud
 
         // Call OpenAI GPT-4o
         var client = httpClientFactory.CreateClient();
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", configuration["OpenAI:ApiKey"]);
+var apiKey = Environment.GetEnvironmentVariable("OpenAIApiKey");
+
+if (string.IsNullOrEmpty(apiKey))
+    return StatusCode(500, "OpenAI API key not found in environment variables");
+
+client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
         var body = new
         {
