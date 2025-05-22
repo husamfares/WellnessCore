@@ -1,0 +1,21 @@
+<h2>Meal Analyzer</h2>
+
+<input type="file" (change)="onFileSelected($event)" accept="image/*" />
+<button (click)="analyze()" [disabled]="!selectedFile || loading">
+  {{ loading ? 'Analyzing...' : 'Analyze' }}
+</button>
+
+<div *ngIf="result" class="card">
+  <h3>Latest Result</h3>
+  <img [src]="result.imageUrl" width="200" />
+  <p><strong>{{ result.food }}</strong></p>
+  <p>{{ result.calories }} kcal • {{ result.proteinG }}g protein</p>
+</div>
+
+<h2>History</h2>
+<div *ngFor="let item of history" class="history-card">
+  <img [src]="item.imageUrl" width="100" />
+  <p><strong>{{ item.food }}</strong></p>
+  <p>{{ item.calories }} kcal • {{ item.proteinG }}g protein</p>
+  <small>{{ item.createdAt | date:'short' }}</small>
+</div>

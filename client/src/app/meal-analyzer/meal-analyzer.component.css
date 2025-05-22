@@ -1,0 +1,75 @@
+:host {
+  display: block;
+  padding: 2rem;
+  background-color: #121212;
+  color: #f1f1f1;
+  font-family: 'Roboto', sans-serif;
+}
+
+input[type="file"] {
+  display: block;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+button {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  background-color: #03dac6;
+  color: #121212;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s ease;
+}
+
+button:disabled {
+  background-color: #444;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #00c4b4;
+}
+
+.card {
+  background-color: #1e1e2f;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.history-card {
+  background-color: #252535;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.history-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+p {
+  margin: 0.3rem 0;
+}
+
+small {
+  color: #aaa;
+}

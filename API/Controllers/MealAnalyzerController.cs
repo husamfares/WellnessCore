@@ -17,7 +17,8 @@ namespace API.Controllers;
 public class MealAnalyzerController(DataContext context, CloudinaryService cloudinaryService, IConfiguration configuration, IHttpClientFactory httpClientFactory) : BaseApiController
 {
     [HttpPost("analyze-image")]
-    public async Task<IActionResult> AnalyzeImage([FromForm] IFormFile image){
+    public async Task<IActionResult> AnalyzeImage([FromForm] IFormFile image)
+    {
         if (image == null || image.Length == 0)
             return BadRequest("No image uploaded");
 
@@ -31,12 +32,12 @@ public class MealAnalyzerController(DataContext context, CloudinaryService cloud
 
         // Call OpenAI GPT-4o
         var client = httpClientFactory.CreateClient();
-var apiKey = Environment.GetEnvironmentVariable("OpenAIApiKey");
+        var apiKey = Environment.GetEnvironmentVariable("OpenAIApiKey");
 
-if (string.IsNullOrEmpty(apiKey))
-    return StatusCode(500, "OpenAI API key not found in environment variables");
+        if (string.IsNullOrEmpty(apiKey))
+            return StatusCode(500, "OpenAI API key not found in environment variables");
 
-client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
         var body = new
         {
