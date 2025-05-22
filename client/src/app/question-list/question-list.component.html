@@ -2,25 +2,23 @@
   <small class="text-muted">Posted {{ q.createdAt | timeAgo }}</small>
 
   <!-- Question Asked By -->
-  
   <div class="user-badge">
-   
     <ng-container *ngIf="profileCache[q.askedBy]?.profilePictureUrl; else initials">
       <a [routerLink]="['/profile', q.askedBy]">
         <img [src]="profileCache[q.askedBy].profilePictureUrl" class="user-pic">
       </a>
-      </ng-container>
+    </ng-container>
     <ng-template #initials>
       <a [routerLink]="['/profile', q.askedBy]">
-      <div class="user-initial">{{ q.askedBy.charAt(0).toUpperCase() }}</div>
+        <div class="user-initial">{{ q.askedBy.charAt(0).toUpperCase() }}</div>
       </a>
     </ng-template>
     <a [routerLink]="['/profile', q.askedBy]">
-    <h6>{{ q.askedBy }}:</h6>
+      <h6>{{ q.askedBy }}:</h6>
     </a>
   </div>
 
-
+  <!-- Question Caption -->
   <div *ngIf="editQuestionId === q.id; else normalCaption">
     <input [(ngModel)]="editedCaption" class="form-control mb-2" />
     <button (click)="saveEditedQuestion(q)" class="btn btn-sm btn-success me-2">Save</button>
@@ -37,31 +35,21 @@
   <div *ngFor="let a of q.answers" class="mt-2 ms-3 border-start ps-2 animate-fade-in answer-block position-relative">
     <small class="text-muted">{{ a.createdAt | timeAgo }}</small>
 
-    
     <div class="user-badge">
-
       <ng-container *ngIf="profileCache[a.answeredBy]?.profilePictureUrl; else initialsA">
-   
-        <a [routerLink]="['/profile', q.askedBy]">
-        <img [src]="profileCache[a.answeredBy].profilePictureUrl" class="user-pic">
+        <a [routerLink]="['/profile', a.answeredBy]">
+          <img [src]="profileCache[a.answeredBy].profilePictureUrl" class="user-pic">
         </a>
-   
       </ng-container>
-    
       <ng-template #initialsA>
-   
-        <a [routerLink]="['/profile', q.askedBy]">  
-        <div class="user-initial">{{ a.answeredBy.charAt(0).toUpperCase() }}</div>
+        <a [routerLink]="['/profile', a.answeredBy]">
+          <div class="user-initial">{{ a.answeredBy.charAt(0).toUpperCase() }}</div>
         </a>
-   
       </ng-template>
-      
-      <a [routerLink]="['/profile', q.askedBy]">
-      <h6 class="mb-1" style="color: white;">{{ a.answeredBy }}:</h6>
+      <a [routerLink]="['/profile', a.answeredBy]">
+        <h6 class="mb-1" style="color: white;">{{ a.answeredBy }}:</h6>
       </a>
-   
     </div>
-  
 
     <div *ngIf="editAnswerId === a.id; else normalAnswer">
       <input [(ngModel)]="editedAnswerText" class="form-control mb-2" />
@@ -74,11 +62,18 @@
       <button *ngIf="a.answeredBy === currentUsername" (click)="startEditAnswer(q.id, a.id, a.answerText)" class="edit-btn answer-edit-btn" title="Edit answer">✏️</button>
       <button *ngIf="a.answeredBy === currentUsername" (click)="deleteAnswer(q.id, a.id)" class="delete-btn answer-delete-btn" title="Delete answer">🗑️</button>
     </ng-template>
-  
   </div>
-  <!-- Answer form -->
-  <form [formGroup]="answerForms[q.id]" (ngSubmit)="submitAnswer(q.id)" class="mt-3">
-    <input formControlName="answerText" class="form-control mb-2" placeholder="Your answer..." />
-    <button class="btn btn-sm btn-success" type="submit">Submit Answer</button>
-  </form>
+
+  <!-- Answer form (only for trainer or therapist) -->
+  <div *ngIf="canAnswer(); else noAnswerAccess">
+    <form [formGroup]="answerForms[q.id]" (ngSubmit)="submitAnswer(q.id)" class="mt-3">
+      <input formControlName="answerText" class="form-control mb-2" placeholder="Your answer..." />
+      <button class="btn btn-sm btn-success" type="submit">Submit Answer</button>
+    </form>
+  </div>
+
+  <ng-template #noAnswerAccess>
+    
+     <p class="text-muted mt-3">Only trainers and therapists can answer.</p> 
+  </ng-template>
 </div>

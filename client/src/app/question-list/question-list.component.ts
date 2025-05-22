@@ -7,6 +7,7 @@ import { TimeAgoPipe } from "../pipes/time-ago.pipe";
 import { ProfileService } from '../_services/profile.service';
 import { Profile } from '../_models/profile';
 import { RouterModule } from '@angular/router';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-question-list',
@@ -20,6 +21,7 @@ export class QuestionListComponent implements OnInit {
   private questionService = inject(QuestionService);
   private fb = inject(FormBuilder);
   private profileService = inject(ProfileService);
+  private accountService = inject(AccountService);
 
   currentUsername: string | null = null;
 
@@ -29,14 +31,13 @@ export class QuestionListComponent implements OnInit {
   editAnswerId: number | null = null;
   editedAnswerText: string = '';
 
-  // Cache profiles to avoid reloading
   profileCache: { [username: string]: Profile } = {};
 
   ngOnInit() {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       const user = JSON.parse(userJson);
-      this.currentUsername = user.username; 
+      this.currentUsername = user.username;
     }
 
     this.loadQuestions();
@@ -52,13 +53,8 @@ export class QuestionListComponent implements OnInit {
       this.questions = questions;
 
       this.questions.forEach(q => {
-        // Load asker profile
         this.loadProfile(q.askedBy);
-
-        // Load answerer profiles
         q.answers.forEach(a => this.loadProfile(a.answeredBy));
-
-        // Prepare form for answers
         this.answerForms[q.id] = this.fb.group({ answerText: [''] });
       });
     });
@@ -84,6 +80,10 @@ export class QuestionListComponent implements OnInit {
       },
       error: err => console.error(err)
     });
+  }
+
+  canAnswer(): boolean {
+    return this.accountService.isTrainerOrTherapist();
   }
 
   startEditQuestion(q: Question) {
