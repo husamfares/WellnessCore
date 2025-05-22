@@ -14,7 +14,7 @@ using System.Security.Claims;
 namespace API.Controllers;
 
 [Authorize]
-public class MealAnalyzerController(DataContext context, CloudinaryService cloudinaryService, IConfiguration configuration, IHttpClientFactory httpClientFactory) : BaseApiController
+public class MealAnalyzerController(DataContext context, CloudinaryService cloudinaryService, IHttpClientFactory httpClientFactory) : BaseApiController
 {
     [HttpPost("analyze-image")]
     public async Task<IActionResult> AnalyzeImage([FromForm] IFormFile image)

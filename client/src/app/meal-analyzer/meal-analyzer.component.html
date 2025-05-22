@@ -1,6 +1,14 @@
 <h2>Meal Analyzer</h2>
 
-<input type="file" (change)="onFileSelected($event)" accept="image/*" />
+<div class="file-upload">
+  <label class="custom-file-label">
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden />
+    <mat-icon>upload</mat-icon>
+    {{ selectedFile ? 'Image Uploaded' : 'Choose File' }}
+    <mat-icon *ngIf="selectedFile" class="check-icon">check_circle</mat-icon>
+  </label>
+</div>
+
 <button (click)="analyze()" [disabled]="!selectedFile || loading">
   {{ loading ? 'Analyzing...' : 'Analyze' }}
 </button>
@@ -8,8 +16,8 @@
 <div *ngIf="result" class="card">
   <h3>Latest Result</h3>
   <img [src]="result.imageUrl" width="200" />
-  <p><strong>{{ result.food }}</strong></p>
-  <p>{{ result.calories }} kcal • {{ result.proteinG }}g protein</p>
+  <p style="color: white;"><strong style="color: white;">{{ result.food }}</strong></p>
+  <p style="color: white;">{{ result.calories }} kcal • {{ result.proteinG }}g protein</p>
 </div>
 
 <h2>History</h2>

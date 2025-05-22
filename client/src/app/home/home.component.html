@@ -10,21 +10,31 @@
       <a class="nav-item" routerLink="/questions" matTooltip="Community">
         <mat-icon>groups</mat-icon><span *ngIf="!isSidebarClosed">Community</span>
       </a>
+
+      <a class="nav-item" routerLink="/meal-analyzer" matTooltip="Meal Analyzer">
+        <mat-icon>fastfood</mat-icon><span *ngIf="!isSidebarClosed">Meal Analyzer</span>
+      </a>
+
       <a class="nav-item" routerLink="/recovery" matTooltip="Recovery">
         <mat-icon>health_and_safety</mat-icon><span *ngIf="!isSidebarClosed">Recovery</span>
       </a>
+
       <a class="nav-item" routerLink="/fitness-check" matTooltip="Fitness Check">
         <mat-icon>fitness_center</mat-icon><span *ngIf="!isSidebarClosed">Fitness Check</span>
       </a>
+
       <a class="nav-item" *ngIf="username" [routerLink]="['/nutrition-guide', username]" matTooltip="Nutrition">
         <mat-icon>restaurant_menu</mat-icon><span *ngIf="!isSidebarClosed">Nutrition</span>
-      </a>    
+      </a>
+
       <a class="nav-item" routerLink="/profiles" matTooltip="Explore Members">
         <mat-icon>search</mat-icon><span *ngIf="!isSidebarClosed">Find Members</span>
       </a>
+
       <a *ngIf="accountService.isAdmin()" class="nav-item admin-link" routerLink="/admin" matTooltip="Admin Panel">
         <mat-icon>admin_panel_settings</mat-icon><span *ngIf="!isSidebarClosed">Admin</span>
       </a>
+
       <div (click)="logout()" class="nav-item logout" matTooltip="Logout">
         <mat-icon>logout</mat-icon><span *ngIf="!isSidebarClosed">Logout</span>
       </div>
@@ -50,7 +60,7 @@
     <section class="welcome-banner">
       <h2>Welcome to Wellness Core</h2>
       <p>Your all-in-one fitness, therapy, and nutrition management platform.
-      Connect, track your progress, and achieve your wellness goals.</p>
+        Connect, track your progress, and achieve your wellness goals.</p>
     </section>
 
     <section class="metrics-grid">
@@ -60,14 +70,14 @@
         <div class="metric-value">78%</div>
         <p class="metric-description">Body recovery today</p>
       </div>
-    
+
       <div class="metric-card mat-elevation-z2">
         <mat-icon class="metric-icon">directions_walk</mat-icon>
         <h3>Steps</h3>
         <div class="metric-value">4,280</div>
         <p class="metric-description">Steps walked</p>
       </div>
-    
+
       <div class="metric-card mat-elevation-z2">
         <mat-icon class="metric-icon">local_dining</mat-icon>
         <h3>Nutrition</h3>

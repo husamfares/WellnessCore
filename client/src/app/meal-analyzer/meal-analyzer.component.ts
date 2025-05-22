@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MealAnalyzerService } from '../_services/meal-analyzer.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { MealAnalysis } from '../_models/MealAnalysis';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-meal-analyzer',
   templateUrl: './meal-analyzer.component.html',
   styleUrls: ['./meal-analyzer.component.css'],
-  imports: [CommonModule, NgIf]
+  imports: [CommonModule, NgIf, MatIconModule]
 })
 export class MealAnalyzerComponent implements OnInit {
   selectedFile: File | null = null;
