@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddHttpClient(); // ✅ This registers IHttpClientFactory
 
 
 
@@ -21,6 +22,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddScoped<CloudinaryService>();
 
+var config = builder.Configuration;
+var openAiKey = config["OpenAI:ApiKey"];
 
 
 

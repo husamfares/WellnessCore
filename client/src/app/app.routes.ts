@@ -15,6 +15,7 @@ import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.compon
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { NutritionGuideComponent } from './nutrition-guide/nutrition-guide.component';
+import { MealAnalyzerComponent } from './meal-analyzer/meal-analyzer.component';
 
 
 export const routes: Routes = [
@@ -72,7 +73,12 @@ export const routes: Routes = [
         path: 'nutrition-guide/:username',
         component: NutritionGuideComponent,
         canActivate: [authGuard]
-    },        
+    },
+    {
+    path: 'meal-analyzer',
+    component: MealAnalyzerComponent,
+    canActivate: [authGuard]
+    },      
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'server-error', component: ServerErrorComponent },

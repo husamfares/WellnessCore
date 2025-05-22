@@ -15,6 +15,7 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
     public DbSet<TrainerSubscription> TrainerSubscriptions { get; set; }
     public DbSet<TherapistSessionPrice> TherapistSessionPrices { get; set; }
     public DbSet<NutritionGuide> NutritionGuides { get; set; }
+    public DbSet<MealAnalysis> MealAnalyses { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
