@@ -15,7 +15,7 @@ export class MealAnalyzerComponent implements OnInit {
   result: MealAnalysis | null = null;
   history: MealAnalysis[] = [];
   loading = false;
-private mealAnalyzerService = inject(MealAnalyzerService);
+  private mealAnalyzerService = inject(MealAnalyzerService);
 
   ngOnInit(): void {
     this.loadHistory();

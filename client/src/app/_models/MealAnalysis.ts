@@ -1,7 +1,7 @@
 export interface MealAnalysis {
   food: string;
   calories: number;
-  proteinG: number;
+  protein: number;
   imageUrl: string;
   createdAt: string;
 }
