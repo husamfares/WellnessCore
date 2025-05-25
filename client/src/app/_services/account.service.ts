@@ -22,9 +22,12 @@ export class AccountService {
   })
 
   isAdmin = computed(() => this.roles().includes('Admin'));
-
+  
+  isTrainerOrTherapist = (): boolean => {
+    const userRoles = this.roles();
+    return userRoles.includes('Trainer') || userRoles.includes('Therapist');
+  }
  
-
   login(model: any)
   {
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(

@@ -11,15 +11,17 @@
 }
 
 :host::before{
+    
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url("https://codetheworld.io/wp-content/uploads/2024/09/hero-bg.jpg"),
-    #000;
-    background-position: center;
-    background-size: cover ;
+    background: url("https://res.cloudinary.com/djbpwawux/image/upload/v1746460274/466783462_3053067041508077_3838981021328059774_n_xtu50m.jpg"),
+        #050505;
+    background-position: fixed;
+    background-size: cover;
     z-index: -1;
+    filter: blur(3px);
 }
 
 
