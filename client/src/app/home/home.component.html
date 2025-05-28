@@ -11,6 +11,11 @@
         <mat-icon>groups</mat-icon><span *ngIf="!isSidebarClosed">Community</span>
       </a>
 
+      <a class="nav-item" routerLink="/chatbot" matTooltip="Your Personal AI Coach">
+           <mat-icon>psychology</mat-icon>
+         <span *ngIf="!isSidebarClosed">AI Fitness Coach</span>
+      </a>
+
       <a class="nav-item" routerLink="/meal-analyzer" matTooltip="Meal Analyzer">
         <mat-icon>fastfood</mat-icon><span *ngIf="!isSidebarClosed">Meal Analyzer</span>
       </a>
@@ -63,27 +68,49 @@
         Connect, track your progress, and achieve your wellness goals.</p>
     </section>
 
-    <section class="metrics-grid">
-      <div class="metric-card mat-elevation-z2">
-        <mat-icon class="metric-icon">favorite</mat-icon>
-        <h3>Recovery</h3>
-        <div class="metric-value">78%</div>
-        <p class="metric-description">Body recovery today</p>
-      </div>
+   <section class="feature-grid">
+  <div class="feature-card" routerLink="/chatbot">
+    <mat-icon class="feature-icon">psychology</mat-icon>
+    <h3>AI Fitness Coach</h3>
+    <p>Ask anything about training or health. Get instant AI-powered guidance.</p>
+  </div>
 
-      <div class="metric-card mat-elevation-z2">
-        <mat-icon class="metric-icon">directions_walk</mat-icon>
-        <h3>Steps</h3>
-        <div class="metric-value">4,280</div>
-        <p class="metric-description">Steps walked</p>
-      </div>
+  <div class="feature-card" routerLink="/meal-analyzer">
+    <mat-icon class="feature-icon">fastfood</mat-icon>
+    <h3>Meal Analyzer</h3>
+    <p>Upload your meal to see calories, protein, and nutrition breakdown.</p>
+  </div>
 
-      <div class="metric-card mat-elevation-z2">
-        <mat-icon class="metric-icon">local_dining</mat-icon>
-        <h3>Nutrition</h3>
-        <div class="metric-value">86/100</div>
-        <p class="metric-description">Meal quality score</p>
-      </div>
-    </section>
+  <div class="feature-card" [routerLink]="['/nutrition-guide', username]">
+    <mat-icon class="feature-icon">restaurant_menu</mat-icon>
+    <h3>Nutrition Guide</h3>
+    <p>Explore meal plans tailored to your fitness goals and dietary needs.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/fitness-check">
+    <mat-icon class="feature-icon">fitness_center</mat-icon>
+    <h3>Fitness Check</h3>
+    <p>Evaluate your physical stats and measure your strength progression.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/recovery">
+    <mat-icon class="feature-icon">health_and_safety</mat-icon>
+    <h3>Recovery</h3>
+    <p>Monitor your recovery status and optimize your rest cycles.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/questions">
+    <mat-icon class="feature-icon">groups</mat-icon>
+    <h3>Community</h3>
+    <p>Join discussions, ask questions, and connect with others on the same journey.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/profiles">
+    <mat-icon class="feature-icon">search</mat-icon>
+    <h3>Find Members</h3>
+    <p>Search for specific users.</p>
+  </div>
+</section>
+
   </main>
 </div>
