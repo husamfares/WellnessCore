@@ -1,0 +1,35 @@
+<div class="container workout-plan-page text-center mt-5">
+    <h2 class="mb-4">Choose Your Workout Plan</h2>
+    <p class="text-muted mb-5">Select a workout style to get started with your fitness journey.</p>
+  
+    <div class="row justify-content-center">
+      <!-- Standard Workout Plan -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-4 option-card"  [routerLink]="['/standard']">
+          <h4>🏋️ Standard Workout Plan</h4>
+          <p class="text-muted">Follow a structured, professional workout designed for your fitness goal.</p>
+        </div>
+      </div>
+  
+      <!-- Home Workout Plan -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-4 option-card" [routerLink]="['/home-workout']">
+          <h4>🏠 Home Workout Plan</h4>
+          <p class="text-muted">No gym? No problem. Effective workouts you can do at home.</p>
+        </div>
+      </div>
+
+    <!-- Therapist Workout Plan -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm p-4 option-card therapist-card" [routerLink]="['/therapist-exercises']">
+        <h4 class="card-title">🧑‍⚕️ Therapy & Rehab</h4>
+        <p class="text-muted">
+          Gentle, recovery-focused exercises recommended by physical therapists. Ideal for back pain, joint issues, and post-injury care.
+        </p>
+      </div>
+    </div>
+
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  

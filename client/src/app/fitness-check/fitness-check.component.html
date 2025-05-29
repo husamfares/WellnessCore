@@ -1,4 +1,3 @@
-<!-- fitness-check.component.html -->
 <div class="fitness-check-page">
   <div class="container">
     <!-- Header -->
@@ -22,19 +21,63 @@
         <div class="step-circle" [ngClass]="{'active': step === 3, 'completed': step > 3}">4</div>
       </div>
 
+      
       <!-- Step Content -->
       <div class="step-content animated">
         <!-- Step 0: Intro -->
         <div *ngIf="step === 0" class="text-center">
+          <!-- Friendly introduction notice -->
+          <div class="welcome-notice">
+            <div class="notice-icon">💪</div>
+            <h3>Before You Start Your Workout</h3>
+            <p>We need to create a personalized fitness profile for you! This quick assessment helps us understand your current fitness level.</p>
+            <p>Complete these <strong>3 simple exercises</strong> and we'll tailor your workout plan for maximum results!</p>
+          </div>
+
           <p class="intro-text">
             This fitness check will measure your strength, endurance, and overall fitness level.
             Complete all exercises to receive your personalized fitness assessment.
           </p>
+          
+          <div class="features-grid">
+            <div class="feature-item">
+              <div class="feature-icon">⏱️</div>
+              <div class="feature-text">Takes only 5 minutes</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📊</div>
+              <div class="feature-text">Personalized results</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎯</div>
+              <div class="feature-text">Custom workout plan</div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🔄</div>
+              <div class="feature-text">Track your progress</div>
+            </div>
+          </div>
+          
           <button class="btn btn-primary" (click)="startFitnessCheck()">Start Fitness Check</button>
         </div>
 
         <!-- Steps 1-3: Tasks -->
         <div *ngIf="step > 0 && step < 4">
+          <div class="exercise-info">
+            <div *ngIf="step === 1" class="exercise-instructions">
+              <h4>Push-Ups</h4>
+              <p>Do as many push-ups as you can in 30 seconds. Keep good form!</p>
+            </div>
+            <div *ngIf="step === 2" class="exercise-instructions">
+              <h4>Squats</h4>
+              <p>Do as many squats as you can in 30 seconds. Go for depth!</p>
+            </div>
+            <div *ngIf="step === 3" class="exercise-instructions">
+              <h4>Plank</h4>
+              <p>Hold a plank position for as long as you can, up to 30 seconds.</p>
+            </div>
+          </div>
+
           <div class="timer-display">
             {{ timeLeft }} sec
           </div>
@@ -116,8 +159,6 @@
             <button class="btn btn-success btn-full" (click)="confirmGoal()">Confirm Goal</button>
           </div>
           
-
-          
           <div *ngIf="showResults" class="score-display">
             Total Score: {{ totalScore }}
           </div>
@@ -126,19 +167,22 @@
             Your fitness level: <strong>{{ fitnessLevel }}</strong>
           </div>
 
+          <div *ngIf="showResults" class="success-message animated">
+            <div class="success-icon">✓</div>
+            <h3>Profile Created Successfully!</h3>
+            <p>Your personalized workout plan is now ready.</p>
+          </div>
 
           <div class="mt-4">
             <button *ngIf="showSubmitClick && !showResults" class="btn btn-primary btn-full" (click)="submitFitnessCheck()">Submit Results</button>
           </div>
 
           <button 
-          *ngIf="showResults"
-          class="btn btn-primary go-home-btn"
-          (click)="goHome()">
-          🏠 Go to Home Page
-        </button>
-        
-          
+            *ngIf="showResults"
+            class="btn btn-primary go-home-btn"
+            (click)="goHome()">
+            🏠 Go to Home Page
+          </button>
         </div>
       </div>
     </div>

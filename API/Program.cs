@@ -4,7 +4,6 @@ using API.Extensions;
 using API.Helpers;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
-using API.Entities;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,6 +18,8 @@ builder.Services.AddIdentityServices(builder.Configuration);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<ExerciseImportService>();
 
 
 
@@ -43,9 +44,24 @@ try
     var context = services.GetRequiredService<DataContext>();
     var userManager = services.GetRequiredService<UserManager<AppUser>>();
     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
-    
+    var httpClientFactory = services.GetRequiredService<IHttpClientFactory>();
+
     await context.Database.MigrateAsync();
     await Seed.SeedRolesAsync(userManager, roleManager);
+
+     //   Seed predefined workout plans
+    var seeder = new WorkoutPlanSeeder(context);
+    await seeder.SeedPredefinedPlansAsync();
+
+        var httpClient = httpClientFactory.CreateClient();
+    var exerciseImportService = new ExerciseImportService(httpClient, context);
+
+if (await context.Exercises.CountAsync() < 480)
+{
+    Console.WriteLine("Seeding exercises from external API...");
+    await exerciseImportService.ImportExercisesFromApiAsync(480);
+}
+
 }
 catch (Exception ex)
 {

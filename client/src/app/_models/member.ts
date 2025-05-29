@@ -5,4 +5,6 @@ export interface Member {
     weight: number
     height: number
     gender: string
+    fitnessLevel: string
+    traineeGoal: string
   }

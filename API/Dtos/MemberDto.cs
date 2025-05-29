@@ -15,5 +15,8 @@ public class MemberDto
 
     public  string? Gender { get; set; } 
 
-    
+    public string? FitnessLevel { get; set; }
+
+    public string? TraineeGoal { get; set; }
+
 }

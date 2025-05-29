@@ -39,7 +39,9 @@ export class FitnessCheckComponent implements OnInit{
     username: '',
     weight: 0,
     height: 0,
-    gender: ''
+    gender: '',
+    fitnessLevel: '',
+    traineeGoal: '',
 
   };
 progressPercentage: any;
