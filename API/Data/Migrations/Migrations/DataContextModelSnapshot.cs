@@ -365,6 +365,30 @@ namespace API.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("API.Entities.RecoveryRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<double>("RecoveryPercentage")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RecoveryRecords");
+                });
+
             modelBuilder.Entity("API.Entities.TherapistExercise", b =>
                 {
                     b.Property<int>("Id")
@@ -393,30 +417,6 @@ namespace API.Migrations
                     b.ToTable("TherapistExercises");
                 });
 
-            modelBuilder.Entity("API.Entities.RecoveryRecord", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<double>("RecoveryPercentage")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RecoveryRecords");
-                });
-
             modelBuilder.Entity("API.Entities.TherapistSessionPrice", b =>
                 {
                     b.Property<int>("Id")
@@ -425,25 +425,6 @@ namespace API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BodyPart")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Equipment")
-                        .HasColumnType("text");
-
-                    b.Property<string>("GifUrl")
-                        .HasColumnType("text");
-
-                    b.PrimitiveCollection<List<string>>("Instructions")
-                        .HasColumnType("text[]");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.PrimitiveCollection<List<string>>("SecondaryMuscles")
-                        .HasColumnType("text[]");
-
-                    b.Property<string>("Target");
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
@@ -456,7 +437,6 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exercises");
                     b.HasIndex("TherapistId");
 
                     b.ToTable("TherapistSessionPrices");
@@ -487,6 +467,40 @@ namespace API.Migrations
                     b.HasIndex("TrainerId");
 
                     b.ToTable("TrainerSubscriptions");
+                });
+
+            modelBuilder.Entity("Exercise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BodyPart")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Equipment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("GifUrl")
+                        .HasColumnType("text");
+
+                    b.PrimitiveCollection<List<string>>("Instructions")
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.PrimitiveCollection<List<string>>("SecondaryMuscles")
+                        .HasColumnType("text[]");
+
+                    b.Property<string>("Target")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Exercises");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
