@@ -11,11 +11,7 @@ import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-<<<<<<< HEAD
   imports: [RouterLink, CommonModule, MatIconModule , RouterModule],
-=======
-  imports: [RouterLink, CommonModule, MatIconModule, RouterModule],
->>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

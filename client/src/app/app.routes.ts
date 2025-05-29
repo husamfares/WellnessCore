@@ -11,20 +11,17 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
 import { FitnessCheckComponent } from './fitness-check/fitness-check.component';
 import { QuestionPageComponent } from './question-page/question-page.component';
-<<<<<<< HEAD
 import { WorkoutPlanComponent } from './workout-plan/workout-plan.component';
 import { fitnessCheckGuard } from './_guards/fitness-check.guard';
 import { StandardWorkoutPlanComponent } from './standard-workout-plan/standard-workout-plan.component';
 import { HomeWorkoutComponent } from './home-workout/home-workout.component';
 import { TherapistExercisesComponent } from './therapist-exercises/therapist-exercises.component';
-=======
 import { RecoveryComponent } from './Recoverycomponents/recovery/recovery.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileListComponent } from './profile-list/profile-list.component';
 import { NutritionGuideComponent } from './nutrition-guide/nutrition-guide.component';
 import { MealAnalyzerComponent } from './meal-analyzer/meal-analyzer.component';
 import { ChatbotComponent } from './chatbot/chatbot.component';
->>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
 
 
 export const routes: Routes = [
@@ -64,7 +61,6 @@ export const routes: Routes = [
      canActivate: [authGuard] 
     },
     {
-<<<<<<< HEAD
       path : 'workout-plan',
       component: WorkoutPlanComponent,
       canActivate: [fitnessCheckGuard],
@@ -89,11 +85,11 @@ export const routes: Routes = [
     },
 
     
-=======
-      path : 'fitness-check',
+    { path : 'fitness-check',
       component: FitnessCheckComponent,
       canActivate: [authGuard]
     },
+    
     {
       path : 'profile/:username',
       component: ProfileComponent,
@@ -119,7 +115,6 @@ export const routes: Routes = [
         component: ChatbotComponent,
         canActivate: [authGuard]
     },                
->>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
     { path: 'errors', component: TestErrorsComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'server-error', component: ServerErrorComponent },

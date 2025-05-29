@@ -2,20 +2,19 @@
   <aside class="sidebar" [class.closed]="isSidebarClosed">
     <h2 class="sidebar-title">Wellness Core</h2>
 
-<<<<<<< HEAD
-    <div class="nav-item" [routerLink]="['/fitness-check']">
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <mat-icon>{{ isSidebarClosed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
+
+        <div class="nav-item" [routerLink]="['/fitness-check']">
       <mat-icon>directions_run</mat-icon>
       <span>Fitness Check</span>
     </div>
+    
     <div class="nav-item" [routerLink]="['/workout-plan']">
       <mat-icon>fitness_center</mat-icon>
       <span>Workout Plan</span>
     </div>
-=======
-    <button class="toggle-btn" (click)="toggleSidebar()">
-      <mat-icon>{{ isSidebarClosed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
-    </button>
->>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
 
     <nav class="nav-links">
       <a class="nav-item" routerLink="/questions" matTooltip="Community">
@@ -33,10 +32,6 @@
 
       <a class="nav-item" routerLink="/recovery" matTooltip="Recovery">
         <mat-icon>health_and_safety</mat-icon><span *ngIf="!isSidebarClosed">Recovery</span>
-      </a>
-
-      <a class="nav-item" routerLink="/fitness-check" matTooltip="Fitness Check">
-        <mat-icon>fitness_center</mat-icon><span *ngIf="!isSidebarClosed">Fitness Check</span>
       </a>
 
       <a class="nav-item" *ngIf="username" [routerLink]="['/nutrition-guide', username]" matTooltip="Nutrition">
