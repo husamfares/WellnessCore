@@ -5,6 +5,7 @@ using API.Helpers;
 using API.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using API.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-
+builder.Services.AddHttpClient(); // ✅ This registers IHttpClientFactory
 
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -20,6 +21,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<ExerciseImportService>();
+builder.Services.AddScoped<CloudinaryService>();
 
 
 

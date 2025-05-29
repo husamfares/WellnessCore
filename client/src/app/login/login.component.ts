@@ -1,7 +1,7 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../_services/account.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,28 +14,30 @@ export class LoginComponent {
   model: any ={}; 
   accountService = inject(AccountService);
   private router = inject(Router);
-  openRegister = output<boolean>();
   private toastr= inject(ToastrService);
 
 
   login()
-  {
-    this.accountService.login(this.model).subscribe({
-      next: _ => {
-        this.router.navigateByUrl('/home')
-      },
-      error: error => this.toastr.error(error.error)
-    })
-  }
+{
+  this.accountService.login(this.model).subscribe({
+    next: _ => {
+      this.router.navigateByUrl('/home')
+    },
+    error: error => {
+      // If the backend sent a clear message, show it:
+      if (error.error && typeof error.error === 'string') {
+        this.toastr.error(error.error);
+      } 
+      // Otherwise, use a fallback (or don't show anything)
+      else if (error.status === 401) {
+        this.toastr.error('Unauthorized');
+      } 
+      else {
+        this.toastr.error('An unknown error occurred.');
+      }
+    }
+  })
+}
 
-  logout()
-  {
-    this.accountService.logout();
-    this.router.navigateByUrl('/');
-  }
 
-  openRegisterForm()
-  {
-    this.openRegister.emit(true);
-  }
 }

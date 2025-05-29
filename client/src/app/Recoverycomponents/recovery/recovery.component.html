@@ -1,0 +1,71 @@
+<h2 class="page-title">Recovery Percentage</h2>
+
+<div class="form-table-container">
+
+
+<form (ngSubmit)="calculate()">
+  <label>Sleep Hours:</label>
+  <input type="number" [(ngModel)]="sleepHours" name="sleepHours" />
+
+  <label>Workout Intensity:</label>
+  <select [(ngModel)]="workoutIntensity" name="workoutIntensity">
+    <option value="light">Light</option>
+    <option value="moderate">Moderate</option>
+    <option value="intense">Intense</option>
+  </select>
+
+  <label>Fatigue Level:</label>
+  <select [(ngModel)]="fatigueLevel" name="fatigueLevel">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+
+  <button type="submit">Calculate</button>
+
+  <!-- Show recovery percentage -->
+<div *ngIf="recoveryPercentage !== null">
+  <h2>Recovery Percentage: {{ recoveryPercentage }}%</h2>
+</div>
+
+</form>
+
+<div *ngIf="showClassificationTable" class="classification-table">
+  <h3>Recovery Classification Table</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Recovery Percentage</th>
+        <th>Classification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>90% - 100%</td>
+        <td>Excellent Recovery 🔥</td>
+      </tr>
+      <tr>
+        <td>80% - 90%</td>
+        <td>Very Good Recovery ✅</td>
+      </tr>
+      <tr>
+        <td>70% - 80%</td>
+        <td>Good Recovery 👍</td>
+      </tr>
+      <tr>
+        <td>60% - 70%</td>
+        <td>Moderate Recovery 😴</td>
+      </tr>
+      <tr>
+        <td>50% - 60%</td>
+        <td>Poor Recovery ⚠️</td>
+      </tr>
+      <tr>
+        <td>Less than 50%</td>
+        <td>Very Poor Recovery ❌</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

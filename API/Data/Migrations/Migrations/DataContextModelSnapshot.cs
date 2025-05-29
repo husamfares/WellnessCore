@@ -18,7 +18,7 @@ namespace API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.3")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -90,6 +90,9 @@ namespace API.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ClinicName")
+                        .HasColumnType("text");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text");
@@ -110,14 +113,23 @@ namespace API.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("text");
 
+                    b.Property<string>("GymName")
+                        .HasColumnType("text");
+
                     b.Property<int>("Height")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("MobileNumber")
+                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -179,6 +191,156 @@ namespace API.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
+            modelBuilder.Entity("API.Entities.ChatMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChatMessages");
+                });
+
+            modelBuilder.Entity("API.Entities.MealAnalysis", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Calories")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Food")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Protein")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MealAnalyses");
+                });
+
+            modelBuilder.Entity("API.Entities.NutritionGuide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AgeRangeEnd")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AgeRangeStart")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Calories")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CarbsGrams")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FatGrams")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Friday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Goal")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Monday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProteinGrams")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Saturday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sunday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Thursday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tuesday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Wednesday")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NutritionGuides");
+                });
+
+            modelBuilder.Entity("API.Entities.ProfilePicture", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("ProfilePictures");
+                });
+
             modelBuilder.Entity("API.Entities.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -203,7 +365,11 @@ namespace API.Migrations
                     b.ToTable("Questions");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("API.Entities.TherapistExercise", b =>
+=======
+            modelBuilder.Entity("API.Entities.RecoveryRecord", b =>
+>>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -211,6 +377,7 @@ namespace API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+<<<<<<< HEAD
                     b.Property<string>("Instructions")
                         .HasColumnType("text");
 
@@ -232,6 +399,25 @@ namespace API.Migrations
                 });
 
             modelBuilder.Entity("Exercise", b =>
+=======
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<double>("RecoveryPercentage")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RecoveryRecords");
+                });
+
+            modelBuilder.Entity("API.Entities.TherapistSessionPrice", b =>
+>>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -239,6 +425,7 @@ namespace API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+<<<<<<< HEAD
                     b.Property<string>("BodyPart")
                         .HasColumnType("text");
 
@@ -258,11 +445,54 @@ namespace API.Migrations
                         .HasColumnType("text[]");
 
                     b.Property<string>("Target")
+=======
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("TherapistId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+>>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD
                     b.ToTable("Exercises");
+=======
+                    b.HasIndex("TherapistId");
+
+                    b.ToTable("TherapistSessionPrices");
+                });
+
+            modelBuilder.Entity("API.Entities.TrainerSubscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TrainerId");
+
+                    b.ToTable("TrainerSubscriptions");
+>>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -440,6 +670,50 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("API.Entities.ProfilePicture", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "User")
+                        .WithOne("ProfilePicture")
+                        .HasForeignKey("API.Entities.ProfilePicture", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("API.Entities.RecoveryRecord", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("API.Entities.TherapistSessionPrice", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "Therapist")
+                        .WithMany("TherapistSessionPrices")
+                        .HasForeignKey("TherapistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Therapist");
+                });
+
+            modelBuilder.Entity("API.Entities.TrainerSubscription", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "Trainer")
+                        .WithMany("TrainerSubscriptions")
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trainer");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -502,6 +776,12 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
+                    b.Navigation("ProfilePicture");
+
+                    b.Navigation("TherapistSessionPrices");
+
+                    b.Navigation("TrainerSubscriptions");
+
                     b.Navigation("UserRoles");
                 });
 

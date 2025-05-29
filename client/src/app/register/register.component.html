@@ -17,7 +17,9 @@
       <app-text-input [formControl]="$any(registerForm.controls['username'])" [label]="'Username'"></app-text-input>
       <app-text-input [formControl]="$any(registerForm.controls['height'])" [label]="'Height'" [type]="'number'"></app-text-input>
       <app-text-input [formControl]="$any(registerForm.controls['weight'])" [label]="'Weight'" [type]="'number'"></app-text-input>
+      
       <app-date-picker [formControl]="$any(registerForm.controls['dateOfBirth'])" [label]="'Date of Birth'" [maxDate]="maxDate"></app-date-picker>
+      
       <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
       <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'Confirm Password'" [type]="'password'"></app-text-input>
 
@@ -25,6 +27,7 @@
         <button [routerLink]="['/login']" class="btn btn-danger">Cancel</button>
         <button [disabled]="!registerForm.valid" class="btn btn-primary" type="submit">Sign Up</button>
       </div>
+   
     </form>
   </div>
 </div>

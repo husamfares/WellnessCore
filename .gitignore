@@ -1,3 +1,6 @@
+git rm --cached -r *.dll
+git rm --cached -r *.exe
+git rm --cached -r *.pdb
 API/appsettings.json
 # Ignore build artifacts and NuGet-generated files
 bin/
@@ -25,4 +28,7 @@ API/appsettings.Development.json
 # Ignore build output folders
 bin/
 obj/
-
+# Compiled binaries and debug files
+*.dll
+*.exe
+*.pdb

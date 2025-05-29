@@ -1,0 +1,38 @@
+<div class="nutrition-guide-container">
+  <div *ngIf="nutritionGuide; else errorTemplate" class="nutrition-guide">
+    <h2>Nutrition Guide</h2>
+   
+    <p><strong>Calories : </strong> {{ nutritionGuide.calories }} kcal</p>
+    <p><strong>Protein : </strong> {{ nutritionGuide.proteinGrams }} g</p>
+    <p><strong>Carbs : </strong> {{ nutritionGuide.carbsGrams }} g</p>
+    <p><strong>Fat : </strong> {{ nutritionGuide.fatGrams }} g</p>
+
+    <h3> Weekly Meal Plan </h3>
+    <div class="weekly-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Breakfast</th>
+            <th>Snack</th>
+            <th>Lunch</th>
+            <th>Snack</th>
+            <th>Dinner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dayKey of dayKeys">
+            <td>{{ dayKey | titlecase }}</td>
+            <td *ngFor="let meal of mealsData[dayKey]">{{ meal }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #errorTemplate>
+    <div class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </ng-template>
+</div>

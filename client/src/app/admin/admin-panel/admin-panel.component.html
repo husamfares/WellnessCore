@@ -1,41 +1,35 @@
-<div class="container mt-4">
-  <h2 class="mb-3">Manage User Roles</h2>
+<div class="admin-container">
+  <h2>Admin Panel - Manage User Roles</h2>
 
   <!-- 🔍 Search Bar -->
-  <div class="mb-3">
-    <input type="text" class="form-control" placeholder="Search by username..." [(ngModel)]="searchTerm">
+  <div class="admin-search">
+    <input type="text" placeholder="Search by username..." [(ngModel)]="searchTerm">
   </div>
 
-  <!-- 🧑‍💼 Users Table -->
-  <table class="table table-bordered table-hover text-center">
-    <thead class="table-dark">
-      <tr>
-        <th>Username</th>
-        <th>Current Roles</th>
-        <th>Update Roles</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of filteredUsers()">
-        <td>{{ user.userName }}</td>
-
-        <!-- 👀 Current Roles -->
-        <td>
-          <span *ngFor="let role of user.roles" class="badge bg-primary me-1">
-            {{ role }}
-          </span>
-        </td>
-
-        <!-- ✏️ Update Roles -->
-        <td>
-          <select class="form-select mb-2" multiple [(ngModel)]="user.roles">
-            <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
-          </select>
-          <button class="btn btn-sm btn-success" (click)="updateRoles(user.userName, user.roles)">
-            Update
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- 📋 Users Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Current Roles</th>
+          <th>Update Roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers()">
+          <td>{{ user.userName }}</td>
+          <td>
+            <span *ngFor="let role of user.roles" class="role-badge">{{ role }}</span>
+          </td>
+          <td>
+            <select multiple [(ngModel)]="user.roles">
+              <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+            </select>
+            <button (click)="updateRoles(user.userName, user.roles)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -1,0 +1,402 @@
+/* Base styles */
+:host {
+  min-height: 100vh;
+  display: block;
+  background-color: #121212;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}
+
+/* Profile Container */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #1f1f1f;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  padding-bottom: 30px;
+}
+
+/* Header */
+.profile-header {
+  background: linear-gradient(135deg, #4e4e4e 0%, #1a1a1a 100%);
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
+  border-bottom: 2px solid #333;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  background: #444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  border: 3px solid #4CAF50;
+  margin: 0 auto;
+}
+
+.change-photo-btn {
+  background: #4CAF50;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.change-photo-btn:hover {
+  background: #45a049;
+}
+
+.delete-photo-btn {
+  background: #e53935;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.delete-photo-btn:hover {
+  background: #c62828;
+}
+
+.profile-header h2 {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.role-trainer { background: #ff4d4d; color: #fff; }
+.role-member { background: #4ecca3; color: #fff; }
+.role-therapist { background: #9b59b6; color: #fff; }
+.role-admin { background: #ffa500; color: #fff; }
+.role-user { background: #3498db; color: #fff; }
+
+/* Details Grid */
+.profile-details-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #333;
+}
+
+.detail-box {
+  display: flex;
+  align-items: center;
+  width: 48%;
+  margin-bottom: 1.2rem;
+  background-color: #2a2a2a;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.detail-box mat-icon {
+  font-size: 1.5rem;
+  margin-right: 0.8rem;
+  color: #ccc;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.detail-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+}
+
+/* Edit Form */
+.edit-form {
+  padding: 1.5rem 2rem;
+}
+
+.edit-form h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+}
+
+.update-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.update-btn:hover {
+  background: #45a049;
+}
+
+.update-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+/* Subscriptions */
+.subscriptions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.subscription-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-left: 4px solid #4CAF50;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.2s ease;
+  flex-wrap: wrap;
+}
+
+.subscription-card:hover {
+  background-color: #333;
+}
+
+.subscription-card strong {
+  font-size: 1.2rem;
+  overflow-wrap: anywhere;   /* 🔥 allow breaking if too long */
+  word-break: break-word;    /* 🔥 force long words to break */
+  max-width: 100%;
+  cursor: pointer;
+  display: block;
+}
+
+
+.price-tag {
+  font-size: 1.1rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+
+
+.add-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #1976d2;
+}
+
+/* Image Modal */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.image-modal-content img {
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 12px;
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background: #ddd;
+}
+
+/* Full text modal */
+.text-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.text-modal-content {
+  background: #2a2a2a;
+  padding: 30px 40px;
+  border-radius: 12px;
+  color: white;
+  max-width: 600px;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.text-modal-content p {
+  font-size: 1.4rem;
+  word-wrap: break-word;
+  line-height: 1.5;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.text-modal .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  line-height: 30px;
+}
+
+.text-modal .close-button:hover {
+  background: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .detail-box {
+    width: 100%;
+  }
+}
+
+/* Headings alignment */
+.subscriptions-grid h3,
+.edit-form h3,
+.add-subscription-form h3 {
+  margin-left: 0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+/* Ensure all section headers align consistently */
+h3 {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+/* Extra spacing between sections */
+.edit-form {
+  margin-bottom: 1.5rem;
+}
+
+.subscriptions-grid {
+  margin-top: 0.5rem;
+}
+
+.add-subscription-form {
+  margin-top: 1.5rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  padding-left: 2rem;   /* ✅ align with session prices */
+  padding-right: 2rem;  /* ✅ keep consistent on both sides */
+}
+
+.delete-small-btn {
+  background-color: transparent;
+  color: #e53935;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-small-btn:hover {
+  color: #ff6f61;
+}
+
+

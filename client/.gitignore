@@ -41,6 +41,10 @@ API/obj
 /libpeerconnection.log
 testem.log
 /typings
+# Compiled binaries and debug files
+*.dll
+*.exe
+*.pdb
 
 # System files
 .DS_Store

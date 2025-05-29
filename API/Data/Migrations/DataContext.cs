@@ -4,12 +4,20 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 namespace API.Data;
 
-public class DataContext(DbContextOptions options) : 
+public class DataContext(DbContextOptions options) :
 IdentityDbContext<AppUser, AppRole, int, IdentityUserClaim<int>,
 AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>(options)
 {
     public DbSet<Question> Questions { get; set; }
     public DbSet<Answer> Answers { get; set; }
+    public DbSet<RecoveryRecord> RecoveryRecords { get; set; }
+    public DbSet<ProfilePicture> ProfilePictures { get; set; }
+    public DbSet<TrainerSubscription> TrainerSubscriptions { get; set; }
+    public DbSet<TherapistSessionPrice> TherapistSessionPrices { get; set; }
+    public DbSet<NutritionGuide> NutritionGuides { get; set; }
+    public DbSet<MealAnalysis> MealAnalyses { get; set; }
+    public DbSet<ChatMessage> ChatMessages { get; set; }
+
 
     public DbSet<Exercise> Exercises { get; set; }
     public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
@@ -42,6 +50,11 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
             .HasOne(wpe => wpe.Exercise)
             .WithMany(e => e.WorkoutPlanExercises)
             .HasForeignKey(wpe => wpe.ExerciseId);
+        builder.Entity<AppUser>()
+       .HasOne(u => u.ProfilePicture)
+       .WithOne(p => p.User)
+       .HasForeignKey<ProfilePicture>(p => p.UserId)
+       .OnDelete(DeleteBehavior.Cascade);
 
     }
 }

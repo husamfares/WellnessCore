@@ -1,18 +1,8 @@
-<!-- fitness-dashboard.component.html -->
 <div class="dashboard-container">
-  <div class="sidebar">
-    <h2 class="sidebar-title">Fitness Management</h2>
-    
-    <div class="nav-item">
-      <mat-icon>dashboard</mat-icon>
-      <span>Dashboard</span>
-    </div>
-    
-    <div class="nav-item">
-      <mat-icon>card_giftcard</mat-icon>
-      <span>Analysis Meal Nutrition</span>
-    </div>
+  <aside class="sidebar" [class.closed]="isSidebarClosed">
+    <h2 class="sidebar-title">Wellness Core</h2>
 
+<<<<<<< HEAD
     <div class="nav-item" [routerLink]="['/fitness-check']">
       <mat-icon>directions_run</mat-icon>
       <span>Fitness Check</span>
@@ -21,70 +11,117 @@
       <mat-icon>fitness_center</mat-icon>
       <span>Workout Plan</span>
     </div>
+=======
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <mat-icon>{{ isSidebarClosed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+    </button>
+>>>>>>> beae1afd7f58ccef8ae77cce98c0a13efedc4be1
 
-    <div class="nav-item">
-      <mat-icon>menu_book</mat-icon>
-      <span>Nutrition Guide</span>
-    </div>
-    
-    <div class="nav-item" [routerLink]="['/questions']">
-      <mat-icon>groups</mat-icon>
-      <span>Community</span>
-    </div>
-    
-    <div class="nav-item">
-      <mat-icon>calendar_today</mat-icon>
-      <span>Session Reservation</span>
-    </div>
-    
-    <div (click)="logout()" class="nav-item">
-      <mat-icon>logout</mat-icon>
-      <span>Sign Out</span>
-    </div>
+    <nav class="nav-links">
+      <a class="nav-item" routerLink="/questions" matTooltip="Community">
+        <mat-icon>groups</mat-icon><span *ngIf="!isSidebarClosed">Community</span>
+      </a>
 
-    <!-- <div class="dashboard">
-      <router-outlet></router-outlet> 
-    </div> -->
-    
-    <div *ngIf="accountService.isAdmin()" class="nav-item" style="color: red;"[routerLink]="['/admin']">
-      <mat-icon>Admin</mat-icon>
-      <span>Admin</span>
-    </div>
+      <a class="nav-item" routerLink="/chatbot" matTooltip="Your Personal AI Coach">
+           <mat-icon>psychology</mat-icon>
+         <span *ngIf="!isSidebarClosed">AI Fitness Coach</span>
+      </a>
 
+      <a class="nav-item" routerLink="/meal-analyzer" matTooltip="Meal Analyzer">
+        <mat-icon>fastfood</mat-icon><span *ngIf="!isSidebarClosed">Meal Analyzer</span>
+      </a>
+
+      <a class="nav-item" routerLink="/recovery" matTooltip="Recovery">
+        <mat-icon>health_and_safety</mat-icon><span *ngIf="!isSidebarClosed">Recovery</span>
+      </a>
+
+      <a class="nav-item" routerLink="/fitness-check" matTooltip="Fitness Check">
+        <mat-icon>fitness_center</mat-icon><span *ngIf="!isSidebarClosed">Fitness Check</span>
+      </a>
+
+      <a class="nav-item" *ngIf="username" [routerLink]="['/nutrition-guide', username]" matTooltip="Nutrition">
+        <mat-icon>restaurant_menu</mat-icon><span *ngIf="!isSidebarClosed">Nutrition</span>
+      </a>
+
+      <a class="nav-item" routerLink="/profiles" matTooltip="Explore Members">
+        <mat-icon>search</mat-icon><span *ngIf="!isSidebarClosed">Find Members</span>
+      </a>
+
+      <a *ngIf="accountService.isAdmin()" class="nav-item admin-link" routerLink="/admin" matTooltip="Admin Panel">
+        <mat-icon>admin_panel_settings</mat-icon><span *ngIf="!isSidebarClosed">Admin</span>
+      </a>
+
+      <div (click)="logout()" class="nav-item logout" matTooltip="Logout">
+        <mat-icon>logout</mat-icon><span *ngIf="!isSidebarClosed">Logout</span>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <header class="header">
+      <h1>Fitness Dashboard</h1>
+      <div class="header-right">
+        <span class="welcome-text">Welcome back, {{username}}!</span>
+        <div class="profile-circle" [routerLink]="['/profile', username]">
+          <ng-container *ngIf="photoUrl; else defaultIcon">
+            <img [src]="photoUrl" alt="Profile" class="profile-img" />
+          </ng-container>
+          <ng-template #defaultIcon>
+            <mat-icon>person</mat-icon>
+          </ng-template>
+        </div>
+      </div>
+    </header>
+
+    <section class="welcome-banner">
+      <h2>Welcome to Wellness Core</h2>
+      <p>Your all-in-one fitness, therapy, and nutrition management platform.
+        Connect, track your progress, and achieve your wellness goals.</p>
+    </section>
+
+   <section class="feature-grid">
+  <div class="feature-card" routerLink="/chatbot">
+    <mat-icon class="feature-icon">psychology</mat-icon>
+    <h3>AI Fitness Coach</h3>
+    <p>Ask anything about training or health. Get instant AI-powered guidance.</p>
   </div>
 
-  <div class="main-content">
-    <div class="header">
-      <h1 class="page-title">Fitness Challenge</h1>
-      <button mat-raised-button color="primary" class="create-challenge-btn">
-        <mat-icon>add</mat-icon>
-        Create New Challenge
-      </button>
-    </div>
-
-    <div class="challenge-card mat-elevation-z4">
-      <h3>No Challenges today unfortunately!</h3>
-      <p>Check back tomorrow or create your own challenge</p>
-    </div>
-
-    <div class="metrics-grid">
-      <div class="metric-card mat-elevation-z2">
-        <h3>Recovery Percentage</h3>
-        <div class="metric-value">78%</div>
-        <p class="metric-description">Your body recovery status</p>
-      </div>
-      
-      <div class="metric-card mat-elevation-z2">
-        <h3>Today's Activity</h3>
-        <div class="metric-value">4,280</div>
-        <p class="metric-description">Steps taken today</p>
-      </div>
-      
-      <div class="metric-card mat-elevation-z2">
-        <h3>Nutrition Score</h3>
-        <div class="metric-value">86/100</div>
-        <p class="metric-description">Based on your recent meals</p>
-      </div>
-    </div>
+  <div class="feature-card" routerLink="/meal-analyzer">
+    <mat-icon class="feature-icon">fastfood</mat-icon>
+    <h3>Meal Analyzer</h3>
+    <p>Upload your meal to see calories, protein, and nutrition breakdown.</p>
   </div>
+
+  <div class="feature-card" [routerLink]="['/nutrition-guide', username]">
+    <mat-icon class="feature-icon">restaurant_menu</mat-icon>
+    <h3>Nutrition Guide</h3>
+    <p>Explore meal plans tailored to your fitness goals and dietary needs.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/fitness-check">
+    <mat-icon class="feature-icon">fitness_center</mat-icon>
+    <h3>Fitness Check</h3>
+    <p>Evaluate your physical stats and measure your strength progression.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/recovery">
+    <mat-icon class="feature-icon">health_and_safety</mat-icon>
+    <h3>Recovery</h3>
+    <p>Monitor your recovery status and optimize your rest cycles.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/questions">
+    <mat-icon class="feature-icon">groups</mat-icon>
+    <h3>Community</h3>
+    <p>Join discussions, ask questions, and connect with others on the same journey.</p>
+  </div>
+
+  <div class="feature-card" routerLink="/profiles">
+    <mat-icon class="feature-icon">search</mat-icon>
+    <h3>Find Members</h3>
+    <p>Search for specific users.</p>
+  </div>
+</section>
+
+  </main>
 </div>

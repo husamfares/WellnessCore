@@ -4,33 +4,42 @@ import { QuestionService } from '../_services/question.service';
 import { Question } from '../_models/Question';
 import { CommonModule } from '@angular/common';
 import { TimeAgoPipe } from "../pipes/time-ago.pipe";
-
+import { ProfileService } from '../_services/profile.service';
+import { Profile } from '../_models/profile';
+import { RouterModule } from '@angular/router';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-question-list',
-  imports: [FormsModule, CommonModule, ReactiveFormsModule, TimeAgoPipe],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, TimeAgoPipe, RouterModule],
   templateUrl: './question-list.component.html',
   styleUrl: './question-list.component.css'
 })
 export class QuestionListComponent implements OnInit {
   questions: Question[] = [];
   answerForms: { [key: number]: FormGroup } = {};
-  private questionService = inject (QuestionService);
+  private questionService = inject(QuestionService);
   private fb = inject(FormBuilder);
+  private profileService = inject(ProfileService);
+  private accountService = inject(AccountService);
+
   currentUsername: string | null = null;
+
+  // For edit modes
   editQuestionId: number | null = null;
   editedCaption: string = '';
   editAnswerId: number | null = null;
   editedAnswerText: string = '';
 
-
+  profileCache: { [username: string]: Profile } = {};
 
   ngOnInit() {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       const user = JSON.parse(userJson);
-      this.currentUsername = user.username; 
+      this.currentUsername = user.username;
     }
+
     this.loadQuestions();
 
     this.questionService.newQuestion$.subscribe((newQuestion) => {
@@ -42,12 +51,22 @@ export class QuestionListComponent implements OnInit {
   loadQuestions() {
     this.questionService.getQuestions().subscribe(questions => {
       this.questions = questions;
+
       this.questions.forEach(q => {
-        this.answerForms[q.id] = this.fb.group({
-          answerText: [''],
-        });
+        this.loadProfile(q.askedBy);
+        q.answers.forEach(a => this.loadProfile(a.answeredBy));
+        this.answerForms[q.id] = this.fb.group({ answerText: [''] });
       });
     });
+  }
+
+  loadProfile(username: string) {
+    if (!this.profileCache[username]) {
+      this.profileService.getProfile(username).subscribe({
+        next: profile => this.profileCache[username] = profile,
+        error: err => console.error(`Failed to load profile for ${username}`, err)
+      });
+    }
   }
 
   submitAnswer(questionId: number) {
@@ -61,6 +80,10 @@ export class QuestionListComponent implements OnInit {
       },
       error: err => console.error(err)
     });
+  }
+
+  canAnswer(): boolean {
+    return this.accountService.isTrainerOrTherapist();
   }
 
   startEditQuestion(q: Question) {
@@ -87,6 +110,7 @@ export class QuestionListComponent implements OnInit {
       this.loadQuestions();
     });
   }
+
   cancelEditAnswer(): void {
     this.editAnswerId = null;
     this.editedAnswerText = '';
@@ -107,7 +131,7 @@ export class QuestionListComponent implements OnInit {
       });
     }
   }
-  
+
   deleteAnswer(questionId: number, answerId: number) {
     if (confirm('Are you sure you want to delete this answer?')) {
       this.questionService.deleteAnswer(questionId, answerId).subscribe({

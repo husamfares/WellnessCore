@@ -1,0 +1,149 @@
+:host {
+  display: block;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #111;
+  color: #f1f1f1;
+  min-height: 100vh;
+
+}
+
+/* Title */
+h2 {
+  font-size: 28px;
+  margin-bottom: 1rem;
+  color: #03dac6;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* File Upload */
+input[type="file"] {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  padding: 0.5rem;
+  color: #ccc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Button */
+button {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  background-color: #03dac6;
+  color: #111;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(3, 218, 198, 0.3);
+  transition: all 0.2s ease;
+  margin-bottom: 2rem;
+}
+
+button:hover:not(:disabled) {
+  background-color: #00c4b4;
+  box-shadow: 0 0 12px rgba(3, 218, 198, 0.5);
+}
+
+button:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* Latest Result */
+.card {
+  background-color: #1e1e2f;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.15);
+  animation: fadeIn 0.4s ease-in;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #00ffd0;
+}
+
+.card img {
+  display: block;
+  margin: 1rem auto;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+/* History Section */
+.history-card {
+  background-color: #2a2a3d;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: slideUp 0.3s ease-out;
+}
+
+.history-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.history-card p {
+  margin: 0;
+  color: #ddd;
+}
+
+small {
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.file-upload {
+  margin-bottom: 1.5rem;
+}
+
+.custom-file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: #1f1f2e;
+  color: #f1f1f1;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 255, 200, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.custom-file-label:hover {
+  background-color: #292944;
+}
+
+.custom-file-label mat-icon {
+  font-size: 20px;
+  color: #03dac6;
+}
+
+.check-icon {
+  color: #00e676;
+}

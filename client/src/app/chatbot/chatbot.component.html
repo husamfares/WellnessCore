@@ -1,0 +1,13 @@
+<div class="chat-container">
+  <div class="chat-box" #chatScroll>
+    <div *ngFor="let msg of messages" [ngClass]="msg.role">
+      <div class="message" [innerHTML]="formatMessage(msg.content)"></div>
+    </div>
+    <div *ngIf="isLoading" class="loading">Coach is thinking...</div>
+  </div>
+
+  <div class="input-container">
+    <input [(ngModel)]="userInput" placeholder="Ask your coach..." (keydown.enter)="sendMessage()" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>
