@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{39C15638-B34B-464D-BE50-E6A693537135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellnessCore.Tests", "WellnessCore.Tests\WellnessCore.Tests.csproj", "{2CA1D519-D2D2-4E5D-A336-CD2BB99AD67C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{39C15638-B34B-464D-BE50-E6A693537135}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39C15638-B34B-464D-BE50-E6A693537135}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39C15638-B34B-464D-BE50-E6A693537135}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA1D519-D2D2-4E5D-A336-CD2BB99AD67C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA1D519-D2D2-4E5D-A336-CD2BB99AD67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA1D519-D2D2-4E5D-A336-CD2BB99AD67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA1D519-D2D2-4E5D-A336-CD2BB99AD67C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

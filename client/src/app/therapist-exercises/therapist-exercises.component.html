@@ -1,0 +1,62 @@
+<!-- therapist-exercises.component.html -->
+
+<div class="main container">
+  <div class="header text-center">
+    <h3>Therapy Exercises</h3>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="!therapistExercisesList.length && isLoading" class="loading-state">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading your therapy exercises...</div>
+  </div>
+
+  <!-- No Exercises State -->
+  <div *ngIf="!therapistExercisesList.length && !isLoading" class="no-exercises">
+    <div class="no-exercises-icon">🏃‍♂️</div>
+    <p>No therapy exercises available at the moment.</p>
+  </div>
+
+  <!-- Exercises Grid -->
+  <div *ngIf="therapistExercisesList && therapistExercisesList.length > 0" class="exercises-grid">
+    <div class="exercise-card" *ngFor="let exercise of therapistExercisesList; let i = index">
+      
+      <!-- Exercise Header -->
+      <div class="exercise-header">
+        <div class="exercise-icon">
+          {{ getExerciseIcon(i) }}
+        </div>
+        <h3 class="exercise-name">{{ exercise.name }}</h3>
+      </div>
+
+      <!-- Exercise Details -->
+      <div class="exercise-details">
+        <div class="detail-item target-area" *ngIf="exercise.targetArea">
+          <span class="detail-label">Target Area</span>
+          <span class="detail-value">{{ exercise.targetArea }}</span>
+        </div>
+
+        <div class="detail-item suitable-for" *ngIf="exercise.suitableFor">
+          <span class="detail-label">Suitable For</span>
+          <span class="detail-value">{{ exercise.suitableFor }}</span>
+        </div>
+
+        <div class="detail-item instructions" *ngIf="exercise.instructions">
+          <span class="detail-label">Instructions</span>
+          <span class="detail-value">{{ exercise.instructions }}</span>
+        </div>
+      </div>
+
+      <!-- Video Section -->
+      <div class="video-section" *ngIf="exercise.youtubeUrl">
+        <a [href]="exercise.youtubeUrl" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="video-button">
+          <span class="play-icon"></span>
+          Watch Exercise Video
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="workout-container">
+  <!-- Header Section -->
+  <div class="header">
+    <h1 class="page-title">Your Personalized Workout Plan</h1>
+    <div class="user-info">
+      <div>
+        <span class="user-info-icon">🏋️‍♂️</span> Fitness Level: <strong>{{traineeLevel | titlecase}}</strong>
+      </div>
+      <div>
+        <span class="user-info-icon">🎯</span> Goal: <strong>{{traineeGoal | titlecase}}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Muscle Group Selection -->
+  <div class="muscle-grid">
+    <div class="muscle-card" 
+         *ngFor="let muscle of muscleGroups" 
+         (click)="showExercises(muscle.key)"
+         [class.active]="selectedBodyPart === muscle.key">
+      <img [src]="muscle.image || 'assets/images/' + muscle.key + '.jpg'" [alt]="muscle.name">
+      <h3>{{ muscle.name }}</h3>
+      <div class="pulse-overlay" *ngIf="selectedBodyPart === muscle.key"></div>
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div class="loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Exercises Section -->
+  <div class="exercises-list" *ngIf="selectedExercises.length > 0">
+    <h2>
+      <span class="muscle-icon">💪</span> 
+      Exercises for {{ selectedBodyPart | titlecase }}
+    </h2>
+    
+    <div class="exercise-grid">
+      <div class="exercise-card" *ngFor="let exercise of selectedExercises">
+        <div class="exercise-image" (click)="openExerciseModal(exercise)">
+          <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + exercise.id" 
+               [alt]="exercise.name"
+               (error)="handleImageError($event)">
+          <div class="zoom-icon">🔍</div>
+        </div>
+        <div class="exercise-details">
+          <h3 class="exercise-name">{{ exercise.name }}</h3>
+          <div class="exercise-target">Target: {{ exercise.target }}</div>
+          <div class="exercise-id">ID: {{ exercise.id }}</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-exercises" *ngIf="selectedExercises.length === 0 && selectedBodyPart">
+      No exercises found for {{ selectedBodyPart | titlecase }}
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" [class.visible]="showBackToTop" (click)="scrollToTop()">
+    ↑
+  </div>
+  
+  <!-- Exercise Modal -->
+  <div class="exercise-modal" *ngIf="selectedExercise" (click)="closeExerciseModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ selectedExercise.name }}</h2>
+        <button class="close-button" (click)="closeExerciseModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + selectedExercise.id" 
+               [alt]="selectedExercise.name"
+               (error)="handleImageError($event)">
+        </div>
+        <div class="modal-details">
+          <div class="detail-item">
+            <span class="detail-label" >Target:</span> 
+            <span class="detail-value">{{ selectedExercise.target }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

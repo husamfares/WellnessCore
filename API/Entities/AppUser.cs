@@ -4,7 +4,6 @@ namespace API.Entities;
 
 public class AppUser : IdentityUser<int>
 {
-    
     public DateOnly DateOfBirth { get; set; }
 
     public int Weight { get; set; }

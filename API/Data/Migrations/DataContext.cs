@@ -16,7 +16,14 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
     public DbSet<TherapistSessionPrice> TherapistSessionPrices { get; set; }
     public DbSet<NutritionGuide> NutritionGuides { get; set; }
     public DbSet<MealAnalysis> MealAnalyses { get; set; }
+    public DbSet<ChatMessage> ChatMessages { get; set; }
 
+
+    public DbSet<Exercise> Exercises { get; set; }
+    public DbSet<WorkoutPlan> WorkoutPlans { get; set; }
+    public DbSet<WorkoutPlanExercise> WorkoutPlanExercises { get; set; }
+    
+    public DbSet<TherapistExercise> TherapistExercises { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -34,6 +41,15 @@ AppUserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<i
             .HasForeignKey(ur => ur.RoleId)
             .IsRequired();
 
+        builder.Entity<WorkoutPlanExercise>()
+        .HasOne(wpe => wpe.WorkoutPlan)
+        .WithMany(wp => wp.WorkoutPlanExercises)
+        .HasForeignKey(wpe => wpe.WorkoutPlanId);
+
+        builder.Entity<WorkoutPlanExercise>()
+            .HasOne(wpe => wpe.Exercise)
+            .WithMany(e => e.WorkoutPlanExercises)
+            .HasForeignKey(wpe => wpe.ExerciseId);
         builder.Entity<AppUser>()
        .HasOne(u => u.ProfilePicture)
        .WithOne(p => p.User)

@@ -1,0 +1,105 @@
+<!-- Updated HTML with better header structure -->
+<div class="workout-container">
+  <!-- Header Section - Restructured -->
+  <div class="header">
+    <h1 class="page-title">Your Personalized Workout Plan</h1>
+    <div class="user-info">
+      <div class="user-info-badge">
+        <span class="user-info-icon">💪</span>
+        <div>
+          <div>Fitness Level</div>
+          <strong class="exercise-name">{{fitnessLevel | titlecase}}</strong>
+        </div>
+      </div>
+      <div class="user-info-badge">
+        <span class="user-info-icon">🎯</span>
+        <div>
+          <div>Goal</div>
+          <strong class="exercise-name">{{traineeGoal | titlecase}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rest of the HTML remains the same -->
+  <!-- Muscle Group Selection -->
+  <h2 class="section-title">Choose Muscle Group</h2>
+  <div class="muscle-grid">
+    <div class="muscle-card" 
+         *ngFor="let muscle of muscleGroups" 
+         (click)="showHomeExercises(muscle.key)"
+         [class.active]="selectedBodyPart === muscle.key">
+      <img [src]="muscle.image || 'assets/images/' + muscle.key + '.jpg'" [alt]="muscle.name">
+      <h3 class="exercise-name">{{ muscle.name }}</h3>
+      <div class="pulse-overlay" *ngIf="selectedBodyPart === muscle.key"></div>
+    </div>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div class="loading" *ngIf="isLoading">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Exercises Section -->
+  <div class="exercises-list" *ngIf="selectedExercises.length > 0">
+    <div class="exercises-header">
+      <div class="muscle-icon">💪</div>
+      <h2>Exercises for {{ selectedBodyPart | titlecase }}</h2>
+    </div>
+
+    <div class="exercise-grid">
+      <div class="exercise-card" *ngFor="let exercise of selectedExercises">
+        <div class="exercise-image" (click)="openExerciseModal(exercise)">
+          <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + exercise.id" 
+               [alt]="exercise.name"
+               (error)="handleImageError($event)">
+          <div class="zoom-icon">🔍</div>
+        </div>
+        <div class="exercise-details" >
+          <h3 class="exercise-name">{{ exercise.name }}</h3>
+          <div class="exercise-target">
+            <span class="tag">{{ exercise.target }}</span>
+          </div>
+
+          <div class="exercise-instructions">
+              <p *ngIf="instructionButton">{{ exercise.instructions }}</p>
+          </div>
+
+          <div class="fitness-badge" [ngClass]="fitnessLevel.toLowerCase()">{{fitnessLevel}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div>      
+      <button (click)="instructionsOn()" class="exercise-instruction">Show Instructions For Each Exercise</button>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" [class.visible]="showBackToTop" (click)="scrollToTop()">
+    ↑
+  </div>
+
+  <!-- Exercise Modal -->
+  <div class="exercise-modal" *ngIf="selectedExercise" (click)="closeExerciseModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ selectedExercise.name }}</h2>
+        <button class="close-button" (click)="closeExerciseModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image">
+          <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + selectedExercise.id" 
+               [alt]="selectedExercise.name"
+               (error)="handleImageError($event)">
+        </div>
+        <div class="modal-details">
+          <div class="detail-item">
+            <span class="detail-label">Target:</span>
+            <span class="detail-value">{{ selectedExercise.target }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

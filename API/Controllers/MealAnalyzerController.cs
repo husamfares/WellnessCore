@@ -119,7 +119,7 @@ public class MealAnalyzerController(DataContext context, CloudinaryService cloud
                 ImageUrl = x.ImageUrl,
                 Food = x.Food,
                 Calories = x.Calories,
-                ProteinG = x.Protein,
+                Protein = x.Protein,
                 CreatedAt = x.CreatedAt
             })
             .ToListAsync();

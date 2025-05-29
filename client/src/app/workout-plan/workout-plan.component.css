@@ -1,0 +1,8 @@
+:host {
+  min-height: 100vh;
+  display: block;
+  background-color: #6652bd;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+}

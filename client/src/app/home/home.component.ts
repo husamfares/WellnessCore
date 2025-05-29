@@ -11,7 +11,7 @@ import { take } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommonModule, MatIconModule, RouterModule],
+  imports: [RouterLink, CommonModule, MatIconModule , RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -19,9 +19,8 @@ export class HomeComponent implements OnInit {
   accountService = inject(AccountService);
   profileService = inject(ProfileService); 
   private router = inject(Router);
-  sidebarVisible = true;
   username = this.accountService.currentUser()?.username.toString() || '';
-  isSidebarClosed  = false;
+  isSidebarClosed  = true;
   profile : Profile | null = null;
   photoUrl: string | null = null;
   userId: number | null = null;
