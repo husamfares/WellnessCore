@@ -10,11 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using API.Interfaces;
 
 namespace API.Controllers;
 
 [Authorize]
-public class MealAnalyzerController(DataContext context, CloudinaryService cloudinaryService, IHttpClientFactory httpClientFactory) : BaseApiController
+public class MealAnalyzerController(DataContext context, ICloudinaryService cloudinaryService, IHttpClientFactory httpClientFactory) : BaseApiController
 {
     [HttpPost("analyze-image")]
     public async Task<IActionResult> AnalyzeImage([FromForm] IFormFile image)
