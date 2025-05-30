@@ -10,7 +10,7 @@ public class AppUser : IdentityUser<int>
 
     public int Height { get; set; }
 
-    public string? Gender { get; set; } 
+    public string? Gender { get; set; }
 
     public ICollection<AppUserRole> UserRoles { get; set; } = [];
 
