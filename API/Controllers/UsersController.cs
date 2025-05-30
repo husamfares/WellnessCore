@@ -258,9 +258,7 @@ public class UsersController(IUserRepository userRepository, DataContext context
             YoutubeUrl = e.YoutubeUrl
         }).ToList();
 
-        return Ok(result);
-
-                
+        return Ok(result);     
 
     }
 
