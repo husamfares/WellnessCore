@@ -1,16 +1,10 @@
-using Xunit;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Threading.Tasks;
 using API.Controllers;
-using API.Services;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 using API.Entities;
@@ -36,14 +30,14 @@ namespace WellnessCore.Tests.Controllers
         {
             // Arrange
             var context = new DataContext(_dbOptions);
-var cloudinaryMock = new Mock<ICloudinaryService>();
-cloudinaryMock.Setup(x => x.UploadImageAsync(It.IsAny<IFormFile>()))
-              .ReturnsAsync("https://example.com/fake.jpg");            var httpClientFactoryMock = new Mock<IHttpClientFactory>();
+            var cloudinaryMock = new Mock<ICloudinaryService>();
+            cloudinaryMock.Setup(x => x.UploadImageAsync(It.IsAny<IFormFile>()))
+                          .ReturnsAsync("https://example.com/fake.jpg"); var httpClientFactoryMock = new Mock<IHttpClientFactory>();
 
             var controller = new MealAnalyzerController(context, cloudinaryMock.Object, httpClientFactoryMock.Object);
 
             // Act
-            var result = await controller.AnalyzeImage(null);
+            var result = await controller.AnalyzeImage(null!);
 
             // Assert
             var badRequest = Assert.IsType<BadRequestObjectResult>(result);
@@ -55,9 +49,9 @@ cloudinaryMock.Setup(x => x.UploadImageAsync(It.IsAny<IFormFile>()))
         {
             // Arrange
             var context = new DataContext(_dbOptions);
-var cloudinaryMock = new Mock<ICloudinaryService>();
-cloudinaryMock.Setup(x => x.UploadImageAsync(It.IsAny<IFormFile>()))
-              .ReturnsAsync("https://example.com/fake.jpg");
+            var cloudinaryMock = new Mock<ICloudinaryService>();
+            cloudinaryMock.Setup(x => x.UploadImageAsync(It.IsAny<IFormFile>()))
+                          .ReturnsAsync("https://example.com/fake.jpg");
             var httpClientFactoryMock = new Mock<IHttpClientFactory>();
 
             var mockFile = new Mock<IFormFile>();
