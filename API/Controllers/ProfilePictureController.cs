@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using API.Interfaces;
 
 namespace API.Controllers
 {
     [Authorize]
-    public class ProfilePictureController(CloudinaryService cloudinaryService, DataContext context) : BaseApiController
+    public class ProfilePictureController(ICloudinaryService cloudinaryService, DataContext context) : BaseApiController
     {
 
 

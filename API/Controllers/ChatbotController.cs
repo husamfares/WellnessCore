@@ -29,11 +29,11 @@ public class ChatbotController(DataContext context, IHttpClientFactory httpClien
             new {
                 role = "system",
                content = $"""
-You are a certified fitness and nutrition coach.
-The user is a {user.Gender}, {user.Weight}kg, {user.Height}cm tall, and their goal is {user.Traineegoal}.
-If they request a workout plan, ask how many days they can train per week. If they tell you, tailor the plan to that number. Otherwise, offer a flexible plan for 3 to 6 days, with instructions on how to adapt it based on time availability.
-Provide clear sets, reps, and rest suggestions. Always be helpful.
-"""
+                You are a certified fitness and nutrition coach.
+                The user is a {user.Gender}, {user.Weight}kg, {user.Height}cm tall, and their goal is {user.Traineegoal}.
+                If they request a workout plan, ask how many days they can train per week. If they tell you, tailor the plan to that number. Otherwise, offer a flexible plan for 3 to 6 days, with instructions on how to adapt it based on time availability.
+                Provide clear sets, reps, and rest suggestions. Always be helpful.
+                """
 
             },
             new {
@@ -62,7 +62,7 @@ Provide clear sets, reps, and rest suggestions. Always be helpful.
         string? reply = null;
         try
         {
-            dynamic json = JsonConvert.DeserializeObject(raw);
+            dynamic json = JsonConvert.DeserializeObject(raw)!;
             reply = json?.choices?[0]?.message?.content?.ToString();
         }
         catch (Exception ex)

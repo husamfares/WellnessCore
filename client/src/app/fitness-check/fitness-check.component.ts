@@ -24,7 +24,6 @@ export class FitnessCheckComponent implements OnInit{
   showResults: boolean = false;
   totalScore: number = 0;
   fitnessLevel : string = "";
-  userService = inject(UserService);
   num : number=10;
   interval: any; // Save the interval ID here
   hasTimerStarted: boolean = false; 
@@ -47,7 +46,12 @@ export class FitnessCheckComponent implements OnInit{
 progressPercentage: any;
 isCountingUp: any;
 elapsedTime: any;
-router = inject(Router);
+
+constructor(
+  private userService: UserService,
+  private router: Router
+) {}
+
   
   ngOnInit(): void {
     this.userService.getUserFitnessInfo().subscribe( data => 
