@@ -11,7 +11,7 @@ using API.Interfaces;
 namespace API.Controllers
 {
     [Authorize]
-    public class ProfilePictureController(ICloudinaryService cloudinaryService, DataContext context) : BaseApiController
+    public class ProfilePictureController(CloudinaryService cloudinaryService, DataContext context) : BaseApiController
     {
 
 
