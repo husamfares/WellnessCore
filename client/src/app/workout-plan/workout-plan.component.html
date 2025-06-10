@@ -1,35 +1,182 @@
-<div class="container workout-plan-page text-center mt-5">
-    <h2 class="mb-4">Choose Your Workout Plan</h2>
-    <p class=" mb-5">Select a workout style to get started with your fitness journey.</p>
-  
-    <div class="row justify-content-center">
-      <!-- Standard Workout Plan -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm p-4 option-card"  [routerLink]="['/standard']">
-          <h4>🏋️ Standard Workout Plan</h4>
-          <p class="text-muted">Follow a structured, professional workout designed for your fitness goal.</p>
-        </div>
-      </div>
-  
-      <!-- Home Workout Plan -->
-      <div class="col-md-4 mb-4">
-        <div class="card shadow-sm p-4 option-card" [routerLink]="['/home-workout']">
-          <h4>🏠 Home Workout Plan</h4>
-          <p class="text-muted">No gym? No problem. Effective workouts you can do at home.</p>
-        </div>
-      </div>
-
-    <!-- Therapist Workout Plan -->
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm p-4 option-card therapist-card" [routerLink]="['/therapist-exercises']">
-        <h4 class="card-title">🧑‍⚕️ Therapy & Rehab</h4>
-        <p class="text-muted">
-          Gentle, recovery-focused exercises recommended by physical therapists. Ideal for back pain, joint issues, and post-injury care.
-        </p>
-      </div>
+<div class="workout-container">
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
     </div>
-
-    </div>
-    <router-outlet></router-outlet>
   </div>
-  
+
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <!-- Header Section -->
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="title-line">Choose Your</span>
+          <span class="title-line accent">Fitness Journey</span>
+        </h1>
+        <p class="hero-subtitle">
+          Unlock your potential with personalized workout plans designed by experts
+        </p>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">10K+</span>
+            <span class="stat-label">Active Users</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Success Rate</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Workout Plans Grid -->
+    <div class="plans-section">
+      <div class="plans-grid">
+        
+        <!-- Standard Workout Plan -->
+        <div class="workout-card premium-card" [routerLink]="['/standard']">
+          <div class="card-header">
+            <div class="icon-wrapper">
+              <div class="icon-bg"></div>
+              <span class="card-icon">💪</span>
+            </div>
+            <div class="card-badge">Most Popular</div>
+          </div>
+          
+          <div class="card-content">
+            <h3 class="card-title">Standard Workout</h3>
+            <p class="card-subtitle">Professional Training Program</p>
+            <p class="card-description">
+              Structured workouts designed by certified trainers to maximize your results with progressive training
+            </p>
+            
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <span>Progressive training programs</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🏋️</span>
+                <span>Equipment-based exercises</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">📊</span>
+                <span>Performance tracking</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <button class="cta-button primary">
+              <span>Start Training</span>
+              <div class="button-glow"></div>
+            </button>
+          </div>
+          
+          <div class="card-glow"></div>
+        </div>
+
+        <!-- Home Workout Plan -->
+        <div class="workout-card eco-card" [routerLink]="['/home-workout']">
+          <div class="card-header">
+            <div class="icon-wrapper">
+              <div class="icon-bg"></div>
+              <span class="card-icon">🏠</span>
+            </div>
+            <div class="card-badge eco">Flexible</div>
+          </div>
+          
+          <div class="card-content">
+            <h3 class="card-title">Home Workout</h3>
+            <p class="card-subtitle">Train Anywhere, Anytime</p>
+            <p class="card-description">
+              Effective workouts using minimal equipment, perfect for busy schedules and home fitness enthusiasts
+            </p>
+            
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-icon">🏡</span>
+                <span>No gym membership needed</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">⏰</span>
+                <span>Flexible scheduling</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <span>Space-efficient routines</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <button class="cta-button secondary">
+              <span>Workout at Home</span>
+              <div class="button-glow"></div>
+            </button>
+          </div>
+          
+          <div class="card-glow"></div>
+        </div>
+
+        <!-- Therapy & Rehab Plan -->
+        <div class="workout-card therapy-card" [routerLink]="['/therapist-exercises']">
+          <div class="card-header">
+            <div class="icon-wrapper">
+              <div class="icon-bg"></div>
+              <span class="card-icon">🩺</span>
+            </div>
+            <div class="card-badge therapy">Recovery</div>
+          </div>
+          
+          <div class="card-content">
+            <h3 class="card-title">Therapy & Rehab</h3>
+            <p class="card-subtitle">Healing & Wellness Focus</p>
+            <p class="card-description">
+              Gentle, recovery-focused exercises recommended by physical therapists for optimal healing
+            </p>
+            
+            <div class="features-list">
+              <div class="feature-item">
+                <span class="feature-icon">🌱</span>
+                <span>Low-impact movements</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">💚</span>
+                <span>Pain management focus</span>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <span>Joint mobility improvement</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <button class="cta-button tertiary">
+              <span>Begin Recovery</span>
+              <div class="button-glow"></div>
+            </button>
+          </div>
+          
+          <div class="card-glow"></div>
+        </div>
+
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
+<router-outlet></router-outlet>

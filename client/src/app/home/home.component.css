@@ -1,10 +1,9 @@
 /* Updated Home Dashboard Styles with Darker Color Scheme */
-body, html {
-  margin: 0;
-  padding: 0;
-  background: #0a0f1c; /* ultra dark navy */
-  font-family: 'Roboto', sans-serif;
-  color: #e2e8f0; /* soft gray */
+.main-content {
+  flex: 1;
+  background: linear-gradient(135deg, #7b7d7e, #0f172a, #0f172a);
+  padding: 30px;
+  transition: all 0.3s ease;
 }
 
 .dashboard-container {
@@ -91,12 +90,7 @@ body, html {
   color: #d97706; /* amber-600 */
 }
 
-.main-content {
-  flex: 1;
-  background: #0f172a;
-  padding: 30px;
-  transition: all 0.3s ease;
-}
+
 
 .header {
   display: flex;

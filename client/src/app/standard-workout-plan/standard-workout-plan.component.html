@@ -1,73 +1,149 @@
 <div class="workout-container">
-  <!-- Header Section -->
+  <!-- Animated Header Section -->
   <div class="header">
-    <h1 class="page-title">Your Personalized Workout Plan</h1>
+    <div class="header-background"></div>
+    <h1 class="page-title">
+      <span class="title-gradient">Your Personalized</span>
+      <span class="title-highlight">Workout Plan</span>
+      <div class="title-underline"></div>
+    </h1>
     <div class="user-info">
-      <div>
-        <span class="user-info-icon">🏋️‍♂️</span> Fitness Level: <strong>{{traineeLevel | titlecase}}</strong>
+      <div class="info-card level-card">
+        <div class="info-icon">🏋️‍♂️</div>
+        <div class="info-content">
+          <span class="info-label">Fitness Level</span>
+          <strong class="info-value">{{traineeLevel | titlecase}}</strong>
+        </div>
       </div>
-      <div>
-        <span class="user-info-icon">🎯</span> Goal: <strong>{{traineeGoal | titlecase}}</strong>
+      <div class="info-card goal-card">
+        <div class="info-icon">🎯</div>
+        <div class="info-content">
+          <span class="info-label">Goal</span>
+          <strong class="info-value">{{traineeGoal | titlecase}}</strong>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Muscle Group Selection -->
+  <!-- Enhanced Muscle Group Selection -->
+  <div class="section-header">
+    <h2 class="section-title">Choose Your Focus</h2>
+    <div class="section-subtitle">Select a muscle group to start your workout</div>
+  </div>
+
   <div class="muscle-grid">
     <div class="muscle-card" 
-         *ngFor="let muscle of muscleGroups" 
+         *ngFor="let muscle of muscleGroups; let i = index" 
          (click)="showExercises(muscle.key)"
-         [class.active]="selectedBodyPart === muscle.key">
-      <img [src]="muscle.image || 'assets/images/' + muscle.key + '.jpg'" [alt]="muscle.name">
-      <h3>{{ muscle.name }}</h3>
-      <div class="pulse-overlay" *ngIf="selectedBodyPart === muscle.key"></div>
+         [class.active]="selectedBodyPart === muscle.key"
+         [style.animation-delay.ms]="i * 100">
+      <div class="card-inner">
+        <div class="card-image">
+          <img [src]="muscle.image || 'assets/images/' + muscle.key + '.jpg'" 
+               [alt]="muscle.name"
+               (error)="handleImageError($event)">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="muscle-name">{{ muscle.name }}</h3>
+          <div class="muscle-icon">💪</div>
+        </div>
+        <div class="ripple-effect" *ngIf="selectedBodyPart === muscle.key"></div>
+        <div class="selection-badge" *ngIf="selectedBodyPart === muscle.key">
+          <span>✓</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Loading Indicator -->
-  <div class="loading" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
+  <!-- Enhanced Loading Indicator -->
+  <div class="loading-section" *ngIf="isLoading">
+    <div class="loading-animation">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">
+        <span>Loading your workout</span>
+        <div class="loading-dots">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Exercises Section -->
-  <div class="exercises-list" *ngIf="selectedExercises.length > 0">
-    <h2>
-      <span class="muscle-icon">💪</span> 
-      Exercises for {{ selectedBodyPart | titlecase }}
-    </h2>
+  <!-- Enhanced Exercises Section -->
+  <div class="exercises-section" *ngIf="selectedExercises.length > 0 && !isLoading">
+    <div class="exercises-header">
+      <h2 class="exercises-title">
+        <span class="muscle-emoji">💪</span> 
+        <span class="title-text">Exercises for</span>
+        <span class="body-part-name">{{ selectedBodyPart | titlecase }}</span>
+      </h2>
+      <div class="exercise-count">{{ selectedExercises.length }} exercises</div>
+    </div>
     
     <div class="exercise-grid">
-      <div class="exercise-card" *ngFor="let exercise of selectedExercises">
-        <div class="exercise-image" (click)="openExerciseModal(exercise)">
-          <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + exercise.id" 
-               [alt]="exercise.name"
-               (error)="handleImageError($event)">
-          <div class="zoom-icon">🔍</div>
-        </div>
-        <div class="exercise-details">
-          <h3 class="exercise-name">{{ exercise.name }}</h3>
-          <div class="exercise-target">Target: {{ exercise.target }}</div>
-          <div class="exercise-id">ID: {{ exercise.id }}</div>
+      <div class="exercise-card" 
+           *ngFor="let exercise of selectedExercises; let i = index"
+           [style.animation-delay.ms]="i * 150">
+        <div class="exercise-inner" (click)="openExerciseModal(exercise)">
+          <div class="exercise-image">
+            <img [src]="'https://localhost:5001/api/users/workout/exercise-gif?exerciseId=' + exercise.id" 
+                 [alt]="exercise.name"
+                 (error)="handleImageError($event)">
+            <div class="image-overlay">
+              <div class="zoom-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="8" stroke="white" stroke-width="2"/>
+                  <path d="m21 21-4.35-4.35" stroke="white" stroke-width="2"/>
+                  <line x1="8" y1="11" x2="14" y2="11" stroke="white" stroke-width="2"/>
+                  <line x1="11" y1="8" x2="11" y2="14" stroke="white" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="exercise-content">
+            <h3 class="exercise-name">{{ exercise.name }}</h3>
+            <div class="exercise-meta">
+              <div class="exercise-target">
+                <span class="target-icon">🎯</span>
+                <span>{{ exercise.target }}</span>
+              </div>
+              <div class="exercise-id">
+                <span class="id-label">#{{ exercise.id }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
       </div>
     </div>
     
     <div class="no-exercises" *ngIf="selectedExercises.length === 0 && selectedBodyPart">
-      No exercises found for {{ selectedBodyPart | titlecase }}
+      <div class="no-exercises-icon">😔</div>
+      <div class="no-exercises-text">No exercises found for {{ selectedBodyPart | titlecase }}</div>
     </div>
   </div>
 
-  <!-- Back to Top Button -->
+  <!-- Enhanced Back to Top Button -->
   <div class="back-to-top" [class.visible]="showBackToTop" (click)="scrollToTop()">
-    ↑
+    <div class="btn-inner">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path d="M12 19V5M5 12l7-7 7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
   </div>
   
-  <!-- Exercise Modal -->
+  <!-- Enhanced Exercise Modal -->
   <div class="exercise-modal" *ngIf="selectedExercise" (click)="closeExerciseModal()">
+    <div class="modal-backdrop"></div>
     <div class="modal-content" (click)="$event.stopPropagation()">
       <div class="modal-header">
-        <h2>{{ selectedExercise.name }}</h2>
-        <button class="close-button" (click)="closeExerciseModal()">×</button>
+        <h2 class="modal-title">{{ selectedExercise.name }}</h2>
+        <button class="close-button" (click)="closeExerciseModal()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
       </div>
       <div class="modal-body">
         <div class="modal-image">
@@ -76,9 +152,19 @@
                (error)="handleImageError($event)">
         </div>
         <div class="modal-details">
-          <div class="detail-item">
-            <span class="detail-label" >Target:</span> 
-            <span class="detail-value">{{ selectedExercise.target }}</span>
+          <div class="detail-card">
+            <div class="detail-icon">🎯</div>
+            <div class="detail-content">
+              <span class="detail-label">Target Muscle</span>
+              <span class="detail-value">{{ selectedExercise.target }}</span>
+            </div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-icon">#</div>
+            <div class="detail-content">
+              <span class="detail-label">Exercise ID</span>
+              <span class="detail-value">{{ selectedExercise.id }}</span>
+            </div>
           </div>
         </div>
       </div>

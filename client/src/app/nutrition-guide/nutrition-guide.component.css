@@ -5,7 +5,7 @@
   justify-content: center;
   min-height: 100vh;
   padding: 0 10px;
-  background-color: #1e1e2f;
+  background: linear-gradient(135deg, #0f224e, #0b1222, #000000);
   color: #eee;
   position: relative;
   font-family: 'Roboto', sans-serif;
@@ -22,7 +22,7 @@
 }
 
 .nutrition-guide-container {
-  background-color: #23353d;
+  background: linear-gradient(135deg, #162f68, #0f172a, #000000);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
