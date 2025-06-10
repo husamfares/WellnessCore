@@ -29,9 +29,9 @@ export class RecoveryComponent {
 
     this.http.post<any>('http://localhost:5000/api/recovery/calculate', data)
       .subscribe(result => {
-        this.recoveryPercentage = result;
-        this.showClassificationTable = true;
-        });
+    this.recoveryPercentage = result.recoveryPercentage; 
+    this.showClassificationTable = true;
+      });
   }
   
 }
