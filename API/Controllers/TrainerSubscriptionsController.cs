@@ -15,6 +15,10 @@ public class TrainerSubscriptionsController(DataContext context) : BaseApiContro
     [HttpPost]
     public async Task<ActionResult<TrainerSubscriptionDto>> AddSubscription(TrainerSubscriptionDto dto)
     {
+        if (!ModelState.IsValid)
+        return BadRequest(ModelState);
+
+
         var username = User.FindFirst(ClaimTypes.Name)?.Value;
         var user = await context.Users
             .Include(u => u.UserRoles)

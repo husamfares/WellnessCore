@@ -15,6 +15,9 @@ public class TherapistSessionsController(DataContext context) : BaseApiControlle
     [HttpPost]
     public async Task<ActionResult<TherapistSessionPriceDto>> AddSession(TherapistSessionPriceDto dto)
     {
+         if (!ModelState.IsValid)
+        return BadRequest(ModelState);
+
         var username = User.FindFirst(ClaimTypes.Name)?.Value;
 
         var user = await context.Users
@@ -43,21 +46,23 @@ public class TherapistSessionsController(DataContext context) : BaseApiControlle
     }
 
     [HttpDelete("{id}")]
-public async Task<IActionResult> DeleteSessionPrice(int id)
-{
-    var username = User.FindFirst(ClaimTypes.Name)?.Value;
-    var user = await context.Users.Include(u => u.UserRoles)
-                                  .FirstOrDefaultAsync(x => x.UserName == username);
+    public async Task<IActionResult> DeleteSessionPrice(int id)
+    {
+        var username = User.FindFirst(ClaimTypes.Name)?.Value;
+        var user = await context.Users.Include(u => u.UserRoles)
+                                      .FirstOrDefaultAsync(x => x.UserName == username);
 
-    if (user == null) return Unauthorized();
+        if (user == null) return Unauthorized();
 
-    var session = await context.TherapistSessionPrices.FirstOrDefaultAsync(x => x.Id == id && x.TherapistId == user.Id);
-    if (session == null) return NotFound();
+        var session = await context.TherapistSessionPrices.FirstOrDefaultAsync(x => x.Id == id && x.TherapistId == user.Id);
+        if (session == null) return NotFound();
 
-    context.TherapistSessionPrices.Remove(session);
-    await context.SaveChangesAsync();
+        context.TherapistSessionPrices.Remove(session);
+        await context.SaveChangesAsync();
 
-    return NoContent();
-}
+        return NoContent();
+    }
+
+
 
 }
