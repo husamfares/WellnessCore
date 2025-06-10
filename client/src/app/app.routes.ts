@@ -103,7 +103,8 @@ export const routes: Routes = [
     {
         path: 'nutrition-guide/:username',
         component: NutritionGuideComponent,
-        canActivate: [authGuard]
+        canActivate: [authGuard , fitnessCheckGuard],
+
     },
     {
         path: 'meal-analyzer',

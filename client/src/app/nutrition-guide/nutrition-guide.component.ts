@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NutritionService, NutritionGuide } from '../_services/nutrition.service'; 
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor, NgIf, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-nutrition-guide',
   standalone: true,
   templateUrl: './nutrition-guide.component.html',
   styleUrls: ['./nutrition-guide.component.css'],
-  imports: [CommonModule]
+  imports: [NgIf , TitleCasePipe , NgFor]
 })
 export class NutritionGuideComponent implements OnInit {
   nutritionGuide: NutritionGuide | null = null;

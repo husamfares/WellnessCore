@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-[Authorize]
+[AllowAnonymous]
 public class RecoveryController : BaseApiController
 {
    
@@ -37,7 +37,10 @@ public ActionResult<double> CalculateRecovery([FromBody] RecoveryInputDto input)
     double recovery = 100 * sleepEffect * intensityEffect * fatigueEffect;
     recovery = Math.Clamp(recovery, 0, 100);
 
-    return Ok(Math.Round(recovery, 2));
+     return Ok(new RecoveryResultDto
+    {
+        RecoveryPercentage = Math.Round(recovery, 2)
+    });
 }
 
 }
