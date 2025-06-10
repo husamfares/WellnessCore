@@ -1,7 +1,7 @@
 /* Updated Home Dashboard Styles with Darker Color Scheme */
 .main-content {
   flex: 1;
-  background: linear-gradient(135deg, #5e6b8a, #0f172a, #0f172a);
+  background: linear-gradient(135deg, #7b7d7e, #0f172a, #0f172a);
   padding: 30px;
   transition: all 0.3s ease;
 }

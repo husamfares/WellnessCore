@@ -1,17 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Router, RouterLink, RouterModule } from '@angular/router';
-import { HasRoleDirective } from '../_directives/has-role.directive';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { Profile } from '../_models/profile';
 import { ProfileService } from '../_services/profile.service';
 import { take } from 'rxjs';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommonModule, MatIconModule , RouterModule],
+  imports: [RouterLink, CommonModule, MatIconModule , RouterModule, MatTooltipModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

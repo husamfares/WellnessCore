@@ -1,52 +1,55 @@
 <div class="dashboard-container">
   <aside class="sidebar" [class.closed]="isSidebarClosed">
-    <h2 class="sidebar-title">Wellness Core</h2>
+    <h2 class="sidebar-title" style="font-size: medium;">Wellness</h2>
 
     <button class="toggle-btn" (click)="toggleSidebar()">
       <mat-icon>{{ isSidebarClosed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
     </button>
 
-        <div class="nav-item" [routerLink]="['/fitness-check']">
+      
+
+    <nav class="nav-links">
+
+    <div class="nav-item " [routerLink]="['/fitness-check']" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Fitness Check">
       <mat-icon>directions_run</mat-icon>
       <span>Fitness Check</span>
     </div>
     
-    <div class="nav-item" [routerLink]="['/workout-plan']">
+    <div class="nav-item" [routerLink]="['/workout-plan']" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Workout Plan">
       <mat-icon>fitness_center</mat-icon>
       <span>Workout Plan</span>
     </div>
 
-    <nav class="nav-links">
-      <a class="nav-item" routerLink="/questions" matTooltip="Community">
+      <a class="nav-item" routerLink="/questions" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Community">
         <mat-icon>groups</mat-icon><span *ngIf="!isSidebarClosed">Community</span>
       </a>
 
-      <a class="nav-item" routerLink="/chatbot" matTooltip="Your Personal AI Coach">
+      <a class="nav-item" routerLink="/chatbot" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Your Personal AI Coach">
            <mat-icon>psychology</mat-icon>
          <span *ngIf="!isSidebarClosed">AI Fitness Coach</span>
       </a>
 
-      <a class="nav-item" routerLink="/meal-analyzer" matTooltip="Meal Analyzer">
+      <a class="nav-item" routerLink="/meal-analyzer" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Meal Analyzer">
         <mat-icon>fastfood</mat-icon><span *ngIf="!isSidebarClosed">Meal Analyzer</span>
       </a>
 
-      <a class="nav-item" routerLink="/recovery" matTooltip="Recovery">
+      <a class="nav-item" routerLink="/recovery" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Recovery">
         <mat-icon>health_and_safety</mat-icon><span *ngIf="!isSidebarClosed">Recovery</span>
       </a>
 
-      <a class="nav-item" *ngIf="username" [routerLink]="['/nutrition-guide', username]" matTooltip="Nutrition">
+      <a class="nav-item" *ngIf="username" [routerLink]="['/nutrition-guide', username]" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Nutrition">
         <mat-icon>restaurant_menu</mat-icon><span *ngIf="!isSidebarClosed">Nutrition</span>
       </a>
 
-      <a class="nav-item" routerLink="/profiles" matTooltip="Explore Members">
+      <a class="nav-item" routerLink="/profiles" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Explore Members">
         <mat-icon>search</mat-icon><span *ngIf="!isSidebarClosed">Find Members</span>
       </a>
 
-      <a *ngIf="accountService.isAdmin()" class="nav-item admin-link" routerLink="/admin" matTooltip="Admin Panel">
+      <a *ngIf="accountService.isAdmin()" class="nav-item admin-link" routerLink="/admin" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Admin Panel">
         <mat-icon>admin_panel_settings</mat-icon><span *ngIf="!isSidebarClosed">Admin</span>
       </a>
 
-      <div (click)="logout()" class="nav-item logout" matTooltip="Logout">
+      <div (click)="logout()" class="nav-item logout" matTooltipPosition="right" matTooltipShowDelay="50" matTooltip="Logout">
         <mat-icon>logout</mat-icon><span *ngIf="!isSidebarClosed">Logout</span>
       </div>
     </nav>
