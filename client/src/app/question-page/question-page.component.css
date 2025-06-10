@@ -1,7 +1,7 @@
 :host {
   display: block;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #162f68, #0f172a, #000000);
   padding: 40px 20px;
 }
 
@@ -13,7 +13,7 @@
 
 /* Header */
 .qa-header h2 {
-  color: #03dac6;
+  color: #b3b9da;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
@@ -25,7 +25,7 @@
   display: block;
   width: 80px;
   height: 3px;
-  background: #03dac6;
+  background: #626da7;
   margin: 10px auto 0;
   border-radius: 4px;
 }
@@ -44,7 +44,7 @@
 /* Divider */
 .divider {
   height: 2px;
-  background: #03dac6;
+  background: #626da7;
   margin: 40px 0;
   width: 60%;
   margin-left: auto;

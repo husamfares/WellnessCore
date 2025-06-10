@@ -54,9 +54,9 @@
 
   <main class="main-content">
     <header class="header">
-      <h1>Fitness Dashboard</h1>
+      <h1 style="color: #5d5d77;"></h1>
       <div class="header-right">
-        <span class="welcome-text">Welcome back, {{username}}!</span>
+        <span class="welcome-text" style="color: white;">Welcome back, {{username}}!</span>
         <div class="profile-circle" [routerLink]="['/profile', username]">
           <ng-container *ngIf="photoUrl; else defaultIcon">
             <img [src]="photoUrl" alt="Profile" class="profile-img" />
