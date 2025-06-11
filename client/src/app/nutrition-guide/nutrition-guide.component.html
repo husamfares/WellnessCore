@@ -1,13 +1,17 @@
 <div class="nutrition-guide-container">
   <div *ngIf="nutritionGuide; else errorTemplate" class="nutrition-guide">
     <h2>Nutrition Guide</h2>
-   
-    <p><strong>Calories : </strong> {{ nutritionGuide.calories }} kcal</p>
-    <p><strong>Protein : </strong> {{ nutritionGuide.proteinGrams }} g</p>
-    <p><strong>Carbs : </strong> {{ nutritionGuide.carbsGrams }} g</p>
-    <p><strong>Fat : </strong> {{ nutritionGuide.fatGrams }} g</p>
+<p style="color: white; font-size: 0.85rem; margin-top: -0.5rem;">
+  Depending on your goal, age and gender, you need to:
+</p>
 
-    <h3> Weekly Meal Plan </h3>
+   
+    <p><strong>Calories:</strong> {{ nutritionGuide?.calories }} kcal</p>
+    <p><strong>Protein:</strong> {{ nutritionGuide?.proteinGrams }} g</p>
+    <p><strong>Carbs:</strong> {{ nutritionGuide?.carbsGrams }} g</p>
+    <p><strong>Fat:</strong> {{ nutritionGuide?.fatGrams }} g</p>
+
+    <h3>Weekly Meal Plan</h3>
     <div class="weekly-table">
       <table>
         <thead>
@@ -16,14 +20,16 @@
             <th>Breakfast</th>
             <th>Snack</th>
             <th>Lunch</th>
-            <th>Snack</th>
             <th>Dinner</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dayKey of dayKeys">
-            <td>{{ dayKey | titlecase }}</td>
-            <td *ngFor="let meal of mealsData[dayKey]">{{ meal }}</td>
+          <tr *ngFor="let day of dayKeys">
+            <td>{{ day | titlecase }}</td>
+            <td>{{ mealsData[day]['Breakfast'] || '-' }}</td>
+            <td>{{ mealsData[day]['Snack'] || '-' }}</td>
+            <td>{{ mealsData[day]['Lunch'] || '-' }}</td>
+            <td>{{ mealsData[day]['Dinner'] || '-' }}</td>
           </tr>
         </tbody>
       </table>
