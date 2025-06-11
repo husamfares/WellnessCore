@@ -42,7 +42,7 @@
 .nutrition-guide h2 {
   text-align: center;
   font-size: 36px;
-  color: #ff9966;
+  color: #66c7ff;
   margin-bottom: 1rem;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .nutrition-guide p strong {
-  color: #ff9966;
+  color: #66c7ff;
 }
 
 .weekly-table table {
@@ -69,25 +69,25 @@
 .weekly-table th,
 .weekly-table td {
   padding: 8px 10px;
-  border: 1px solid #552a00;
+  border: 1px solid #003355;
   text-align: center;
 }
 
 .weekly-table th {
-  background-color: #ff7043;
+  background-color: #43c0ff;
   color: #121212;
 }
 
 .weekly-table tr:nth-child(odd) {
-  background-color: #4e342e;
+  background-color: #2e404e;
 }
 
 .weekly-table tr:nth-child(even) {
-  background-color: #6d4c41;
+  background-color: #41476d;
 }
 
 .weekly-table tr:hover {
-  background-color: #bf7e57;
+  background-color: #848ba8;
   transform: scale(1.02);
   transition: all 0.3s ease;
   cursor: pointer;

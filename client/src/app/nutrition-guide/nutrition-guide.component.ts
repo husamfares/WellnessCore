@@ -15,7 +15,7 @@ export class NutritionGuideComponent implements OnInit {
   errorMessage: string = '';
 
   dayKeys: string[] = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-  mealsData: { [key: string]: string[] } = {};
+mealsData: { [day: string]: { [meal: string]: string } } = {};
 
   constructor(
     private nutritionService: NutritionService,
@@ -31,8 +31,9 @@ export class NutritionGuideComponent implements OnInit {
           this.nutritionGuide = data;
 
           this.dayKeys.forEach(day => {
-            this.mealsData[day] = this.getMeals(data[day as keyof NutritionGuide] as string);
-        });
+  this.mealsData[day] = this.getMeals(data[day as keyof NutritionGuide] as string);
+});
+
         
         },
         error: err => {
@@ -45,20 +46,36 @@ export class NutritionGuideComponent implements OnInit {
     }
   }
 
-  getMeals(dayText: string): string[] {
-    const meals = ["Breakfast", "Snack", "Lunch", "Snack", "Dinner"];
-    const results: string[] = [];
+  getMeals(dayText: string): { [meal: string]: string } {
+  const meals = ["Breakfast", "Snack", "Lunch", "Snack2", "Dinner"];
+  const results: { [meal: string]: string } = {
+    Breakfast: '',
+    Snack: '',
+    Snack2: '',
+    Lunch: '',
+    Dinner: ''
+  };
 
+  if (!dayText) return results;
+
+  const parts = dayText.split(';');
+
+  parts.forEach(part => {
     meals.forEach(meal => {
-      const regex = new RegExp(`${meal}:\\s*([^|]+)`, 'i');
-      const match = dayText?.match(regex);
+      const label = meal.replace('2', ''); // snack2 => snack
+      const regex = new RegExp(`^\\s*${label}:\\s*(.*)$`, 'i');
+      const match = part.match(regex);
       if (match) {
-        results.push(match[1].trim());
-      } else {
-        results.push('N/A');
+        if (meal === 'Snack2') {
+          results['Snack2'] = match[1].trim();
+        } else {
+          results[meal] = match[1].trim();
+        }
       }
     });
+  });
 
-    return results;
-  }
+  return results;
+}
+
 }

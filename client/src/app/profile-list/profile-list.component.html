@@ -1,32 +1,40 @@
 <div class="container mt-4 profiles-page">
-    <h2 class="text-center mb-4">Explore Members</h2>
-  
-    <div class="filters mb-3 d-flex justify-content-between">
-      <input class="form-control me-2 white-placeholder" placeholder="Search by username..." [(ngModel)]="searchTerm" (input)="search()" style="width: 300px; color: white;">
-  
-      <select class="form-select" [(ngModel)]="selectedRole" (change)="filterByRole(selectedRole)" style="width: 200px;">
-        <option value="">All</option>
-        <option value="Trainer">Trainer</option>
-        <option value="Therapist">Therapist</option>
-        <option value="User">User</option>
-      </select>
-    </div>
-  
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Location</th>
-          <th>Role</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let profile of filteredProfiles" (click)="goToProfile(profile.username)" style="cursor: pointer;">
-          <td>{{ profile.username }}</td>
-          <td>{{ profile.location }}</td>
-          <td>{{ profile.role }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 class="text-center mb-4">Explore Members</h2>
+
+  <div class="filters mb-3 d-flex justify-content-between">
+    <input class="form-control me-2 white-placeholder"
+           placeholder="Search by username..."
+           [(ngModel)]="searchTerm"
+           (input)="search()"
+           style="width: 300px; color: white;">
+
+    <select class="form-select"
+            [(ngModel)]="selectedRole"
+            (change)="filterByRole(selectedRole)"
+            style="width: 200px;">
+      <option value="">All</option>
+      <option value="Trainer">Trainer</option>
+      <option value="Therapist">Therapist</option>
+      <option value="User">User</option>
+    </select>
   </div>
-  
+
+  <table class="table table-dark table-hover">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Location</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profile of filteredProfiles" 
+          (click)="goToProfile(profile.username)" 
+          style="cursor: pointer;">
+        <td>{{ profile.username }}</td>
+        <td>{{ profile.location }}</td>
+        <td>{{ profile.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
