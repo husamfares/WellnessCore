@@ -31,14 +31,20 @@
 }
 
 .message {
-  max-width: 60%;
+  display: inline-block;
+  max-width: 70%; /* allow more room */
+  min-width: 40px; /* prevents excessive shrinking */
   padding: 12px;
   border-radius: 10px;
   background-color: #3d3d5c;
-  white-space: pre-wrap;
-  word-break: break-word;
+  color: #fff;
+  white-space: pre-wrap;       /* preserves \n as line breaks */
+  word-break: break-word;      /* breaks long words if needed */
+  direction: initial;          /* ensures direction is auto for mixed languages */
+  unicode-bidi: plaintext;     /* preserves correct direction for LTR/RTL text */
   line-height: 1.5;
 }
+
 
 .user .message {
   background-color: #007bff;
@@ -72,4 +78,9 @@ button {
   color: #fff;
   font-weight: bold;
   cursor: pointer;
+}
+.user,
+.assistant {
+  width: 100%;
+  display: flex;
 }

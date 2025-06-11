@@ -19,33 +19,36 @@ export class ProfileListComponent implements OnInit {
   private profileService = inject(ProfileService);
   private router = inject(Router);
 
-
   ngOnInit(): void {
     this.loadProfiles();
   }
 
   loadProfiles(role: string = '') {
     this.profileService.getAllProfiles(role).subscribe(profiles => {
-      this.profiles = profiles;
-      this.filteredProfiles = profiles;
+      // ✅ Exclude Admins here
+      this.profiles = profiles.filter(p => p.role !== 'Admin');
+      this.applyFilters();
     });
   }
 
   search() {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredProfiles = this.profiles.filter(p => 
-      p.username.toLowerCase().includes(term)
-    );
+    this.applyFilters();
   }
 
   filterByRole(role: string) {
     this.selectedRole = role;
-    this.loadProfiles(role);
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProfiles = this.profiles.filter(profile =>
+      (!this.selectedRole || profile.role === this.selectedRole) &&
+      (!this.searchTerm || profile.username.toLowerCase().includes(term))
+    );
   }
 
   goToProfile(username: string) {
     this.router.navigate(['/profile', username]);
   }
 }
-
-
